@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Theme from '../styles/Global';
+import NativeButton from '../components/NativeButton';
 import {
   StyleSheet,
   Text,
   View,
   Image,
+  ScrollView,
   TouchableOpacity
 } from 'react-native';
 
@@ -37,7 +39,14 @@ export default class BuilderPage extends Component {
           </View>
         </View>
         <View style={Style.container}>
-          
+          <ScrollView>
+            <View style={{height: 200, backgroundColor: Color.pureWhite}}>
+            
+            </View>
+            <View>
+           
+            </View>
+          </ScrollView>
         </View>
       </View>
     );

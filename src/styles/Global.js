@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 var Color = {
+    pureWhite: '#ffffff',
     primary: '#212121',
     primaryLight: '#484848',
     primaryDark: '#000000',
