@@ -9,6 +9,7 @@ import {
   Image,
   ScrollView,
   Button,
+  StatusBar
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -57,7 +58,13 @@ export default class DrawerComponent extends Component {
     const { navigation } = this.props;
     this.drawerNavigation = navigation;
     return (
+      
       <View style={{flex: 1}}>
+        <StatusBar 
+          backgroundColor={Color.primaryDark}
+          barStyle="default">
+        </StatusBar>
+
         <View style={local.drawerTitle}>
           <Text style={local.drawerTitleText}>
             Specter
