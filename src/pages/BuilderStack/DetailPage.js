@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import Theme from '../styles/Global';
-import PageHeader from '../components/PageHeader';
+import Theme from '../../styles/Global';
 import {
   StyleSheet,
   Text,
   View,
   Image,
+  TouchableOpacity
 } from 'react-native';
 
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class FavoritePage extends Component {
+export default class DetailPage extends Component {
   static navigationOptions = {
-    title: 'Favorite',
+    title: 'Detail',
   };
 
   constructor(props) {
@@ -21,11 +21,9 @@ export default class FavoritePage extends Component {
   }
 
   render() {
-    const {navigation} = this.props; // pass down navigation to PageHeader
-    
     return (
       <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
-        <PageHeader headerText={"Favorite"} navigation={navigation}></PageHeader>
+        
         <View style={Style.container}>
           
         </View>
@@ -35,5 +33,5 @@ export default class FavoritePage extends Component {
 }
 
 var local = StyleSheet.create({
- 
+  
 });

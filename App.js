@@ -17,18 +17,24 @@ import {
   View
 } from 'react-native';
 
+
+// Wrapper function
+
 const paramsToProps = (SomeComponent) => { 
   // turns this.props.navigation.state.params into this.params.<x>
-      return class extends Component {
-          render() {
-              const {navigation, ...otherProps} = this.props
-              const {state: {params}} = navigation
-              return <SomeComponent {...this.props} {...params} />
-          }
+  return class extends Component {
+      render() {
+          const {navigation, ...otherProps} = this.props
+          const {state: {params}} = navigation
+          return <SomeComponent {...this.props} {...params} />
       }
   }
+}
 
+// const builderStack = StackNavigator({
   
+// })
+
 const App = DrawerNavigator({
   Builder: {screen: paramsToProps(BuilderPage)},
   Favorite: {screen: paramsToProps(FavoritePage)},

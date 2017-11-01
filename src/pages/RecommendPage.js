@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Theme from '../styles/Global';
+import PageHeader from '../components/PageHeader';
 import {
   StyleSheet,
   Text,
   View,
   Image,
-  TouchableOpacity
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -21,21 +21,11 @@ export default class RecommendPage extends Component {
   }
 
   render() {
+    const {navigation} = this.props; // pass down navigation to PageHeader
+    
     return (
       <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
-        <View style={Style.headerLabel}>
-          <View style={Style.colContent}>
-            <View style={{marginRight: 10, justifyContent: 'center'}}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerToggle')}>
-                <Image style={Style.icon}
-                  source={require('../assets/icons/hamburger.png')}></Image>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <Text style={Style.headerLabelText}>Recommend</Text>
-            </View>
-          </View>
-        </View>
+        <PageHeader headerText={"Recommend"} navigation={navigation}></PageHeader>
         <View style={Style.container}>
           
         </View>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Theme from '../styles/Global';
 import NativeButton from '../components/NativeButton';
+import PageHeader from '../components/PageHeader';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   ScrollView,
-  TouchableOpacity,
   TouchableNativeFeedback
 } from 'react-native';
 
@@ -48,25 +48,15 @@ export default class BuilderPage extends Component {
   }
 
   render() {
+    const {navigation} = this.props; // pass down navigation to PageHeader
+    
     return (
       <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
-        <View style={Style.headerLabel}>
-          <View style={Style.colContent}>
-            <View style={{marginRight: 10, justifyContent: 'center'}}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerToggle')}>
-                <Image style={Style.icon}
-                  source={require('../assets/icons/hamburger.png')}></Image>
-              </TouchableOpacity>
-            </View>
-            <View>
-              <Text style={Style.headerLabelText}>Builder</Text>
-            </View>
-          </View>
-        </View>
+        <PageHeader headerText={"Builder"} navigation={navigation}></PageHeader>
         <View style={Style.container}>
           <ScrollView>
             <View style={{height: 200, backgroundColor: Color.pureWhite}}>
-            
+          
             </View>
             <View>
               <TypeComponent text={"CPU"}></TypeComponent>

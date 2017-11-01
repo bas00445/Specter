@@ -31,15 +31,6 @@ var Style = StyleSheet.create({
         width: 24,
         height: 24
     },
-    headerLabel: {
-        backgroundColor: Color.primary,
-        padding: 10,
-    },
-    headerLabelText: {
-        color: Color.primaryText,
-        fontSize: 22,
-        fontWeight: 'bold'
-    },
     card: {
         padding: 10,
         margin: 5,
