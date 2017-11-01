@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Theme from '../styles/Global';
+import { NavigationActions } from 'react-navigation'
 import {
   StyleSheet,
   Text,
@@ -12,15 +13,38 @@ var Style = Theme.Style;
 var Color = Theme.Color;
 
 export default class PageHeader extends Component {
+
+  renderHeaderButton() {
+    if (this.props.type == "drawer") {
+      return (
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerToggle')}>
+          <Image style={Style.icon}
+            source={require('../assets/icons/hamburger.png')}></Image>
+        </TouchableOpacity>
+      );
+    } else if (this.props.type == "stack") {
+      return (
+      <TouchableOpacity onPress={this.returnBack.bind(this)}>
+        <Image style={Style.icon}
+          source={require('../assets/icons/back.png')}></Image>
+      </TouchableOpacity>
+      );
+    }
+  }
+
+  returnBack() {
+    const backAction = NavigationActions.back({
+      key: null
+    });
+    this.props.navigation.dispatch(backAction);
+  }
+
   render() {
     return (
       <View style={local.headerLabel}>
         <View style={Style.colContent}>
           <View style={{marginRight: 10, justifyContent: 'center'}}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerToggle')}>
-              <Image style={Style.icon}
-                source={require('../assets/icons/hamburger.png')}></Image>
-            </TouchableOpacity>
+            {this.renderHeaderButton()}
           </View>
           <View>
             <Text style={local.headerLabelText}>{this.props.headerText}</Text>

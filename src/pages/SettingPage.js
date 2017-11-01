@@ -25,7 +25,7 @@ export default class SettingPage extends Component {
     
     return (
       <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
-        <PageHeader headerText={"Hello"} navigation={navigation}></PageHeader>
+        <PageHeader headerText={"Setting"} navigation={navigation} type={"drawer"}></PageHeader>
         <View style={Style.container}>
         </View>
       </View>

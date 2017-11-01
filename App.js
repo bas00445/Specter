@@ -3,10 +3,14 @@ import React, { Component } from 'react';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
 
 // Pages
-import BuilderPage from './src/pages/BuilderPage';
 import FavoritePage from './src/pages/FavoritePage';
 import RecommendPage from './src/pages/RecommendPage';
 import SettingPage from './src/pages/SettingPage';
+
+// BuilderStack Pages
+import SelectTypePage from './src/pages/BuilderStack/SelectTypePage';
+import ProductPage from './src/pages/BuilderStack/ProductPage';
+import DetailPage from './src/pages/BuilderStack/DetailPage';
 
 // Components
 import DrawerComponent from './src/components/DrawerComponent';
@@ -31,12 +35,17 @@ const paramsToProps = (SomeComponent) => {
   }
 }
 
-// const builderStack = StackNavigator({
-  
-// })
+const BuilderStack = StackNavigator({
+  SelectType: {screen: paramsToProps(SelectTypePage)},
+  Product: {screen: paramsToProps(ProductPage)},
+  Detail: {screen: paramsToProps(DetailPage)},
+},
+{
+  headerMode: 'none',
+})
 
 const App = DrawerNavigator({
-  Builder: {screen: paramsToProps(BuilderPage)},
+  Builder: {screen: BuilderStack},
   Favorite: {screen: paramsToProps(FavoritePage)},
   Recommend: {screen: paramsToProps(RecommendPage)},
   Setting: {screen: paramsToProps(SettingPage)}

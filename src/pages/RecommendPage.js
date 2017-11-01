@@ -25,7 +25,7 @@ export default class RecommendPage extends Component {
     
     return (
       <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
-        <PageHeader headerText={"Recommend"} navigation={navigation}></PageHeader>
+        <PageHeader headerText={"Recommend"} navigation={navigation} type={"drawer"}></PageHeader>
         <View style={Style.container}>
           
         </View>

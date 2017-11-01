@@ -25,7 +25,7 @@ export default class FavoritePage extends Component {
     
     return (
       <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
-        <PageHeader headerText={"Favorite"} navigation={navigation}></PageHeader>
+        <PageHeader headerText={"Favorite"} navigation={navigation} type={"drawer"}></PageHeader>
         <View style={Style.container}>
           
         </View>
