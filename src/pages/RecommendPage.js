@@ -26,7 +26,7 @@ export default class RecommendPage extends Component {
         <View style={Style.headerLabel}>
           <View style={Style.colContent}>
             <View style={{marginRight: 10, justifyContent: 'center'}}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('DrawerToggle')}>
                 <Image style={Style.icon}
                   source={require('../assets/icons/hamburger.png')}></Image>
               </TouchableOpacity>

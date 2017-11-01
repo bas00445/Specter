@@ -25,7 +25,7 @@ export default class DrawerComponent extends Component {
   }
 
   navigateTo(pageName) {
-    this.drawerNavigation.navigate(pageName);
+    this.drawerNavigation.navigate(pageName, {incomeData: 'Hello'});
     this.activeDrawerItem(pageName);
   } 
   

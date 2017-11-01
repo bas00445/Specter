@@ -17,11 +17,23 @@ import {
   View
 } from 'react-native';
 
+const paramsToProps = (SomeComponent) => { 
+  // turns this.props.navigation.state.params into this.params.<x>
+      return class extends Component {
+          render() {
+              const {navigation, ...otherProps} = this.props
+              const {state: {params}} = navigation
+              return <SomeComponent {...this.props} {...params} />
+          }
+      }
+  }
+
+  
 const App = DrawerNavigator({
-  Builder: {screen: BuilderPage},
-  Favorite: {screen: FavoritePage},
-  Recommend: {screen: RecommendPage},
-  Setting: {screen: SettingPage}
+  Builder: {screen: paramsToProps(BuilderPage)},
+  Favorite: {screen: paramsToProps(FavoritePage)},
+  Recommend: {screen: paramsToProps(RecommendPage)},
+  Setting: {screen: paramsToProps(SettingPage)}
 },
 {
   drawerWidth: 250,
