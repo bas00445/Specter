@@ -42,9 +42,15 @@ var Style = StyleSheet.create({
     },
     card: {
         padding: 10,
-        margin: 10,
+        margin: 5,
+        borderColor: Color.primaryWhite,
+        borderWidth: 2,
         borderRadius: 2,
         backgroundColor: Color.primaryWhite,
+        shadowOpacity: 0.8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        elevation: 2,
     },
 });
 
