@@ -17,6 +17,7 @@ var Color = {
 var Style = StyleSheet.create({
     container: {
         flex: 1, 
+        padding: 10,
         backgroundColor: Color.secondaryGrey
     },
     colContent: {
@@ -32,7 +33,6 @@ var Style = StyleSheet.create({
         height: 24
     },
     card: {
-        padding: 10,
         margin: 5,
         borderColor: Color.primaryWhite,
         borderWidth: 2,

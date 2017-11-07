@@ -8,7 +8,7 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableNativeFeedback
+  TouchableOpacity
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -17,22 +17,22 @@ var Color = Theme.Color;
 class TypeComponent extends Component {
   render() {
     return (
-      <TouchableNativeFeedback
-        onPress={this.props.onPress}
-        background={TouchableNativeFeedback.SelectableBackground()}>
-        <View style={[Style.card, Style.colContent, {justifyContent: 'center'}]}>
-          <View style={{flex: 1, alignItems: 'flex-start'}}>
-            <Text style={{fontSize: 18}}>
-              {this.props.text}
-            </Text>
-          </View>
-          <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <Text style={{fontSize: 18}}>
-              >
-            </Text>
-          </View>
+      <View style={[Style.colContent, {justifyContent: 'center', padding: 10, 
+            borderBottomWidth: 1, borderBottomColor: Color.secondaryGrey}]}>
+        <View style={{flex: 1, alignItems: 'flex-start'}}>
+          <Text style={{fontSize: 16, color: Color.secondary}}>
+            {this.props.text}
+          </Text>
         </View>
-      </TouchableNativeFeedback> 
+        <TouchableOpacity 
+          style={{flex: 1, alignItems: 'flex-end'}}
+          onPress={this.props.onPress}>
+          <View style={{flex: 1, justifyContent: 'center'}}>
+            <Image style={{width: 20, height: 20, tintColor: Color.secondary}} 
+              source={require("../../assets/icons/list-add.png")}></Image>
+          </View>
+        </TouchableOpacity>
+      </View> 
     );
   }
 } 
@@ -55,30 +55,45 @@ export default class SelectTypePage extends Component {
     this.stackNavigator = navigation;
 
     return (
-      <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
+      <View style={{flex: 1}}>      
         <PageHeader headerText={"Builder"} navigation={navigation} type={"drawer"}></PageHeader>
         <View style={Style.container}>
-          <ScrollView>
-            <View style={{height: 200, backgroundColor: Color.pureWhite}}>
-          
+
+          <View style={[local.currentBuild, local.box]}>
+            <View style={local.highlightBox}>
+              <Text style={local.title}>Building</Text>
             </View>
-            <View>
-              <TypeComponent text={"CPU"} 
-                onPress={this.navigateToProduct.bind(this, "CPU")}></TypeComponent>
-              <TypeComponent text={"Graphic card"} 
-                onPress={this.navigateToProduct.bind(this, "Graphic card")}></TypeComponent>
-              <TypeComponent text={"Memory"} 
-                onPress={this.navigateToProduct.bind(this, "Memory")}></TypeComponent>
-              <TypeComponent text={"Mainboard"} 
-                onPress={this.navigateToProduct.bind(this, "Mainboard")}></TypeComponent>
-              <TypeComponent text={"Storage"} 
-                onPress={this.navigateToProduct.bind(this, "Storage")}></TypeComponent>
-              <TypeComponent text={"Power supply"} 
-                onPress={this.navigateToProduct.bind(this, "Power supply")}></TypeComponent>
-              <TypeComponent text={"Monitor"} 
-                onPress={this.navigateToProduct.bind(this, "Monitor")}></TypeComponent>
+            <View style={{flex: 1}}>
+              <ScrollView horizontal={true}>
+                
+              </ScrollView>
             </View>
-          </ScrollView>
+          </View>
+
+          <View style={[local.selectType, local.box]}>
+            <View style={local.highlightBox}>
+              <Text style={local.title}>Select Type</Text>
+            </View>
+            <View style={{flex: 1, padding: 10}}>
+              <ScrollView>
+                <TypeComponent text={"CPU"} 
+                  onPress={this.navigateToProduct.bind(this, "CPU")}></TypeComponent>
+                <TypeComponent text={"Graphic card"} 
+                  onPress={this.navigateToProduct.bind(this, "Graphic card")}></TypeComponent>
+                <TypeComponent text={"Memory"} 
+                  onPress={this.navigateToProduct.bind(this, "Memory")}></TypeComponent>
+                <TypeComponent text={"Mainboard"} 
+                  onPress={this.navigateToProduct.bind(this, "Mainboard")}></TypeComponent>
+                <TypeComponent text={"Storage"} 
+                  onPress={this.navigateToProduct.bind(this, "Storage")}></TypeComponent>
+                <TypeComponent text={"Power supply"} 
+                  onPress={this.navigateToProduct.bind(this, "Power supply")}></TypeComponent>
+                <TypeComponent text={"Monitor"} 
+                  onPress={this.navigateToProduct.bind(this, "Monitor")}></TypeComponent>
+                  
+              </ScrollView>
+            </View>
+          </View>
         </View>
       </View>
     );
@@ -86,5 +101,31 @@ export default class SelectTypePage extends Component {
 }
 
 var local = StyleSheet.create({
-  
+  currentBuild: {
+    flex: 3,
+    marginBottom: 15
+  },
+  highlightBox: {
+    backgroundColor: Color.secondary
+  },
+  selectType: {
+    flex: 7,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    paddingLeft: 10,
+    paddingVertical: 10,
+    color: Color.pureWhite
+  },
+  box: {
+    margin: 5,
+    borderColor: Color.primaryWhite,
+    backgroundColor: Color.primaryWhite,
+    borderRadius: 5,
+    shadowOpacity: 0.8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
+  }
 });
