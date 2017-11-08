@@ -38,7 +38,7 @@ export default class DrawerItem extends Component {
       var tintColor = Color.secondary;
       var itemColor = Color.secondaryGrey;
     } else {
-      var tintColor = Color.primary;
+      var tintColor = Color.secondary;
       var itemColor = null;
     }
     return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Theme from '../../styles/Global';
 import NativeButton from '../../components/NativeButton';
 import PageHeader from '../../components/PageHeader';
+import BuildingComponent from '../../components/BuildingComponent';
 import {
   StyleSheet,
   Text,
@@ -14,13 +15,13 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-class TypeComponent extends Component {
+class CategoryComponent extends Component {
   render() {
     return (
       <View style={[Style.colContent, {justifyContent: 'center', padding: 10, 
             borderBottomWidth: 1, borderBottomColor: Color.secondaryGrey}]}>
         <View style={{flex: 1, alignItems: 'flex-start'}}>
-          <Text style={{fontSize: 16, color: Color.secondary}}>
+          <Text style={{color: Color.secondary}}>
             {this.props.text}
           </Text>
         </View>
@@ -44,6 +45,9 @@ export default class SelectTypePage extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      budget: 20000
+    };
   }
 
   navigateToProduct(dataToPass) {
@@ -58,42 +62,50 @@ export default class SelectTypePage extends Component {
       <View style={{flex: 1}}>      
         <PageHeader headerText={"Builder"} navigation={navigation} type={"drawer"}></PageHeader>
         <View style={Style.container}>
+          <ScrollView>  
+            <View style={[local.currentBuild, local.box]}>
+              <View style={local.highlightBox}>
+                <Text style={local.title}>Building</Text>
+              </View>
+              <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.secondaryGrey}]}>
+                <View style={{flex: 1, alignItems: 'flex-start'}}>
+                  <Text>Budget</Text>
+                </View>
+                <View style={{flex: 1, alignItems: 'flex-end'}}>
+                  <Text>{this.state.budget}</Text>
+                </View>
+              </View>
+              <View style={{padding: 5}}>
+                <ScrollView horizontal={true}>
+                  <BuildingComponent></BuildingComponent>
+                  <BuildingComponent></BuildingComponent>
+                  <BuildingComponent></BuildingComponent>
+                </ScrollView>
+              </View>
+            </View>
 
-          <View style={[local.currentBuild, local.box]}>
-            <View style={local.highlightBox}>
-              <Text style={local.title}>Building</Text>
-            </View>
-            <View style={{flex: 1}}>
-              <ScrollView horizontal={true}>
-                
-              </ScrollView>
-            </View>
-          </View>
-
-          <View style={[local.selectType, local.box]}>
-            <View style={local.highlightBox}>
-              <Text style={local.title}>Select Type</Text>
-            </View>
-            <View style={{flex: 1, padding: 10}}>
+            <View style={[local.selectType, local.box]}>
+              <View style={local.highlightBox}>
+                <Text style={local.title}>Category</Text>
+              </View>
               <ScrollView>
-                <TypeComponent text={"CPU"} 
-                  onPress={this.navigateToProduct.bind(this, "CPU")}></TypeComponent>
-                <TypeComponent text={"Graphic card"} 
-                  onPress={this.navigateToProduct.bind(this, "Graphic card")}></TypeComponent>
-                <TypeComponent text={"Memory"} 
-                  onPress={this.navigateToProduct.bind(this, "Memory")}></TypeComponent>
-                <TypeComponent text={"Mainboard"} 
-                  onPress={this.navigateToProduct.bind(this, "Mainboard")}></TypeComponent>
-                <TypeComponent text={"Storage"} 
-                  onPress={this.navigateToProduct.bind(this, "Storage")}></TypeComponent>
-                <TypeComponent text={"Power supply"} 
-                  onPress={this.navigateToProduct.bind(this, "Power supply")}></TypeComponent>
-                <TypeComponent text={"Monitor"} 
-                  onPress={this.navigateToProduct.bind(this, "Monitor")}></TypeComponent>
-                  
+                <CategoryComponent text={"CPU"} 
+                  onPress={this.navigateToProduct.bind(this, "CPU")}></CategoryComponent>
+                <CategoryComponent text={"Graphic card"} 
+                  onPress={this.navigateToProduct.bind(this, "Graphic card")}></CategoryComponent>
+                <CategoryComponent text={"Memory"} 
+                  onPress={this.navigateToProduct.bind(this, "Memory")}></CategoryComponent>
+                <CategoryComponent text={"Mainboard"} 
+                  onPress={this.navigateToProduct.bind(this, "Mainboard")}></CategoryComponent>
+                <CategoryComponent text={"Storage"} 
+                  onPress={this.navigateToProduct.bind(this, "Storage")}></CategoryComponent>
+                <CategoryComponent text={"Power supply"} 
+                  onPress={this.navigateToProduct.bind(this, "Power supply")}></CategoryComponent>
+                <CategoryComponent text={"Monitor"} 
+                  onPress={this.navigateToProduct.bind(this, "Monitor")}></CategoryComponent>
               </ScrollView>
             </View>
-          </View>
+          </ScrollView>
         </View>
       </View>
     );
@@ -102,14 +114,12 @@ export default class SelectTypePage extends Component {
 
 var local = StyleSheet.create({
   currentBuild: {
-    flex: 3,
-    marginBottom: 15
+    marginBottom: 5
   },
   highlightBox: {
     backgroundColor: Color.secondary
   },
   selectType: {
-    flex: 7,
   },
   title: {
     fontSize: 18,
@@ -122,9 +132,6 @@ var local = StyleSheet.create({
     margin: 5,
     borderColor: Color.primaryWhite,
     backgroundColor: Color.primaryWhite,
-    borderRadius: 5,
-    shadowOpacity: 0.8,
-    shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
   }
