@@ -18,22 +18,24 @@ var Color = Theme.Color;
 class CategoryComponent extends Component {
   render() {
     return (
-      <View style={[Style.colContent, {justifyContent: 'center', padding: 10, 
+      <TouchableOpacity onPress={this.props.onPress}>
+        <View style={[Style.colContent, {justifyContent: 'center', padding: 10, 
             borderBottomWidth: 1, borderBottomColor: Color.secondaryGrey}]}>
-        <View style={{flex: 1, alignItems: 'flex-start'}}>
-          <Text style={{color: Color.secondary}}>
-            {this.props.text}
-          </Text>
-        </View>
-        <TouchableOpacity 
-          style={{flex: 1, alignItems: 'flex-end'}}
-          onPress={this.props.onPress}>
-          <View style={{flex: 1, justifyContent: 'center'}}>
-            <Image style={{width: 20, height: 20, tintColor: Color.secondary}} 
-              source={require("../../assets/icons/list-add.png")}></Image>
+          <View style={{flex: 1, alignItems: 'flex-start'}}>
+            <Text style={{color: Color.secondary}}>
+              {this.props.text}
+            </Text>
           </View>
-        </TouchableOpacity>
-      </View> 
+          <View 
+            style={{flex: 1, alignItems: 'flex-end'}}
+            onPress={this.props.onPress}>
+            <View style={{flex: 1, justifyContent: 'center'}}>
+              <Image style={{width: 20, height: 20, tintColor: Color.secondary}} 
+                source={require("../../assets/icons/list-add.png")}></Image>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity> 
     );
   }
 } 
@@ -77,9 +79,9 @@ export default class SelectTypePage extends Component {
               </View>
               <View style={{padding: 5}}>
                 <ScrollView horizontal={true}>
-                  <BuildingComponent></BuildingComponent>
-                  <BuildingComponent></BuildingComponent>
-                  <BuildingComponent></BuildingComponent>
+                  <BuildingComponent type={"CPU"} price={3000} name={"Ryzen 3 1200"}></BuildingComponent>
+                  <BuildingComponent type={"RAM"} price={1500} name={"ASUSx782"}></BuildingComponent>
+                  <BuildingComponent type={"Graphic"} price={6000} name={"Asus GTX 1050Ti"}></BuildingComponent>
                 </ScrollView>
               </View>
             </View>
