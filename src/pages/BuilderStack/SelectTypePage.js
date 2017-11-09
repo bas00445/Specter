@@ -22,7 +22,7 @@ class CategoryComponent extends Component {
         <View style={[Style.colContent, {justifyContent: 'center', padding: 10, 
             borderBottomWidth: 1, borderBottomColor: Color.secondaryGrey}]}>
           <View style={{flex: 1, alignItems: 'flex-start'}}>
-            <Text style={{color: Color.secondary}}>
+            <Text>
               {this.props.text}
             </Text>
           </View>
@@ -30,7 +30,7 @@ class CategoryComponent extends Component {
             style={{flex: 1, alignItems: 'flex-end'}}
             onPress={this.props.onPress}>
             <View style={{flex: 1, justifyContent: 'center'}}>
-              <Image style={{width: 20, height: 20, tintColor: Color.secondary}} 
+              <Image style={{width: 20, height: 20}} 
                 source={require("../../assets/icons/list-add.png")}></Image>
             </View>
           </View>
@@ -86,7 +86,7 @@ export default class SelectTypePage extends Component {
               </View>
             </View>
 
-            <View style={[local.selectType, local.box]}>
+            <View style={[local.box]}>
               <View style={local.highlightBox}>
                 <Text style={local.title}>Category</Text>
               </View>
@@ -119,21 +119,24 @@ var local = StyleSheet.create({
     marginBottom: 5
   },
   highlightBox: {
-    backgroundColor: Color.secondary
-  },
-  selectType: {
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     paddingLeft: 10,
     paddingVertical: 10,
-    color: Color.pureWhite
+    borderBottomWidth: 1, 
+    borderBottomColor: Color.secondaryGrey,
+    backgroundColor: Color.secondary,
+    color: Color.primaryWhite
   },
   box: {
     margin: 5,
     borderColor: Color.primaryWhite,
+    borderRadius: 5,
     backgroundColor: Color.primaryWhite,
+    shadowOpacity: 0.8,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     elevation: 2,
   }

@@ -67,10 +67,8 @@ var local = StyleSheet.create({
     componentTitleText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: Color.secondary
     },
     detailText: {
         fontSize: 16,
-        color: Color.secondary
     }
 });

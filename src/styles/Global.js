@@ -2,9 +2,9 @@ import {StyleSheet} from 'react-native';
 
 var Color = {
     pureWhite: '#ffffff',
-    primary: '#e64a19',
-    primaryLight: '#ff7d47',
-    primaryDark: '#ac0800',
+    primary: '#ff5722',
+    primaryLight: '#ff8a50',
+    primaryDark: '#c41c00',
     primaryWhite: '#f5f5f6',
     secondary: '#212121',
     secondaryLight: '#484848',
