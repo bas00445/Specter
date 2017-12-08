@@ -35,10 +35,10 @@ export default class DrawerItem extends Component {
   render() {
     var active = this.props.active == null ? false: this.props.active;
     if (active) {
-      var tintColor = Color.primary;
+      var tintColor = Color.primaryLight;
       var itemColor = Color.secondaryGrey;
     } else {
-      var tintColor = Color.secondary;
+      var tintColor = Color.primaryLight;
       var itemColor = null;
     }
     return (
@@ -49,7 +49,7 @@ export default class DrawerItem extends Component {
             <Image style={[Style.drawerIcon, {tintColor: tintColor}]} source={this.icon}></Image>
           </View>
           <View style={{flex: 3, justifyContent: 'center'}}>
-            <Text style={{fontSize: 14, color: tintColor}}>{this.props.iconName}</Text>
+            <Text style={{fontSize: 14, color: Color.darkText}}>{this.props.iconName}</Text>
           </View>
         </View>
       </TouchableOpacity>

@@ -2,23 +2,24 @@ import {StyleSheet} from 'react-native';
 
 var Color = {
     pureWhite: '#ffffff',
-    primary: '#ff5722',
-    primaryLight: '#ff8a50',
-    primaryDark: '#c41c00',
-    primaryWhite: '#f5f5f6',
-    secondary: '#212121',
+    primary: '#f4511e',
+    primaryLight: '#ff7d42',
+    primaryDark: '#b91400',
+    primaryWhite: '#f4f4f4',
+    secondary: '#ff5722',
     secondaryLight: '#484848',
     secondaryDark: '#000000',
-    secondaryGrey: '#e1e2e1',
+    secondaryGrey: '#e2e2e2',
     primaryText: '#ffffff',
     secondaryText: '#fafafa',
+    darkText: '#212121',
   }
 
 var Style = StyleSheet.create({
     container: {
         flex: 1, 
         padding: 5,
-        backgroundColor: Color.primaryLight
+        backgroundColor: Color.secondaryGrey
     },
     colContent: {
         flexDirection: 'row'

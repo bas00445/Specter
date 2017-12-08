@@ -19,8 +19,7 @@ class CategoryComponent extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.props.onPress}>
-        <View style={[Style.colContent, {justifyContent: 'center', padding: 10, 
-            borderBottomWidth: 1, borderBottomColor: Color.secondaryGrey}]}>
+        <View style={[Style.colContent, {justifyContent: 'center', padding: 10}]}>
           <View style={{flex: 1, alignItems: 'flex-start'}}>
             <Text>
               {this.props.text}
@@ -127,13 +126,15 @@ var local = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 1, 
     borderBottomColor: Color.secondaryGrey,
-    backgroundColor: Color.secondary,
-    color: Color.primaryWhite
+    backgroundColor: Color.primaryLight,
+    color: Color.primaryWhite,
+    borderTopRightRadius: 2,
+    borderTopLeftRadius: 2
   },
   box: {
     margin: 5,
     borderColor: Color.primaryWhite,
-    borderRadius: 5,
+    borderRadius: 2,
     backgroundColor: Color.primaryWhite,
     shadowOpacity: 0.8,
     shadowColor: '#000',

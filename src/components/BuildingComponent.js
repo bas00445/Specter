@@ -51,7 +51,7 @@ var local = StyleSheet.create({
         height: 200,
         flexDirection: 'row',
         margin: 10,
-        borderColor: Color.secondary,
+        borderColor: Color.secondaryDark,
         borderWidth: 1,
     },
     imageContainer: {

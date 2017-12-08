@@ -93,7 +93,7 @@ export default class DrawerComponent extends Component {
 var local = StyleSheet.create({
   drawerTitle: {
     height: 125,
-    backgroundColor: Color.secondary,
+    backgroundColor: Color.primary,
     padding: 15,
     justifyContent: 'center',
     alignItems: 'center'
