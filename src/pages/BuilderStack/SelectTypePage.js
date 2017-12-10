@@ -58,8 +58,8 @@ export default class SelectTypePage extends Component {
               <View style={{padding: 5}}>
                 <ScrollView horizontal={true}>
                   <BuildingComponent type={"CPU"} price={3000} name={"Ryzen 3 1200"}></BuildingComponent>
-                  <BuildingComponent type={"RAM"} price={1500} name={"ASUSx782"}></BuildingComponent>
-                  <BuildingComponent type={"Graphic"} price={6000} name={"Asus GTX 1050Ti"}></BuildingComponent>
+                  <BuildingComponent type={"RAM"} price={1500} name={"Corsair"}></BuildingComponent>
+                  <BuildingComponent type={"VGA"} price={6000} name={"Asus GTX 1050Ti"}></BuildingComponent>
                 </ScrollView>
               </View>
             </View>

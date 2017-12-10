@@ -13,6 +13,20 @@ var Color = Theme.Color;
 
 export default class BuildingComponent extends Component {
 
+    constructor(props) {
+        super(props);
+        switch(this.props.type) {
+            case 'CPU': {
+                this.previewImg = require('../assets/images/ryzen3.png');
+            } break;
+            case 'RAM': {
+                this.previewImg = require('../assets/images/corsair.jpg');
+            } break;
+            case 'VGA': {
+                this.previewImg = require('../assets/images/1050.jpg');
+            } break;
+        }
+    }
 
     render() {
         return (
@@ -21,7 +35,8 @@ export default class BuildingComponent extends Component {
                 background={TouchableNativeFeedback.SelectableBackground()}>
                 <View style={local.container}>
                     <View style={local.imageContainer}>
-                        <Image style={{resizeMode: 'cover'}} source={require('../assets/images/ryzen3.png')}>
+                        <Image style={local.image} 
+                            source={this.previewImg}>
                         </Image>
                     </View>
                     <View style={local.detailContainer}>
@@ -56,8 +71,14 @@ var local = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1, 
-        backgroundColor: Color.secondaryLight,
-        
+        backgroundColor: '#ffffff',
+    },
+    image: {
+        flex: 1, 
+        alignSelf: 'center', 
+        width: 150, 
+        height: 150, 
+        resizeMode: 'contain'
     },
     detailContainer: {
         flex: 1,
