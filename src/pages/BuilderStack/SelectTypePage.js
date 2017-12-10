@@ -64,8 +64,11 @@ export default class SelectTypePage extends Component {
         <View style={Style.container}>
           <ScrollView>  
             <View style={[local.currentBuild, Style.card]}>
-              <View style={local.highlightBox}>
-                <Text style={local.title}>Building</Text>
+              <View style={Style.colContent}>
+                <View style={Style.indicator}></View>
+                <View style={local.title}>
+                  <Text style={local.titleText}>Building</Text>
+                </View>
               </View>
               <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primary}]}>
                 <View style={{flex: 1, alignItems: 'flex-start'}}>
@@ -85,8 +88,11 @@ export default class SelectTypePage extends Component {
             </View>
 
             <View style={[Style.card]}>
-              <View style={local.highlightBox}>
-                <Text style={local.title}>Category</Text>
+              <View style={Style.colContent}>
+                <View style={Style.indicator}></View>
+                <View style={local.title}>
+                  <Text style={local.titleText}>Category</Text>
+                </View>
               </View>
               <ScrollView>
                 <CategoryComponent text={"CPU"} 
@@ -116,18 +122,17 @@ var local = StyleSheet.create({
   currentBuild: {
     marginBottom: 5
   },
-  highlightBox: {
-  },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    flex: 1,
     paddingLeft: 10,
     paddingVertical: 10,
-    borderBottomWidth: 1, 
     borderBottomColor: Color.primary,
     backgroundColor: Color.primary,
-    color: Color.primaryText,
     borderTopRightRadius: 2,
     borderTopLeftRadius: 2
+  },
+  titleText: {
+    fontSize: 18,
+    color: Color.primaryText,
   },
 });

@@ -33,7 +33,6 @@ var Style = StyleSheet.create({
     card: {
         margin: 5,
         borderColor: Color.grey,
-        borderWidth: 2,
         borderRadius: 2,
         backgroundColor: Color.grey,
         shadowOpacity: 0.8,
@@ -43,6 +42,11 @@ var Style = StyleSheet.create({
     },
     whiteText: {
         color: Color.primaryText,
+    },
+    indicator: {
+        width: 5,
+        backgroundColor: Color.secondary,
+        borderTopLeftRadius: 2
     }
 });
 
