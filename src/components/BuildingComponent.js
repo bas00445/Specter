@@ -5,7 +5,8 @@ import {
     Text,
     View,
     Image,
-    TouchableNativeFeedback,
+    Button,
+    TouchableOpacity,
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -30,9 +31,7 @@ export default class BuildingComponent extends Component {
 
     render() {
         return (
-            <TouchableNativeFeedback
-                onPress={this.props.onPress}
-                background={TouchableNativeFeedback.SelectableBackground()}>
+            <TouchableOpacity onPress={this.props.onPress}>
                 <View style={local.container}>
                     <View style={local.imageContainer}>
                         <Image style={local.image} 
@@ -40,6 +39,12 @@ export default class BuildingComponent extends Component {
                         </Image>
                     </View>
                     <View style={local.detailContainer}>
+                        <View style={{alignItems:'flex-end'}}>
+                            <TouchableOpacity onPress={this.props.onPress}>
+                                <Image style={local.icon} source={require("../assets/icons/close.png")}>
+                                </Image>
+                            </TouchableOpacity>
+                        </View>
                         <View style={[Style.centerY, {flex: 2}]}>
                             <Text style={local.componentTitleText}>{this.props.type}</Text>
                         </View>
@@ -51,7 +56,7 @@ export default class BuildingComponent extends Component {
                         </View>
                     </View>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
         );
     }
 }
@@ -59,7 +64,6 @@ export default class BuildingComponent extends Component {
 var local = StyleSheet.create({
     container: {
         width: 300,
-        height: 150,
         flexDirection: 'row',
         margin: 10,
         borderWidth: 2,
@@ -80,7 +84,9 @@ var local = StyleSheet.create({
     },
     detailContainer: {
         flex: 1,
-        padding: 15,
+        paddingTop: 2,
+        paddingBottom: 10,
+        paddingHorizontal: 5,
         backgroundColor: Color.primaryLight,
     },
     componentTitleText: {
@@ -96,5 +102,10 @@ var local = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: Color.secondary
-    }
+    },
+    icon: {
+        width: 24,
+        height: 24,
+        tintColor: Color.primaryText
+    },
 });

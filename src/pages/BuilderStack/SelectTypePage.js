@@ -52,7 +52,13 @@ export default class SelectTypePage extends Component {
                   <Text style={Style.whiteText}>Budget</Text>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                  <Text style={Style.whiteText}>{this.state.budget}</Text>
+                  <TouchableOpacity>
+                    <View style={Style.colContent}>
+                      <Text style={Style.whiteText}>{this.state.budget}</Text>
+                      <Image style={local.editIcon} 
+                        source={require('../../assets/icons/edit.png')}></Image>
+                    </View>
+                  </TouchableOpacity>
                 </View>
               </View>
               <View style={{padding: 5}}>
@@ -110,4 +116,10 @@ var local = StyleSheet.create({
     fontSize: 18,
     color: Color.primaryText,
   },
+  editIcon: {
+    width: 20, 
+    height: 20, 
+    tintColor: Color.primaryText,
+    marginLeft: 10
+  }
 });
