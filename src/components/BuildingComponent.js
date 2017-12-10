@@ -86,7 +86,7 @@ var local = StyleSheet.create({
         flex: 1,
         paddingTop: 2,
         paddingBottom: 10,
-        paddingHorizontal: 5,
+        paddingHorizontal: 10,
         backgroundColor: Color.primaryLight,
     },
     componentTitleText: {

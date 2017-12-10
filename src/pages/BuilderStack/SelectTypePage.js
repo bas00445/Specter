@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavigationActions } from 'react-navigation'
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import BuildingComponent from '../../components/BuildingComponent';
@@ -25,6 +26,10 @@ export default class SelectTypePage extends Component {
     this.state = {
       budget: 20000
     };
+  }
+
+  navigateToDetail(dataToPass) {
+    this.stackNavigator.navigate("Detail", {data: dataToPass});
   }
 
   navigateToProduct(dataToPass) {
@@ -63,7 +68,8 @@ export default class SelectTypePage extends Component {
               </View>
               <View style={{padding: 5}}>
                 <ScrollView horizontal={true}>
-                  <BuildingComponent type={"CPU"} price={3000} name={"Ryzen 3 1200"}></BuildingComponent>
+                  <BuildingComponent onPress={this.navigateToDetail.bind(this, "CPU", 3000, "Ryzen 3 1200")} 
+                    type={"CPU"} price={3000} name={"Ryzen 3 1200"}></BuildingComponent>
                   <BuildingComponent type={"RAM"} price={1500} name={"Corsair"}></BuildingComponent>
                   <BuildingComponent type={"VGA"} price={6000} name={"Asus GTX 1050Ti"}></BuildingComponent>
                 </ScrollView>
