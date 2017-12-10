@@ -29,7 +29,7 @@ export default class ProductPage extends Component {
       <View style={{flex: 1}}>      
         <PageHeader headerText={"Product"} navigation={navigation} type={"stack"}></PageHeader>
         <View style={Style.container}>
-          <Text>{this.props.data}</Text>
+          <Text style={Style.whiteText}>{this.props.data}</Text>
         </View>
       </View>
     );

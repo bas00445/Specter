@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import BuildingComponent from '../../components/BuildingComponent';
+import CategoryComponent from '../../components/CategoryComponent';
 import {
   StyleSheet,
   Text,
@@ -13,30 +14,6 @@ import {
 
 var Style = Theme.Style;
 var Color = Theme.Color;
-
-class CategoryComponent extends Component {
-  render() {
-    return (
-      <TouchableOpacity onPress={this.props.onPress}>
-        <View style={[Style.colContent, {justifyContent: 'center', padding: 10}]}>
-          <View style={{flex: 1, alignItems: 'flex-start'}}>
-            <Text style={Style.whiteText}>
-              {this.props.text}
-            </Text>
-          </View>
-          <View 
-            style={{flex: 1, alignItems: 'flex-end'}}
-            onPress={this.props.onPress}>
-            <View style={{flex: 1, justifyContent: 'center'}}>
-              <Image style={{width: 20, height: 20, tintColor: Color.primaryText}} 
-                source={require("../../assets/icons/list-add.png")}></Image>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity> 
-    );
-  }
-} 
 
 export default class SelectTypePage extends Component {
   static navigationOptions = {
@@ -97,8 +74,8 @@ export default class SelectTypePage extends Component {
               <ScrollView>
                 <CategoryComponent text={"CPU"} 
                   onPress={this.navigateToProduct.bind(this, "CPU")}></CategoryComponent>
-                <CategoryComponent text={"Graphic card"} 
-                  onPress={this.navigateToProduct.bind(this, "Graphic card")}></CategoryComponent>
+                <CategoryComponent text={"VGA card"} 
+                  onPress={this.navigateToProduct.bind(this, "VGA card")}></CategoryComponent>
                 <CategoryComponent text={"Memory"} 
                   onPress={this.navigateToProduct.bind(this, "Memory")}></CategoryComponent>
                 <CategoryComponent text={"Mainboard"} 
