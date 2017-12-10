@@ -38,7 +38,7 @@ export default class SelectTypePage extends Component {
     return (
       <View style={{flex: 1}}>      
         <PageHeader headerText={"Builder"} navigation={navigation} type={"drawer"}></PageHeader>
-        <View style={Style.container}>
+        <View style={[Style.container, {paddingBottom: 0}]}>
           <ScrollView>  
             <View style={[local.currentBuild, Style.card]}>
               <View style={Style.colContent}>
@@ -47,7 +47,7 @@ export default class SelectTypePage extends Component {
                   <Text style={local.titleText}>Building</Text>
                 </View>
               </View>
-              <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primary}]}>
+              <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primaryLight}]}>
                 <View style={{flex: 1, alignItems: 'flex-start'}}>
                   <Text style={Style.whiteText}>Budget</Text>
                 </View>
@@ -103,10 +103,8 @@ var local = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     paddingVertical: 10,
-    borderBottomColor: Color.primary,
     backgroundColor: Color.primary,
     borderTopRightRadius: 2,
-    borderTopLeftRadius: 2
   },
   titleText: {
     fontSize: 18,

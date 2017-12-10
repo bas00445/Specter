@@ -40,17 +40,15 @@ export default class BuildingComponent extends Component {
                         </Image>
                     </View>
                     <View style={local.detailContainer}>
-                        <View>
+                        <View style={[Style.centerY, {flex: 2}]}>
                             <Text style={local.componentTitleText}>{this.props.type}</Text>
                         </View>
-                        <View>
+                        <View style={[Style.centerY, {flex: 1}]}>
                             <Text style={local.detailText}>{this.props.name}</Text>
                         </View>
-                        <View>
-                            <Text style={local.detailText}>{this.props.price + " Baht"}</Text>
+                        <View style={[Style.centerY, {flex: 1}]}>
+                            <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
                         </View>
-                        
-                        
                     </View>
                 </View>
             </TouchableNativeFeedback>
@@ -61,7 +59,7 @@ export default class BuildingComponent extends Component {
 var local = StyleSheet.create({
     container: {
         width: 300,
-        height: 200,
+        height: 150,
         flexDirection: 'row',
         margin: 10,
         borderWidth: 2,
@@ -82,7 +80,7 @@ var local = StyleSheet.create({
     },
     detailContainer: {
         flex: 1,
-        padding: 5,
+        padding: 15,
         backgroundColor: Color.primaryLight,
     },
     componentTitleText: {
@@ -93,5 +91,10 @@ var local = StyleSheet.create({
     detailText: {
         fontSize: 16,
         color: Color.primaryText,        
+    },
+    priceText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: Color.secondary
     }
 });

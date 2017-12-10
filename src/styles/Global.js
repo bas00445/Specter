@@ -47,6 +47,10 @@ var Style = StyleSheet.create({
         width: 5,
         backgroundColor: Color.secondary,
         borderTopLeftRadius: 2
+    },
+    centerY: {
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
