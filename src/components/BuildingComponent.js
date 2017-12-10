@@ -21,9 +21,8 @@ export default class BuildingComponent extends Component {
                 background={TouchableNativeFeedback.SelectableBackground()}>
                 <View style={local.container}>
                     <View style={local.imageContainer}>
-                        <Image style={{resizeMode: 'cover'}} source={require('../assets/icons/close.png')}>
+                        <Image style={{resizeMode: 'cover'}} source={require('../assets/images/ryzen3.png')}>
                         </Image>
-                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Image</Text>
                     </View>
                     <View style={local.detailContainer}>
                         <View>
@@ -51,7 +50,7 @@ var local = StyleSheet.create({
         flexDirection: 'row',
         margin: 10,
         borderWidth: 2,
-        borderColor: Color.secondary
+        borderColor: Color.primary
     },
     imageContainer: {
         justifyContent: 'center',
@@ -62,7 +61,8 @@ var local = StyleSheet.create({
     },
     detailContainer: {
         flex: 1,
-        padding: 5
+        padding: 5,
+        backgroundColor: Color.primaryLight,
     },
     componentTitleText: {
         fontSize: 18,
