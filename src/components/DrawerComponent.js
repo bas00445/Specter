@@ -110,6 +110,6 @@ var local = StyleSheet.create({
   },
   drawerItemsContainer: {
     flex: 8, 
-    backgroundColor: Color.primaryWhite,
+    backgroundColor: Color.primaryLight,
     padding: 2}
 });

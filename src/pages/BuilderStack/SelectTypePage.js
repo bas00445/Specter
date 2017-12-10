@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Theme from '../../styles/Global';
-import NativeButton from '../../components/NativeButton';
 import PageHeader from '../../components/PageHeader';
 import BuildingComponent from '../../components/BuildingComponent';
 import {
@@ -21,7 +20,7 @@ class CategoryComponent extends Component {
       <TouchableOpacity onPress={this.props.onPress}>
         <View style={[Style.colContent, {justifyContent: 'center', padding: 10}]}>
           <View style={{flex: 1, alignItems: 'flex-start'}}>
-            <Text>
+            <Text style={Style.whiteText}>
               {this.props.text}
             </Text>
           </View>
@@ -29,7 +28,7 @@ class CategoryComponent extends Component {
             style={{flex: 1, alignItems: 'flex-end'}}
             onPress={this.props.onPress}>
             <View style={{flex: 1, justifyContent: 'center'}}>
-              <Image style={{width: 20, height: 20}} 
+              <Image style={{width: 20, height: 20, tintColor: Color.primaryText}} 
                 source={require("../../assets/icons/list-add.png")}></Image>
             </View>
           </View>
@@ -64,16 +63,16 @@ export default class SelectTypePage extends Component {
         <PageHeader headerText={"Builder"} navigation={navigation} type={"drawer"}></PageHeader>
         <View style={Style.container}>
           <ScrollView>  
-            <View style={[local.currentBuild, local.box]}>
+            <View style={[local.currentBuild, Style.card]}>
               <View style={local.highlightBox}>
                 <Text style={local.title}>Building</Text>
               </View>
-              <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.secondaryGrey}]}>
+              <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primary}]}>
                 <View style={{flex: 1, alignItems: 'flex-start'}}>
-                  <Text>Budget</Text>
+                  <Text style={Style.whiteText}>Budget</Text>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                  <Text>{this.state.budget}</Text>
+                  <Text style={Style.whiteText}>{this.state.budget}</Text>
                 </View>
               </View>
               <View style={{padding: 5}}>
@@ -85,7 +84,7 @@ export default class SelectTypePage extends Component {
               </View>
             </View>
 
-            <View style={[local.box]}>
+            <View style={[Style.card]}>
               <View style={local.highlightBox}>
                 <Text style={local.title}>Category</Text>
               </View>
@@ -125,20 +124,10 @@ var local = StyleSheet.create({
     paddingLeft: 10,
     paddingVertical: 10,
     borderBottomWidth: 1, 
-    borderBottomColor: Color.secondaryGrey,
-    backgroundColor: Color.primaryLight,
-    color: Color.primaryWhite,
+    borderBottomColor: Color.primary,
+    backgroundColor: Color.primary,
+    color: Color.primaryText,
     borderTopRightRadius: 2,
     borderTopLeftRadius: 2
   },
-  box: {
-    margin: 5,
-    borderColor: Color.primaryWhite,
-    borderRadius: 2,
-    backgroundColor: Color.primaryWhite,
-    shadowOpacity: 0.8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 2,
-  }
 });

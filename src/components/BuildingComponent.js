@@ -23,7 +23,6 @@ export default class BuildingComponent extends Component {
                     <View style={local.imageContainer}>
                         <Image style={{resizeMode: 'cover'}} source={require('../assets/icons/close.png')}>
                         </Image>
-
                         <Text style={{fontSize: 16, fontWeight: 'bold'}}>Image</Text>
                     </View>
                     <View style={local.detailContainer}>
@@ -51,14 +50,15 @@ var local = StyleSheet.create({
         height: 200,
         flexDirection: 'row',
         margin: 10,
-        borderColor: Color.secondaryDark,
-        borderWidth: 1,
+        borderWidth: 2,
+        borderColor: Color.secondary
     },
     imageContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1, 
         backgroundColor: Color.secondaryLight,
+        
     },
     detailContainer: {
         flex: 1,
@@ -67,8 +67,10 @@ var local = StyleSheet.create({
     componentTitleText: {
         fontSize: 18,
         fontWeight: 'bold',
+        color: Color.primaryText,
     },
     detailText: {
         fontSize: 16,
+        color: Color.primaryText,        
     }
 });

@@ -24,7 +24,7 @@ export default class RecommendPage extends Component {
     const {navigation} = this.props; // pass down navigation to PageHeader
     
     return (
-      <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
+      <View style={{flex: 1}}>      
         <PageHeader headerText={"Recommend"} navigation={navigation} type={"drawer"}></PageHeader>
         <View style={Style.container}>
           

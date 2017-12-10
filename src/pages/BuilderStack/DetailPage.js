@@ -26,7 +26,7 @@ export default class DetailPage extends Component {
     const {navigation} = this.props; // pass down navigation to PageHeader
     
     return (
-      <View style={{flex: 1, backgroundColor: Color.whiteGrey1}}>      
+      <View style={{flex: 1}}>      
         <PageHeader headerText={"Product Detail"} navigation={navigation} type={"stack"}></PageHeader>
         <View style={Style.container}>
           

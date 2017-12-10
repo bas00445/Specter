@@ -59,7 +59,7 @@ var local = StyleSheet.create({
     headerLabel: {
       backgroundColor: Color.primary,
       padding: 10,
-      borderColor: Color.primaryWhite,
+      borderColor: Color.primary,
       shadowOpacity: 0.8,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
