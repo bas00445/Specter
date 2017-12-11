@@ -35,10 +35,11 @@ export default class BudgetComponent extends Component {
                     <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={local.budgetVal}>{this.state.budgetValue}</Text>
                     </View>
-                    <Slider minimumValue={0} maximumValue={40000} step={500} value={this.state.budgetValue}
+                    <Slider minimumValue={0} maximumValue={30000} step={500} value={this.state.budgetValue}
                         thumbTintColor={Color.secondary} maximumTrackTintColor={Color.secondaryLight}
                         minimumTrackTintColor={Color.secondaryLight}
-                        onValueChange={(value) => {this.setState({budgetValue:value})}}></Slider>
+                        onValueChange={(value) => {this.setState({budgetValue:value})}}>
+                    </Slider>
                 </View>
             </View>
         );
