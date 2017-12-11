@@ -17,6 +17,8 @@ export default class ProductComponent extends Component {
     constructor(props) {
         super(props);
         this.previewImg = require('../assets/images/ryzen3.png');
+        // this.previewImg = 'https://www.jib.co.th/img_master/product/original/20170725134516_1.png';
+        // source={{uri:this.previewImg}}
     }
 
     render() {

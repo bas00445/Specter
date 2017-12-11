@@ -115,20 +115,24 @@ export default class SelectTypePage extends Component {
                   <Text style={local.titleText}>Building</Text>
                 </View>
               </View>
-              <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primaryLight}]}>
-                <View style={{flex: 1, alignItems: 'flex-start'}}>
-                  <Text style={Style.whiteText}>Budget</Text>
-                </View>
-                <View style={{flex: 1, alignItems: 'flex-end'}}>
-                  <TouchableOpacity onPress={() => {this.setState({showBudget: true})}}>
-                    <View style={Style.colContent}>
-                      <Text style={Style.whiteText}>{this.state.budget}</Text>
-                      <Image style={local.editIcon} 
-                        source={require('../../assets/icons/edit.png')}></Image>
-                    </View>
-                  </TouchableOpacity>
+
+              <View style={{padding: 5}}>
+                <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primaryLight}]}>
+                  <View style={{flex: 1, alignItems: 'flex-start'}}>
+                    <Text style={Style.whiteText}>Budget</Text>
+                  </View>
+                  <View style={{flex: 1, alignItems: 'flex-end'}}>
+                    <TouchableOpacity onPress={() => {this.setState({showBudget: true})}}>
+                      <View style={Style.colContent}>
+                        <Text style={Style.whiteText}>{this.state.budget}</Text>
+                        <Image style={local.editIcon} 
+                          source={require('../../assets/icons/edit.png')}></Image>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
+              
               <View style={{padding: 5}}>
                 <ScrollView horizontal={true}>
                   <BuildingComponent 
