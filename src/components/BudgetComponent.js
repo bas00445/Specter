@@ -63,6 +63,7 @@ var local = StyleSheet.create({
         paddingVertical: 2,
         backgroundColor: Color.primary,
         borderTopRightRadius: 2,
+        borderTopLeftRadius: 2,
     },
     titleText: {
         fontSize: 16,

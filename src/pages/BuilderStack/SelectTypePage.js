@@ -13,6 +13,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
+  FlatList
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -48,24 +49,41 @@ export default class SelectTypePage extends Component {
       presentation={"formSheet"}
       onRequestClose={() => {this.setState({showBudget: false})}}>
 
-      <View style={[Style.container, {paddingBottom: 0}]}>
-        <View style={{alignItems:'flex-end'}}>
-            <TouchableOpacity onPress={this.props.onPress}>
-                <Image style={local.icon} source={require("../../assets/icons/close.png")}>
-                </Image>
-            </TouchableOpacity>
-        </View>
-        <View></View>
+      <View style={Style.container}>
+          <View style={{alignItems:'flex-end', paddingVertical: 4}}>
+              <TouchableOpacity onPress={() => {this.setState({showBudget: false})}}>
+                  <Image style={local.icon} source={require("../../assets/icons/close.png")}>
+                  </Image>
+              </TouchableOpacity>
+          </View>
+          <View style={{paddingHorizontal: 5}}>
+            <View style={local.budgetTitle}>
+              <Text style={local.titleText}>Set your budget</Text>
+            </View>
+          </View>
 
-        <ScrollView>
-          <BudgetComponent compType={"CPU"}></BudgetComponent>
-          <BudgetComponent compType={"VGA"}></BudgetComponent>
-          <BudgetComponent compType={"Memory"}></BudgetComponent>
-          <BudgetComponent compType={"Mainboard"}></BudgetComponent>
-          <BudgetComponent compType={"Storage"}></BudgetComponent>
-          <BudgetComponent compType={"Power supply"}></BudgetComponent>
-          <BudgetComponent compType={"Monitor"}></BudgetComponent>
-        </ScrollView>
+        <View style={{flex: 5}}>
+          <FlatList
+            data={[
+              {compType: 'CPU', key: '0'}, 
+              {compType: 'VGA', key: '1'}, 
+              {compType: 'Memory', key: '2'}, 
+              {compType: 'Mainboard', key: '3'},
+              {compType: 'Storage', key: '4'},
+              {compType: 'Power supply', key: '5'},
+              {compType: 'Monitor', key: '6'}]}
+            renderItem={({item}) => 
+              <BudgetComponent 
+                key={item.key} 
+                compType={item.compType}>
+              </BudgetComponent>}/>
+        </View>
+
+        <View style={{flex: 1, alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
+          <TouchableOpacity  style={local.okButton}>
+              <Text style={{color: Color.primaryText, fontWeight: 'bold'}}>OK</Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
 
@@ -159,6 +177,7 @@ var local = StyleSheet.create({
   },
   titleText: {
     fontSize: 18,
+    fontWeight: 'bold',
     color: Color.primaryText,
   },
   editIcon: {
@@ -171,5 +190,19 @@ var local = StyleSheet.create({
         width: 24,
         height: 24,
         tintColor: Color.primaryText
-    },
+  },
+  budgetTitle: {
+    paddingLeft: 10,
+    paddingVertical: 10,
+    backgroundColor: Color.primary,
+    borderRadius: 2,
+  },
+  okButton: {
+    padding: 10, 
+    backgroundColor: Color.secondary, 
+    width: 80,
+    justifyContent: 'center', 
+    alignItems: 'center',
+    borderRadius: 2,
+  }
 });
