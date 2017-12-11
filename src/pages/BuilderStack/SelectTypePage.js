@@ -81,7 +81,8 @@ export default class SelectTypePage extends Component {
                 key={item.key} 
                 compType={item.compType}
                 budgetValue={5000}>
-              </BudgetComponent>}/>
+              </BudgetComponent>}
+            />
         </View>
 
         <View style={{flex: 1, alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
