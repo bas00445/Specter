@@ -31,32 +31,30 @@ export default class BuildingComponent extends Component {
 
     render() {
         return (
-            <TouchableOpacity onPress={this.props.onPress}>
-                <View style={local.container}>
-                    <View style={local.imageContainer}>
-                        <Image style={local.image} 
-                            source={this.previewImg}>
-                        </Image>
-                    </View>
-                    <View style={local.detailContainer}>
-                        <View style={{alignItems:'flex-end'}}>
-                            <TouchableOpacity onPress={this.props.onPress}>
-                                <Image style={local.icon} source={require("../assets/icons/close.png")}>
-                                </Image>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={[Style.centerY, {flex: 2}]}>
-                            <Text style={local.componentTitleText}>{this.props.type}</Text>
-                        </View>
-                        <View style={[Style.centerY, {flex: 1}]}>
-                            <Text style={local.detailText}>{this.props.name}</Text>
-                        </View>
-                        <View style={[Style.centerY, {flex: 1}]}>
-                            <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
-                        </View>
-                    </View>
+            <View style={local.container}>
+                <View style={local.imageContainer}>
+                    <Image style={local.image} 
+                        source={this.previewImg}>
+                    </Image>
                 </View>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
+                    <View style={{alignItems:'flex-end'}}>
+                        <TouchableOpacity onPress={this.props.onDelete}>
+                            <Image style={local.icon} source={require("../assets/icons/close.png")}>
+                            </Image>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[Style.centerY, {flex: 2}]}>
+                        <Text style={local.componentTitleText}>{this.props.type}</Text>
+                    </View>
+                    <View style={[Style.centerY, {flex: 1}]}>
+                        <Text style={local.detailText}>{this.props.name}</Text>
+                    </View>
+                    <View style={[Style.centerY, {flex: 1}]}>
+                        <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
         );
     }
 }
