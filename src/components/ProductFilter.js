@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Theme from '../styles/Global';
+import { Picker } from 'react-native';
 import {
     StyleSheet,
     Text,
@@ -20,7 +21,8 @@ export default class ProductFilter extends Component {
         this.state = {
             activePrice: true,
             activeName: false,
-            productVal: 10000
+            productVal: 10000,
+            sortingType: 'sortPrice'
         };
     }
 
@@ -39,19 +41,19 @@ export default class ProductFilter extends Component {
                         <View style={{flex: 1, justifyContent: 'center'}}>
                             <Text style={local.titleText}>Sort by</Text>
                         </View>
-                        <View style={[Style.colContent, {flex: 2}]}>
-                            <TouchableOpacity>
-                                <Text style={local.primaryText}>Price</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <Text style={local.primaryText}>Name</Text>
-                            </TouchableOpacity>
+                        <View style={{flex: 2}}>
+                            <Picker mode={"dropdown"} style={{color: Color.primaryText}}
+                                selectedValue={this.state.sortingType}
+                                onValueChange={(itemValue, itemIndex) => this.setState({sortingType: itemValue})}>
+                                <Picker.Item label="Price" value="sortPrice" />
+                                <Picker.Item label="Name" value="sortName" />
+                            </Picker>
                         </View>
                     </View>
 
                     <View style={Style.colContent}>
                         <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={local.titleText}>Range</Text>
+                            <Text style={local.titleText}>Limit (Baht)</Text>
                         </View>
                         <View style={{flex: 2}}>
                             <View style={{justifyContent: 'center', alignItems: 'center'}}>
