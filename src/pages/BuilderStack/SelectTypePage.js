@@ -32,6 +32,10 @@ export default class SelectTypePage extends Component {
     };
   }
 
+  setBudget() {
+    
+  }
+
   navigateToDetail(dataToPass) {
     this.stackNavigator.navigate("Detail", {data: dataToPass});
   }
@@ -56,7 +60,7 @@ export default class SelectTypePage extends Component {
                   </Image>
               </TouchableOpacity>
           </View>
-          <View style={{paddingHorizontal: 5}}>
+          <View style={{paddingHorizontal: 5, marginBottom: 5}}>
             <View style={local.budgetTitle}>
               <Text style={local.titleText}>Set your budget</Text>
             </View>
@@ -75,12 +79,13 @@ export default class SelectTypePage extends Component {
             renderItem={({item}) => 
               <BudgetComponent 
                 key={item.key} 
-                compType={item.compType}>
+                compType={item.compType}
+                budgetValue={5000}>
               </BudgetComponent>}/>
         </View>
 
         <View style={{flex: 1, alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
-          <TouchableOpacity  style={local.okButton}>
+          <TouchableOpacity style={local.okButton} onPress={this.setBudget.bind(this)}>
               <Text style={{color: Color.primaryText, fontWeight: 'bold'}}>OK</Text>
           </TouchableOpacity>
         </View>
@@ -125,8 +130,10 @@ export default class SelectTypePage extends Component {
               </View>
               <View style={{padding: 5}}>
                 <ScrollView horizontal={true}>
-                  <BuildingComponent onPress={this.navigateToDetail.bind(this, "CPU", 3000, "Ryzen 3 1200")} 
-                    type={"CPU"} price={3000} name={"Ryzen 3 1200"}></BuildingComponent>
+                  <BuildingComponent 
+                    onPress={this.navigateToDetail.bind(this, "CPU", 3000, "Ryzen 3 1200")} 
+                    type={"CPU"} price={3000} name={"Ryzen 3 1200"}
+                    onDelete={(value) => {alert(value)}}></BuildingComponent>
                   <BuildingComponent type={"RAM"} price={1500} name={"Corsair"}></BuildingComponent>
                   <BuildingComponent type={"VGA"} price={6000} name={"Asus GTX 1050Ti"}></BuildingComponent>
                 </ScrollView>
