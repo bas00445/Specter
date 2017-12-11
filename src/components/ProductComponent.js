@@ -16,17 +16,7 @@ export default class ProductComponent extends Component {
 
     constructor(props) {
         super(props);
-        switch(this.props.name) {
-            case 'Ryzen 3 1200': {
-                this.previewImg = require('../assets/images/ryzen3.png');
-            } break;
-            case 'Corsair': {
-                this.previewImg = require('../assets/images/corsair.jpg');
-            } break;
-            case 'Asus GTX 1050Ti': {
-                this.previewImg = require('../assets/images/1050.jpg');
-            } break;
-        }
+        this.previewImg = require('../assets/images/ryzen3.png');
     }
 
     render() {
@@ -39,7 +29,8 @@ export default class ProductComponent extends Component {
                 </View>
                 <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
                     <View style={{flex: 1, justifyContent: 'center'}}>
-                        <Text style={local.detailText}>{this.props.name}</Text>
+                        <Text style={local.detailText} numberOfLines={2} 
+                            ellipsizeMode='tail'>{this.props.name}</Text>
                     </View>
                     <View style={{flex: 1, justifyContent: 'center'}}>
                         <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
