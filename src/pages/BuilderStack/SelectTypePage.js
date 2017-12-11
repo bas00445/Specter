@@ -4,13 +4,15 @@ import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import BuildingComponent from '../../components/BuildingComponent';
 import CategoryComponent from '../../components/CategoryComponent';
+import BudgetComponent from '../../components/BudgetComponent';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Modal,
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -24,7 +26,8 @@ export default class SelectTypePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      budget: 20000
+      budget: 20000,
+      showBudget: false,
     };
   }
 
@@ -36,6 +39,41 @@ export default class SelectTypePage extends Component {
     this.stackNavigator.navigate("Product", {data: dataToPass});
   }
 
+  renderBudgetModal() {
+  return (
+    <Modal 
+      animationType="slide"
+      transparent={true}
+      visible={this.state.showBudget}
+      presentation={"formSheet"}
+      onRequestClose={() => {this.setState({showBudget: false})}}>
+
+      <View style={[Style.container, {paddingBottom: 0}]}>
+        <View style={{alignItems:'flex-end'}}>
+            <TouchableOpacity onPress={this.props.onPress}>
+                <Image style={local.icon} source={require("../../assets/icons/close.png")}>
+                </Image>
+            </TouchableOpacity>
+        </View>
+        <View></View>
+
+        <ScrollView>
+          <BudgetComponent compType={"CPU"}></BudgetComponent>
+          <BudgetComponent compType={"VGA"}></BudgetComponent>
+          <BudgetComponent compType={"Memory"}></BudgetComponent>
+          <BudgetComponent compType={"Mainboard"}></BudgetComponent>
+          <BudgetComponent compType={"Storage"}></BudgetComponent>
+          <BudgetComponent compType={"Power supply"}></BudgetComponent>
+          <BudgetComponent compType={"Monitor"}></BudgetComponent>
+        </ScrollView>
+
+      </View>
+
+    </Modal>
+  );
+
+  }
+
   render() {
     const { navigation } = this.props; // pass down navigation to PageHeader
     this.stackNavigator = navigation;
@@ -43,6 +81,7 @@ export default class SelectTypePage extends Component {
     return (
       <View style={{flex: 1}}>      
         <PageHeader headerText={"Builder"} navigation={navigation} type={"drawer"}></PageHeader>
+        {this.renderBudgetModal()}
         <View style={[Style.container, {paddingBottom: 0}]}>
           <ScrollView>  
             <View style={[local.currentBuild, Style.card]}>
@@ -57,7 +96,7 @@ export default class SelectTypePage extends Component {
                   <Text style={Style.whiteText}>Budget</Text>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => {this.setState({showBudget: true})}}>
                     <View style={Style.colContent}>
                       <Text style={Style.whiteText}>{this.state.budget}</Text>
                       <Image style={local.editIcon} 
@@ -127,5 +166,10 @@ var local = StyleSheet.create({
     height: 20, 
     tintColor: Color.primaryText,
     marginLeft: 10
-  }
+  },
+  icon: {
+        width: 24,
+        height: 24,
+        tintColor: Color.primaryText
+    },
 });
