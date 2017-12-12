@@ -39,7 +39,7 @@ export default class ProductFilter extends Component {
                 <View style={{paddingHorizontal: 10, paddingVertical: 2}}>
                     <View style={Style.colContent}>
                         <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={local.titleText}>Sort by</Text>
+                            <Text style={local.budgetVal}>Sort by</Text>
                         </View>
                         <View style={{flex: 2}}>
                             <Picker mode={"dropdown"} style={{color: Color.primaryText}}

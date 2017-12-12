@@ -3,7 +3,6 @@ import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import ProductFilter from '../../components/ProductFilter';
 import ProductComponent from '../../components/ProductComponent';
-import RecommendProducts from '../../components/RecommendProducts';
 import {
   StyleSheet,
   Text,
@@ -32,7 +31,6 @@ export default class ProductPage extends Component {
       <View style={{flex: 1}}>      
         <PageHeader headerText={this.props.data} navigation={navigation} type={"stack"}></PageHeader>
         <View style={Style.container}>
-          <RecommendProducts></RecommendProducts>
           <ProductFilter></ProductFilter>
           <FlatList
             data={[

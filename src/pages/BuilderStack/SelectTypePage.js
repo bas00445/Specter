@@ -119,7 +119,7 @@ export default class SelectTypePage extends Component {
         </View>
         
         <TextInput placeholder={"Input your budget"} 
-          underlineColorAndroid={Color.secondary} 
+          underlineColorAndroid={Color.secondary} selectionColor={Color.secondaryLight}
           placeholderTextColor={'#cccccc'} style={{color: Color.primaryText}}
           onChangeText={(value) => {this.setTempBudget(value)}}></TextInput>
 
@@ -242,7 +242,7 @@ var local = StyleSheet.create({
     paddingHorizontal: 5
   },
   okButton: {
-    paddingVertical: 10,
+    paddingVertical: 5,
     paddingHorizontal: 20, 
     backgroundColor: Color.secondary, 
     justifyContent: 'center', 

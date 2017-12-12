@@ -52,7 +52,8 @@ export default class BuildingComponent extends Component {
                         <Text style={local.componentTitleText}>{this.props.type}</Text>
                     </View>
                     <View style={[Style.centerY, {flex: 1}]}>
-                        <Text style={local.detailText}>{this.props.name}</Text>
+                        <Text numberOfLines={2} ellipsizeMode={"tail"} 
+                              style={[local.detailText, {textAlign: 'center'}]}>{this.props.name}</Text>
                     </View>
                     <View style={[Style.centerY, {flex: 1}]}>
                         <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
@@ -99,6 +100,7 @@ var local = StyleSheet.create({
     detailText: {
         fontSize: 16,
         color: Color.primaryText,        
+        
     },
     priceText: {
         fontSize: 18,
