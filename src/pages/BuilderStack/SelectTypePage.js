@@ -42,7 +42,7 @@ export default class SelectTypePage extends Component {
     navigation.state.key = 'SelectType'; // Set a key to this page to receive params
   }
   
-  componentWillUpdate(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     alert(nextProps.newProduct.name);
   }
 
