@@ -31,6 +31,11 @@ export default class SelectTypePage extends Component {
       tempBudget: '',
       budget: 20000,
       showBudgetModal: false,
+      buildings: [
+        {type:"RAM", price:1500, name: "Corsair"},
+        {type:"CPU", price:6000, name: "Ryzen 3 1200"},
+        {type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
+      ]
     };
   }
 
@@ -49,6 +54,14 @@ export default class SelectTypePage extends Component {
     })
   }
 
+  removeBuildingComponent(indx) {
+    let temp = this.state.buildings;
+    temp.splice(indx, 1);
+    this.setState({
+      buildings: temp
+    });
+  }
+
   navigateToDetail(dataToPass) {
     this.stackNavigator.navigate("Detail", {data: dataToPass});
   }
@@ -57,15 +70,30 @@ export default class SelectTypePage extends Component {
     this.stackNavigator.navigate("Product", {data: dataToPass});
   }
 
+  renderBuildings() {
+    let views = [];
+    let buildings = this.state.buildings;
+    for (let indx in buildings) {
+      let obj = buildings[indx];
+      views.push(
+      <BuildingComponent type={obj.type} price={obj.price} name={obj.name} 
+        onDelete={() => {this.removeBuildingComponent(indx)}}>
+      </BuildingComponent>
+      );
+    }
+
+    return views;
+  }
+
   renderBudgetModal() {
   return (
     <Modal 
       animationIn="slideInUp"
       isVisible={this.state.showBudgetModal}
-      onBackButtonPress={() => {this.setState({showBudgetModal: false})}}>
+      onBackButtonPress={() => {this.setState({showBudgetModal: false})}}
+      onBackdropPress={() => {this.setState({showBudgetModal: false})}}>
 
       <View style={local.modalContainer}>
-        
         <View style={Style.colContent}>
           <View style={local.budgetTitle}>
             <Text style={local.titleText}>Set your budget</Text>
@@ -134,12 +162,7 @@ export default class SelectTypePage extends Component {
               
               <View style={{padding: 5}}>
                 <ScrollView horizontal={true}>
-                  <BuildingComponent 
-                    onPress={this.navigateToDetail.bind(this, "CPU", 3000, "Ryzen 3 1200")} 
-                    type={"CPU"} price={3000} name={"Ryzen 3 1200"}
-                    onDelete={(value) => {alert(value)}}></BuildingComponent>
-                  <BuildingComponent type={"RAM"} price={1500} name={"Corsair"}></BuildingComponent>
-                  <BuildingComponent type={"VGA"} price={6000} name={"Asus GTX 1050Ti"}></BuildingComponent>
+                  {this.renderBuildings()}
                 </ScrollView>
               </View>
             </View>

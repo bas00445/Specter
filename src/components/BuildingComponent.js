@@ -39,7 +39,7 @@ export default class BuildingComponent extends Component {
                 </View>
                 <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
                     <View style={{alignItems:'flex-end'}}>
-                        <TouchableOpacity onPress={() => {this.props.onDelete('Delete')} }>
+                        <TouchableOpacity onPress={() => {this.props.onDelete()} }>
                             <Image style={local.icon} source={require("../assets/icons/close.png")}>
                             </Image>
                         </TouchableOpacity>
