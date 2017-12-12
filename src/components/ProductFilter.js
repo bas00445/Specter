@@ -29,17 +29,20 @@ export default class ProductFilter extends Component {
     render() {
         return (
             <View style={[Style.card]}>
-                <View style={Style.colContent}>
+                {/* <View style={Style.colContent}>
                     <View style={Style.indicator}></View>
                     <View style={[local.title, {justifyContent: 'center'}]}>
                         <Text style={local.titleText}>Filter</Text>
                     </View>
-                </View>
+                </View> */}
 
-                <View style={{paddingHorizontal: 10, paddingVertical: 2}}>
+                <View style={{paddingHorizontal: 10}}>
                     <View style={Style.colContent}>
+                        <View style={Style.centerVertical}>
+                            <Image style={local.icon} source={require('../assets/icons/sort.png')}></Image>
+                        </View>
                         <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={local.budgetVal}>Sort by</Text>
+                            <Text style={local.sortByText}>Sort by</Text>
                         </View>
                         <View style={{flex: 2}}>
                             <Picker mode={"dropdown"} style={{color: Color.primaryText}}
@@ -50,22 +53,6 @@ export default class ProductFilter extends Component {
                             </Picker>
                         </View>
                     </View>
-
-                    {/* <View style={Style.colContent}>
-                        <View style={{flex: 1, justifyContent: 'center'}}>
-                            <Text style={local.titleText}>Limit (Baht)</Text>
-                        </View>
-                        <View style={{flex: 2}}>
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={local.budgetVal}>{this.state.productVal}</Text>
-                            </View>
-                            <Slider minimumValue={0} maximumValue={40000} step={500} value={this.state.productVal}
-                                thumbTintColor={Color.secondary} maximumTrackTintColor={Color.secondaryLight}
-                                minimumTrackTintColor={Color.secondaryLight}
-                                onValueChange={(value) => {this.setState({productVal:value})}}>
-                            </Slider>
-                        </View>
-                    </View> */}
                 </View>
             </View>
         );
@@ -78,13 +65,11 @@ var local = StyleSheet.create({
         width: 300,
         flexDirection: 'row',
         margin: 10,
-        borderWidth: 2,
-        borderColor: Color.primary
     },
     title: {
         flex: 1,
         paddingLeft: 10,
-        paddingVertical: 10,
+        paddingVertical: 5,
         backgroundColor: Color.primary,
         borderTopRightRadius: 2,
     },
@@ -97,4 +82,15 @@ var local = StyleSheet.create({
         color: Color.primaryText,
         fontSize: 16,
     },
+    sortByText: {
+        color: Color.primaryText,
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    icon: {
+        width: 30,
+        height: 30,
+        tintColor: Color.primaryText,
+        marginRight: 5,
+    }
 });

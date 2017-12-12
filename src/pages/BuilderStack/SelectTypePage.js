@@ -71,7 +71,6 @@ export default class SelectTypePage extends Component {
   }
 
   renderBuildings() {
-    
     let buildings = this.state.buildings;
     if (buildings.length > 0) {
       const views = [];
@@ -92,8 +91,6 @@ export default class SelectTypePage extends Component {
         </View>  
       )
     }
-
-    
   }
 
   renderBudgetModal() {
@@ -130,7 +127,6 @@ export default class SelectTypePage extends Component {
         </View>
 
       </View>
-
     </Modal>
     );
   }
@@ -215,7 +211,7 @@ var local = StyleSheet.create({
   title: {
     flex: 1,
     paddingLeft: 10,
-    paddingVertical: 10,
+    paddingVertical: 5,
     backgroundColor: Color.primary,
     borderTopRightRadius: 2,
   },

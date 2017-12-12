@@ -12,13 +12,10 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class BuildingComponent extends Component {
+export default class RecommendComponent extends Component {
 
     constructor(props) {
         super(props);
-    }
-
-    updatePreviewImage() {
         switch(this.props.type) {
             case 'CPU': {
                 this.previewImg = require('../assets/images/ryzen3.png');
@@ -33,7 +30,6 @@ export default class BuildingComponent extends Component {
     }
 
     render() {
-        this.updatePreviewImage();
         return (
             <View style={local.container}>
                 <View style={local.imageContainer}>
@@ -42,13 +38,7 @@ export default class BuildingComponent extends Component {
                     </Image>
                 </View>
                 <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
-                    <View style={{alignItems:'flex-end'}}>
-                        <TouchableOpacity onPress={() => {this.props.onDelete()} }>
-                            <Image style={local.icon} source={require("../assets/icons/close.png")}>
-                            </Image>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={[Style.centerY, {flex: 2}]}>
+                    <View style={[Style.centerY, {flex: 1}]}>
                         <Text style={local.componentTitleText}>{this.props.type}</Text>
                     </View>
                     <View style={[Style.centerY, {flex: 1}]}>
@@ -81,15 +71,13 @@ var local = StyleSheet.create({
     image: {
         flex: 1, 
         alignSelf: 'center', 
-        width: 180, 
-        height: 100, 
+        width: 150, 
+        height: 150, 
         resizeMode: 'contain'
     },
     detailContainer: {
         flex: 1,
-        paddingTop: 2,
-        paddingBottom: 10,
-        paddingHorizontal: 10,
+        padding: 10,
         backgroundColor: Color.primaryLight,
     },
     componentTitleText: {
@@ -106,10 +94,5 @@ var local = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         color: Color.secondary
-    },
-    icon: {
-        width: 20,
-        height: 20,
-        tintColor: Color.primaryText
     },
 });
