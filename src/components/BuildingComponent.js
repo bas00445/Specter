@@ -100,7 +100,6 @@ var local = StyleSheet.create({
     detailText: {
         fontSize: 16,
         color: Color.primaryText,        
-        
     },
     priceText: {
         fontSize: 18,

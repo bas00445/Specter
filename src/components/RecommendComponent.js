@@ -38,15 +38,15 @@ export default class RecommendComponent extends Component {
                     </Image>
                 </View>
                 <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
-                    <View style={[Style.centerY, {flex: 2}]}>
+                    <View style={[Style.centerY, {flex: 1}]}>
                         <Text numberOfLines={2} ellipsizeMode={"tail"} 
                               style={[local.componentTitleText, {textAlign: 'center'}]}>{this.props.name}</Text>
                     </View>
-                    <View style={[Style.centerY, {flex: 1, marginBottom: 5}]}>
+                    <View style={[Style.centerY, {flex: 1}]}>
                         <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
                     </View>
                     
-                    <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <TouchableOpacity style={local.addButton} onPress={this.props.onAddComponent}>
                             <Text style={local.addButtonText}>Add</Text>
                         </TouchableOpacity>

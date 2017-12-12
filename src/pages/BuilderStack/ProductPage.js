@@ -32,6 +32,10 @@ export default class ProductPage extends Component {
     }
   }
 
+  navigateToDetail(dataToPass) {
+    this.stackNavigator.navigate("Detail", {product: dataToPass});
+  }
+
   renderRecommends() {
     let recommends = this.state.recommends;
     const views = [];
@@ -47,7 +51,8 @@ export default class ProductPage extends Component {
 
   render() {
     const {navigation} = this.props; // pass down navigation to PageHeader
-    
+    this.stackNavigator = navigation;
+
     return (
       <View style={{flex: 1}}>      
         <PageHeader headerText={this.props.data} navigation={navigation} type={"stack"}></PageHeader>
@@ -82,7 +87,8 @@ export default class ProductPage extends Component {
               <ProductComponent 
                 key={item.key} 
                 name={item.name}
-                price={item.price}>
+                price={item.price}
+                onPress={this.navigateToDetail.bind(this, item)}>
               </ProductComponent>}
             />
         </View>
