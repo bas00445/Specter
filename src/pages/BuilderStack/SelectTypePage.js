@@ -60,8 +60,6 @@ export default class SelectTypePage extends Component {
     this.setState({
       buildings: temp
     });
-
-    console.log(this.state.buildings);
   }
 
   navigateToDetail(dataToPass) {
@@ -73,18 +71,29 @@ export default class SelectTypePage extends Component {
   }
 
   renderBuildings() {
-    const views = [];
-    var buildings = this.state.buildings;
-    for (var indx in buildings) {
-      var obj = buildings[indx];
-      views.push(
-      <BuildingComponent type={obj.type} price={obj.price} name={obj.name} key={indx}
-        onDelete={this.removeBuildingComponent.bind(this, indx)}>
-      </BuildingComponent>
-      );
+    
+    let buildings = this.state.buildings;
+    if (buildings.length > 0) {
+      const views = [];
+      for (let indx in buildings) {
+        let obj = buildings[indx];
+        views.push(
+        <BuildingComponent type={obj.type} price={obj.price} name={obj.name} key={indx}
+          onDelete={this.removeBuildingComponent.bind(this, indx)}>
+        </BuildingComponent>
+        );
+      }
+      return views;
+
+    } else {
+      return(
+        <View style={{flex: 1, padding: 10}}>
+          <Text style={{fontSize: 18, color: Color.primaryText}}>No building components</Text>
+        </View>  
+      )
     }
 
-    return views;
+    
   }
 
   renderBudgetModal() {
@@ -161,7 +170,7 @@ export default class SelectTypePage extends Component {
                 </View>
               </View>
               
-              <View style={{padding: 5, height: 180}}>
+              <View style={{padding: 5}}>
                 <ScrollView horizontal={true}>
                   {this.renderBuildings()}
                 </ScrollView>
