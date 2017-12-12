@@ -33,6 +33,16 @@ export default class ProductPage extends Component {
     }
   }
 
+  addToSpec(product) {
+    const paramsAction = NavigationActions.setParams({
+      params: {
+        newProduct: product
+      },
+      key: 'SelectType',
+    }); 
+    this.stackNavigator.dispatch(paramsAction);
+  }
+
   navigateToDetail(dataToPass) {
     this.stackNavigator.navigate("Detail", { product: dataToPass });
   }
@@ -43,7 +53,8 @@ export default class ProductPage extends Component {
     for (let indx in recommends) {
       let obj = recommends[indx];
       views.push(
-      <RecommendComponent type={obj.type} price={obj.price} name={obj.name} key={indx}>
+      <RecommendComponent type={obj.type} price={obj.price} 
+        name={obj.name} key={indx} onAddComponent={this.addToSpec.bind(this, obj)}>
       </RecommendComponent>
       );
     }
@@ -96,7 +107,8 @@ export default class ProductPage extends Component {
                 key={item.key} 
                 name={item.name}
                 price={item.price}
-                onPress={this.navigateToDetail.bind(this, item)}>
+                onPress={this.navigateToDetail.bind(this, item)}
+                onAddComponent={this.addToSpec.bind(this, item)}>
               </ProductComponent>}
             />
         </View>

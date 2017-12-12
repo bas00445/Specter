@@ -70,7 +70,7 @@ export default class SelectTypePage extends Component {
   }
 
   navigateToDetail(dataToPass) {
-    this.stackNavigator.navigate("Detail", {data: dataToPass});
+    this.stackNavigator.navigate("Detail", {product: dataToPass});
   }
 
   navigateToProduct(dataToPass) {
@@ -85,7 +85,7 @@ export default class SelectTypePage extends Component {
         let obj = buildings[indx];
         views.push(
         <BuildingComponent type={obj.type} price={obj.price} name={obj.name} key={indx}
-          onDelete={this.removeBuildingComponent.bind(this, indx)}>
+          onDelete={this.removeBuildingComponent.bind(this, indx)} onPress={this.navigateToDetail.bind(this, obj)}>
         </BuildingComponent>
         );
       }

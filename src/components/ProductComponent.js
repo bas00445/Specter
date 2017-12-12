@@ -21,6 +21,16 @@ export default class ProductComponent extends Component {
         // source={{uri:this.previewImg}}
     }
 
+    addToSpec() {
+        const paramsAction = NavigationActions.setParams({
+            params: {
+                newProduct: this.props.product
+            },
+            key: 'SelectType',
+        }); 
+        this.stackNavigator.dispatch(paramsAction);
+    }
+
     render() {
         return (
             <View style={local.container}>
