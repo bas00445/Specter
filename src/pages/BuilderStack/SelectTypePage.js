@@ -156,7 +156,7 @@ export default class SelectTypePage extends Component {
               <View style={{padding: 5}}>
                 <View style={[Style.colContent, {padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primaryLight}]}>
                   <View style={{flex: 1, alignItems: 'flex-start'}}>
-                    <Text style={Style.whiteText}>Budget</Text>
+                    <Text style={Style.whiteText}>Budget (Baht)</Text>
                   </View>
                   <View style={{flex: 1, alignItems: 'flex-end'}}>
                     <TouchableOpacity onPress={() => {this.setState({showBudgetModal: true})}}>

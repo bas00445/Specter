@@ -36,7 +36,7 @@ export default class ProductFilter extends Component {
                     </View>
                 </View>
 
-                <View style={{padding: 10}}>
+                <View style={{paddingHorizontal: 10, paddingVertical: 2}}>
                     <View style={Style.colContent}>
                         <View style={{flex: 1, justifyContent: 'center'}}>
                             <Text style={local.titleText}>Sort by</Text>
@@ -51,7 +51,7 @@ export default class ProductFilter extends Component {
                         </View>
                     </View>
 
-                    <View style={Style.colContent}>
+                    {/* <View style={Style.colContent}>
                         <View style={{flex: 1, justifyContent: 'center'}}>
                             <Text style={local.titleText}>Limit (Baht)</Text>
                         </View>
@@ -65,7 +65,7 @@ export default class ProductFilter extends Component {
                                 onValueChange={(value) => {this.setState({productVal:value})}}>
                             </Slider>
                         </View>
-                    </View>
+                    </View> */}
                 </View>
             </View>
         );

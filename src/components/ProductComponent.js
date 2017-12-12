@@ -101,7 +101,8 @@ var local = StyleSheet.create({
     addButton: {
         backgroundColor: Color.secondary,
         borderRadius: 2,
-        padding: 5
+        paddingVertical: 2,
+        paddingHorizontal: 10,
     },
     addButtonText: {
         fontSize: 14,
