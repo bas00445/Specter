@@ -62,7 +62,14 @@ export default class ProductPage extends Component {
             <View style={Style.colContent}>
               <View style={Style.indicator}></View>
               <View style={local.title}>
-                <Text style={local.titleText}>Recommend</Text>
+                <View style={[Style.colContent]}>
+                  <View style={Style.centerVertical}>
+                    <Image style={local.starIcon} source={require('../../assets/icons/star.png')}></Image>
+                  </View>
+                  <View style={{paddingLeft: 5}}>
+                    <Text style={local.titleText}>Recommend</Text>
+                  </View>
+                </View>
               </View>
             </View>
 
@@ -100,7 +107,7 @@ export default class ProductPage extends Component {
 var local = StyleSheet.create({
   title: {
     flex: 1,
-    paddingLeft: 10,
+    paddingLeft: 5,
     paddingVertical: 5,
     backgroundColor: Color.primary,
     borderTopRightRadius: 2,
@@ -110,4 +117,9 @@ var local = StyleSheet.create({
     fontWeight: 'bold',
     color: Color.primaryText,
   },
+  starIcon: {
+    width: 20,
+    height: 20,
+    tintColor: Color.secondary
+  }
 });
