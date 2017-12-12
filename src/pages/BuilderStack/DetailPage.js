@@ -59,7 +59,7 @@ export default class DetailPage extends Component {
                       {this.props.product.price} Baht
                     </Text>
                   </View>
-                  <View style={{flex: 3, justifyContent: 'center', alignItems: 'flex-end'}}>
+                  <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
                       <TouchableOpacity style={local.addButton} onPress={this.addToSpec.bind(this)}>
                           <Text style={local.addButtonText}>Add to spec</Text>
                       </TouchableOpacity>

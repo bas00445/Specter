@@ -54,7 +54,8 @@ export default class ProductPage extends Component {
       let obj = recommends[indx];
       views.push(
       <RecommendComponent type={obj.type} price={obj.price} 
-        name={obj.name} key={indx} onAddComponent={this.addToSpec.bind(this, obj)}>
+        name={obj.name} key={indx} onPress={this.navigateToDetail.bind(this, obj)}
+        onAddComponent={this.addToSpec.bind(this, obj)}>
       </RecommendComponent>
       );
     }
