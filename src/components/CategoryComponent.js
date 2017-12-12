@@ -62,7 +62,7 @@ export default class CategoryComponent extends Component {
             onPress={this.props.onPress}>
             <View style={{flex: 1, justifyContent: 'center'}}>
               <Image style={local.icon}
-                source={require("../assets/icons/list-add.png")}></Image>
+                source={require("../assets/icons/play.png")}></Image>
             </View>
           </View>
         </View>

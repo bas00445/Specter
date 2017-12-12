@@ -236,7 +236,7 @@ var local = StyleSheet.create({
     tintColor: Color.primaryText
   },
   budgetTitle: {
-    flex: 1,
+    flex: 3,
     backgroundColor: Color.primary,
     borderRadius: 2,
     paddingHorizontal: 5
@@ -251,6 +251,7 @@ var local = StyleSheet.create({
   },
   modalContainer: {
     backgroundColor: Color.primary,
-    padding: 15
+    padding: 15,
+    borderRadius: 2
   }
 });
