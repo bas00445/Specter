@@ -61,7 +61,7 @@ export default class ProductPage extends Component {
               </View>
             </View>
 
-            <View style={{padding: 5, height: 120}}>
+            <View style={{padding: 5, height: 150}}>
               <ScrollView horizontal={true}>
                 {this.renderRecommends()}
               </ScrollView>

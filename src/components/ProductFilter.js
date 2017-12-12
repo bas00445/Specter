@@ -41,10 +41,10 @@ export default class ProductFilter extends Component {
                         <View style={Style.centerVertical}>
                             <Image style={local.icon} source={require('../assets/icons/sort.png')}></Image>
                         </View>
-                        <View style={{flex: 1, justifyContent: 'center'}}>
+                        <View style={{flex: 2, justifyContent: 'center'}}>
                             <Text style={local.sortByText}>Sort by</Text>
                         </View>
-                        <View style={{flex: 2}}>
+                        <View style={{flex: 1}}>
                             <Picker mode={"dropdown"} style={{color: Color.primaryText}}
                                 selectedValue={this.state.sortingType}
                                 onValueChange={(itemValue, itemIndex) => this.setState({sortingType: itemValue})}>

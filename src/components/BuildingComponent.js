@@ -82,7 +82,7 @@ var local = StyleSheet.create({
         flex: 1, 
         alignSelf: 'center', 
         width: 180, 
-        height: 100, 
+        height: 120, 
         resizeMode: 'contain'
     },
     detailContainer: {

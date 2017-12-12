@@ -38,15 +38,18 @@ export default class RecommendComponent extends Component {
                     </Image>
                 </View>
                 <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
-                    <View style={[Style.centerY, {flex: 1}]}>
-                        <Text style={local.componentTitleText}>{this.props.type}</Text>
-                    </View>
-                    <View style={[Style.centerY, {flex: 1}]}>
+                    <View style={[Style.centerY, {flex: 2}]}>
                         <Text numberOfLines={2} ellipsizeMode={"tail"} 
-                              style={[local.detailText, {textAlign: 'center'}]}>{this.props.name}</Text>
+                              style={[local.componentTitleText, {textAlign: 'center'}]}>{this.props.name}</Text>
                     </View>
-                    <View style={[Style.centerY, {flex: 1}]}>
+                    <View style={[Style.centerY, {flex: 1, marginBottom: 5}]}>
                         <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
+                    </View>
+                    
+                    <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+                        <TouchableOpacity style={local.addButton} onPress={this.props.onAddComponent}>
+                            <Text style={local.addButtonText}>Add</Text>
+                        </TouchableOpacity>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -85,14 +88,23 @@ var local = StyleSheet.create({
         fontWeight: 'bold',
         color: Color.primaryText,
     },
-    detailText: {
-        fontSize: 16,
-        color: Color.primaryText,        
-        
-    },
     priceText: {
         fontSize: 18,
         fontWeight: 'bold',
         color: Color.secondary
     },
+    addButton: {
+        backgroundColor: Color.secondary,
+        borderRadius: 2,
+        paddingVertical: 2,
+        paddingHorizontal: 10,
+        width: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    addButtonText: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: Color.primaryText
+    }
 });
