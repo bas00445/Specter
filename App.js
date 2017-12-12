@@ -46,8 +46,8 @@ const BuilderStack = StackNavigator({
 
 const App = DrawerNavigator({
   Builder: {screen: BuilderStack},
+  AIbuilder: {screen: paramsToProps(RecommendPage)},
   Favorite: {screen: paramsToProps(FavoritePage)},
-  Recommend: {screen: paramsToProps(RecommendPage)},
   Setting: {screen: paramsToProps(SettingPage)}
 },
 {

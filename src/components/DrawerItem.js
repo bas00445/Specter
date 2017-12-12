@@ -20,11 +20,11 @@ export default class DrawerItem extends Component {
       case 'Builder': {
         this.icon = require('../assets/icons/build.png');
       } break;
+      case 'AI Builder': {
+        this.icon = require('../assets/icons/star.png');
+      } break;
       case 'Favorite': {
         this.icon = require('../assets/icons/heart.png');
-      } break;
-      case 'Recommend': {
-        this.icon = require('../assets/icons/star.png');
       } break;
       case 'Setting': {
         this.icon = require('../assets/icons/setting.png');
