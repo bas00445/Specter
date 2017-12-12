@@ -51,6 +51,9 @@ var Style = StyleSheet.create({
     centerY: {
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    centerVertical: {
+        justifyContent: 'center'
     }
 });
 

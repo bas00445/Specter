@@ -34,8 +34,15 @@ export default class ProductComponent extends Component {
                         <Text style={local.detailText} numberOfLines={2} 
                             ellipsizeMode='tail'>{this.props.name}</Text>
                     </View>
-                    <View style={{flex: 1, justifyContent: 'center'}}>
-                        <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
+                    <View style={{flex: 1, flexDirection: 'row'}}>
+                        <View style={[Style.centerVertical, {flex: 1}]}>
+                            <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
+                        </View>
+                        <View style={[Style.centerVertical]}>
+                            <TouchableOpacity style={local.addButton} onPress={this.props.onAddComponent}>
+                                <Text style={local.addButtonText}>Add</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -91,4 +98,14 @@ var local = StyleSheet.create({
         height: 24,
         tintColor: Color.primaryText
     },
+    addButton: {
+        backgroundColor: Color.secondary,
+        borderRadius: 2,
+        padding: 5
+    },
+    addButtonText: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: Color.primaryText
+    }
 });

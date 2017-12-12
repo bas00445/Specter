@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation'
+import Modal from 'react-native-modal'
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import BuildingComponent from '../../components/BuildingComponent';
 import CategoryComponent from '../../components/CategoryComponent';
-import BudgetComponent from '../../components/BudgetComponent';
+import CustomSlider from '../../components/CustomSlider';
 import {
   StyleSheet,
   Text,
@@ -12,8 +13,8 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  Modal,
-  FlatList
+  FlatList,
+  TextInput
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -27,13 +28,25 @@ export default class SelectTypePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      tempBudget: '',
       budget: 20000,
-      showBudget: false,
+      showBudgetModal: false,
     };
   }
 
+  setTempBudget(value) {
+    this.setState({
+      tempBudget: value
+    });
+  }
+
   setBudget() {
-    
+    this.setState({
+      budget: this.state.tempBudget
+    });
+    this.setState({
+      showBudgetModal: false,
+    })
   }
 
   navigateToDetail(dataToPass) {
@@ -47,45 +60,31 @@ export default class SelectTypePage extends Component {
   renderBudgetModal() {
   return (
     <Modal 
-      animationType="slide"
-      transparent={true}
-      visible={this.state.showBudget}
-      presentation={"formSheet"}
-      onRequestClose={() => {this.setState({showBudget: false})}}>
+      animationIn="slideInUp"
+      isVisible={this.state.showBudgetModal}
+      onBackButtonPress={() => {this.setState({showBudgetModal: false})}}>
 
-      <View style={Style.container}>
-          <View style={{alignItems:'flex-end', paddingVertical: 4}}>
-              <TouchableOpacity onPress={() => {this.setState({showBudget: false})}}>
-                  <Image style={local.icon} source={require("../../assets/icons/close.png")}>
-                  </Image>
-              </TouchableOpacity>
+      <View style={local.modalContainer}>
+        
+        <View style={Style.colContent}>
+          <View style={local.budgetTitle}>
+            <Text style={local.titleText}>Set your budget</Text>
           </View>
-          <View style={{paddingHorizontal: 5, marginBottom: 5}}>
-            <View style={local.budgetTitle}>
-              <Text style={local.titleText}>Set your budget</Text>
-            </View>
+          
+          <View style={{flex:1, alignItems:'flex-end'}}>
+            <TouchableOpacity onPress={() => {this.setState({showBudgetModal: false})}}>
+                <Image style={local.icon} source={require("../../assets/icons/close.png")}>
+                </Image>
+            </TouchableOpacity>
           </View>
-
-        <View style={{flex: 5}}>
-          <FlatList
-            data={[
-              {compType: 'CPU', key: '0'}, 
-              {compType: 'VGA', key: '1'}, 
-              {compType: 'Memory', key: '2'}, 
-              {compType: 'Mainboard', key: '3'},
-              {compType: 'Storage', key: '4'},
-              {compType: 'Power supply', key: '5'},
-              {compType: 'Monitor', key: '6'}]}
-            renderItem={({item}) => 
-              <BudgetComponent 
-                key={item.key} 
-                compType={item.compType}
-                budgetValue={5000}>
-              </BudgetComponent>}
-            />
         </View>
+        
+        <TextInput placeholder={"Input your budget"} 
+          underlineColorAndroid={Color.secondary} 
+          placeholderTextColor={'#cccccc'} style={{color: Color.primaryText}}
+          onChangeText={(value) => {this.setTempBudget(value)}}></TextInput>
 
-        <View style={{flex: 1, alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
+        <View style={{alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
           <TouchableOpacity style={local.okButton} onPress={this.setBudget.bind(this)}>
               <Text style={{color: Color.primaryText, fontWeight: 'bold'}}>OK</Text>
           </TouchableOpacity>
@@ -122,7 +121,7 @@ export default class SelectTypePage extends Component {
                     <Text style={Style.whiteText}>Budget</Text>
                   </View>
                   <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <TouchableOpacity onPress={() => {this.setState({showBudget: true})}}>
+                    <TouchableOpacity onPress={() => {this.setState({showBudgetModal: true})}}>
                       <View style={Style.colContent}>
                         <Text style={Style.whiteText}>{this.state.budget}</Text>
                         <Image style={local.editIcon} 
@@ -199,22 +198,26 @@ var local = StyleSheet.create({
     marginLeft: 10
   },
   icon: {
-        width: 24,
-        height: 24,
-        tintColor: Color.primaryText
+    width: 24,
+    height: 24,
+    tintColor: Color.primaryText
   },
   budgetTitle: {
-    paddingLeft: 10,
-    paddingVertical: 10,
+    flex: 1,
     backgroundColor: Color.primary,
     borderRadius: 2,
+    paddingHorizontal: 5
   },
   okButton: {
-    padding: 10, 
+    paddingVertical: 10,
+    paddingHorizontal: 20, 
     backgroundColor: Color.secondary, 
-    width: 80,
     justifyContent: 'center', 
     alignItems: 'center',
     borderRadius: 2,
+  },
+  modalContainer: {
+    backgroundColor: Color.primary,
+    padding: 15
   }
 });
