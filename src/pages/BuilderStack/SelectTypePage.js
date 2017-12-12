@@ -14,7 +14,8 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
-  TextInput
+  TextInput,
+  ToastAndroid
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -43,7 +44,7 @@ export default class SelectTypePage extends Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    alert(nextProps.newProduct.name);
+    ToastAndroid.show('Add ' + nextProps.newProduct.name, ToastAndroid.SHORT);
   }
 
   setTempBudget(value) {
