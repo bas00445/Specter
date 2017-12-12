@@ -41,7 +41,7 @@ export default class ProductFilter extends Component {
                         <View style={Style.centerVertical}>
                             <Image style={local.icon} source={require('../assets/icons/sort.png')}></Image>
                         </View>
-                        <View style={{flex: 2, justifyContent: 'center'}}>
+                        <View style={{flex: 1, justifyContent: 'center'}}>
                             <Text style={local.sortByText}>Sort by</Text>
                         </View>
                         <View style={{flex: 1}}>

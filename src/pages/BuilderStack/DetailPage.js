@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Theme from '../../styles/Global';
+import { NavigationActions } from 'react-navigation'
 import PageHeader from '../../components/PageHeader';
 import {
   StyleSheet,
@@ -7,7 +8,7 @@ import {
   View,
   Image,
   ScrollView,
-  TouchableNativeFeedback
+  TouchableOpacity
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -22,9 +23,20 @@ export default class DetailPage extends Component {
     super(props);
   }
 
+  addToSpec() {
+    const paramsAction = NavigationActions.setParams({
+      params: {
+        newProduct: this.props.product
+      },
+      key: 'SelectType',
+    }); 
+    this.stackNavigator.dispatch(paramsAction);
+  }
+
   render() {
-    const {navigation} = this.props; // pass down navigation to PageHeader
-    
+    const {navigation} = this.props;
+    this.stackNavigator = navigation;
+
     return (
       <View style={{flex: 1}}>      
         <PageHeader headerText={"Product Detail"} navigation={navigation} type={"stack"}></PageHeader>
@@ -37,8 +49,23 @@ export default class DetailPage extends Component {
                   style={local.productImage}></Image>
               </View>
               <View style={local.title}>
-                <Text style={local.titleText}>{this.props.product.name}</Text>
-                <Text style={local.priceText}>{this.props.product.price} Baht</Text>
+                <View style={{marginBottom: 5}}>
+                  <Text style={local.titleText}>{this.props.product.name}</Text>
+                </View>
+                
+                <View style={Style.colContent}>
+                  <View style={{flex: 1}}>
+                    <Text style={local.priceText}>
+                      {this.props.product.price} Baht
+                    </Text>
+                  </View>
+                  <View style={{flex: 3, justifyContent: 'center', alignItems: 'flex-end'}}>
+                      <TouchableOpacity style={local.addButton} onPress={this.addToSpec.bind(this)}>
+                          <Text style={local.addButtonText}>Add to spec</Text>
+                      </TouchableOpacity>
+                  </View>
+                </View>
+
               </View>
             </View>
 
@@ -68,7 +95,7 @@ var local = StyleSheet.create({
     padding: 10
   },
   titleText: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     color: Color.primaryText,
   },
@@ -80,7 +107,7 @@ var local = StyleSheet.create({
     height: 250
   },
   priceText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: Color.secondary
   },
@@ -96,4 +123,17 @@ var local = StyleSheet.create({
     fontWeight: 'bold',
     color: Color.primaryText,
   },
+  addButton: {
+    backgroundColor: Color.secondary,
+    borderRadius: 2,
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: Color.primaryText
+  }
 });

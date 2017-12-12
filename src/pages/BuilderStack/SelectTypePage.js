@@ -37,6 +37,13 @@ export default class SelectTypePage extends Component {
         {type:"CPU", price:6000, name: "Ryzen 3 1200"},
       ]
     };
+
+    const {navigation} = this.props;
+    navigation.state.key = 'SelectType'; // Set a key to this page to receive params
+  }
+  
+  componentWillUpdate(nextProps, nextState) {
+    alert(nextProps.newProduct.name);
   }
 
   setTempBudget(value) {
@@ -180,7 +187,8 @@ export default class SelectTypePage extends Component {
                   <Text style={local.titleText}>Category</Text>
                 </View>
               </View>
-              <ScrollView>
+
+              <View>
                 <CategoryComponent text={"CPU"} 
                   onPress={this.navigateToProduct.bind(this, "CPU")}></CategoryComponent>
                 <CategoryComponent text={"VGA card"} 
@@ -191,11 +199,8 @@ export default class SelectTypePage extends Component {
                   onPress={this.navigateToProduct.bind(this, "Mainboard")}></CategoryComponent>
                 <CategoryComponent text={"Storage"} 
                   onPress={this.navigateToProduct.bind(this, "Storage")}></CategoryComponent>
-                <CategoryComponent text={"Power supply"} 
-                  onPress={this.navigateToProduct.bind(this, "Power supply")}></CategoryComponent>
-                <CategoryComponent text={"Monitor"} 
-                  onPress={this.navigateToProduct.bind(this, "Monitor")}></CategoryComponent>
-              </ScrollView>
+              </View>
+
             </View>
           </ScrollView>
         </View>

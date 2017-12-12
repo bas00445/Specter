@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavigationActions } from 'react-navigation'
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import ProductFilter from '../../components/ProductFilter';
@@ -33,7 +34,7 @@ export default class ProductPage extends Component {
   }
 
   navigateToDetail(dataToPass) {
-    this.stackNavigator.navigate("Detail", {product: dataToPass});
+    this.stackNavigator.navigate("Detail", { product: dataToPass });
   }
 
   renderRecommends() {
@@ -121,5 +122,19 @@ var local = StyleSheet.create({
     width: 20,
     height: 20,
     tintColor: Color.secondary
+  },
+  addButton: {
+      backgroundColor: Color.secondary,
+      borderRadius: 2,
+      paddingVertical: 2,
+      paddingHorizontal: 10,
+      width: 60,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  addButtonText: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      color: Color.primaryText
   }
 });

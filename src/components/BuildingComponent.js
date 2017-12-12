@@ -81,8 +81,8 @@ var local = StyleSheet.create({
     image: {
         flex: 1, 
         alignSelf: 'center', 
-        width: 180, 
-        height: 120, 
+        width: 150, 
+        height: 150, 
         resizeMode: 'contain'
     },
     detailContainer: {
