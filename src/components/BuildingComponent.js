@@ -16,6 +16,9 @@ export default class BuildingComponent extends Component {
 
     constructor(props) {
         super(props);
+    }
+
+    updatePreviewImage() {
         switch(this.props.type) {
             case 'CPU': {
                 this.previewImg = require('../assets/images/ryzen3.png');
@@ -30,6 +33,7 @@ export default class BuildingComponent extends Component {
     }
 
     render() {
+        this.updatePreviewImage();
         return (
             <View style={local.container}>
                 <View style={local.imageContainer}>

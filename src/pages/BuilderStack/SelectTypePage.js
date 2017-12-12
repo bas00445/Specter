@@ -33,8 +33,8 @@ export default class SelectTypePage extends Component {
       showBudgetModal: false,
       buildings: [
         {type:"RAM", price:1500, name: "Corsair"},
-        {type:"CPU", price:6000, name: "Ryzen 3 1200"},
         {type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
+        {type:"CPU", price:6000, name: "Ryzen 3 1200"},
       ]
     };
   }
@@ -60,6 +60,8 @@ export default class SelectTypePage extends Component {
     this.setState({
       buildings: temp
     });
+
+    console.log(this.state.buildings);
   }
 
   navigateToDetail(dataToPass) {
@@ -71,13 +73,13 @@ export default class SelectTypePage extends Component {
   }
 
   renderBuildings() {
-    let views = [];
-    let buildings = this.state.buildings;
-    for (let indx in buildings) {
-      let obj = buildings[indx];
+    const views = [];
+    var buildings = this.state.buildings;
+    for (var indx in buildings) {
+      var obj = buildings[indx];
       views.push(
-      <BuildingComponent type={obj.type} price={obj.price} name={obj.name} 
-        onDelete={() => {this.removeBuildingComponent(indx)}}>
+      <BuildingComponent type={obj.type} price={obj.price} name={obj.name} key={indx}
+        onDelete={this.removeBuildingComponent.bind(this, indx)}>
       </BuildingComponent>
       );
     }
@@ -121,8 +123,7 @@ export default class SelectTypePage extends Component {
       </View>
 
     </Modal>
-  );
-
+    );
   }
 
   render() {
@@ -160,7 +161,7 @@ export default class SelectTypePage extends Component {
                 </View>
               </View>
               
-              <View style={{padding: 5}}>
+              <View style={{padding: 5, height: 180}}>
                 <ScrollView horizontal={true}>
                   {this.renderBuildings()}
                 </ScrollView>
