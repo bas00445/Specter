@@ -27,28 +27,28 @@ export default class AboutPage extends Component {
         <View style={[Style.container, { paddingBottom: 0, padding: 20 }]}>
           <ScrollView>
 
-            <View style={{marginBottom: 10}}>
+            <View style={{ marginBottom: 10 }}>
               <Text style={local.titleText}>
                 Description
               </Text>
               <Text style={local.detailText}>
-                This project uses Prolog programming language on the server 
-                side to evaluate cost of selecting PC's components
+                This project uses Prolog programming language worked together with some artificial 
+                intelligence technique on the server side to evaluate the most efficient cost of selecting PC's components
               </Text>
             </View>
 
-            <View style={{marginBottom: 10}}>
+            <View style={{ marginBottom: 10 }}>
               <Text style={local.titleText}>
                 Members
               </Text>
               <Text style={local.detailText}>
-                1. Phat Thaveepholcharoen (Front-end)
+                1. Phat Thaveepholcharoen ( Front-end )
               </Text>
               <Text style={local.detailText}>
-                2. Parin Kobboon (Back-end)
+                2. Parin Kobboon ( Back-end )
               </Text>
               <Text style={local.detailText}>
-                3. Phum Vajanavinit (Back-end)
+                3. Phum Vajanavinit ( Back-end )
               </Text>
             </View>
 
@@ -64,6 +64,7 @@ var local = StyleSheet.create({
     color: Color.primaryText,
     fontSize: 20,
     fontWeight: 'bold',
+    marginBottom: 5
   },
   detailText: {
     color: Color.primaryText,
