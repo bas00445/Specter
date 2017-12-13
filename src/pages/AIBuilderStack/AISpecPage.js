@@ -3,7 +3,7 @@ import { NavigationActions } from 'react-navigation'
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import Modal from 'react-native-modal'
-import ProductComponent from '../../components/AI/ProductComponent';
+import AIProductComponent from '../../components/AI/AIProductComponent';
 import {
   StyleSheet,
   Text,
@@ -23,13 +23,22 @@ export default class AISpecPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      products: [
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 1', price: 3000, key: '0' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 2', price: 2500, key: '1' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 3', price: 5555, key: '2' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4', price: 7777, key: '3' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 5', price: 4444, key: '4' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 6', price: 2255, key: '5' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 7', price: 2500, key: '6' },
+      ],
     }
     const { navigation } = this.props; // pass down navigation to PageHeader
     this.navigator = navigation;
   }
 
   navigateToDetail(dataToPass) {
-    // this.navigator.navigate("Detail", { product: dataToPass });
+    this.navigator.navigate("AIDetail", { product: dataToPass });
   }
 
   render() {
@@ -49,11 +58,11 @@ export default class AISpecPage extends Component {
                 </View>
               </View>
 
-              <ProductComponent
-                type={'CPU'} price={5000}
-                name={'Ryzen 3 1200'} key={5}
-                onPress={this.navigateToDetail.bind(this, '')}>
-              </ProductComponent>
+              <AIProductComponent
+                type={this.state.products[0].type} price={this.state.products[0].price}
+                name={this.state.products[0].name} key={this.state.products[0].key}
+                onPress={this.navigateToDetail.bind(this, this.state.products[0])}>
+              </AIProductComponent>
 
             </View>
 
@@ -67,11 +76,11 @@ export default class AISpecPage extends Component {
                 </View>
               </View>
 
-              <ProductComponent
-                type={'VGA'} price={5000}
-                name={'ASUS GTX 1050 Ti'} key={6}
-                onPress={this.navigateToDetail.bind(this, '')}>
-              </ProductComponent>
+              <AIProductComponent
+                type={this.state.products[1].type} price={this.state.products[1].price}
+                name={this.state.products[1].name} key={this.state.products[1].key}
+                onPress={this.navigateToDetail.bind(this, this.state.products[1])}>
+              </AIProductComponent>
 
 
             </View>
@@ -86,11 +95,11 @@ export default class AISpecPage extends Component {
                 </View>
               </View>
 
-              <ProductComponent
-                type={'RAM'} price={5000}
-                name={'Corsair 4 GB'} key={2}
-                onPress={this.navigateToDetail.bind(this, '')}>
-              </ProductComponent>
+              <AIProductComponent
+                type={this.state.products[2].type} price={this.state.products[2].price}
+                name={this.state.products[2].name} key={this.state.products[2].key}
+                onPress={this.navigateToDetail.bind(this, this.state.products[2])}>
+              </AIProductComponent>
 
             </View>
 
@@ -104,11 +113,11 @@ export default class AISpecPage extends Component {
                 </View>
               </View>
 
-              <ProductComponent
-                type={'Mainboard'} price={5000}
-                name={'ASUS ROG RX7'} key={3}
-                onPress={this.navigateToDetail.bind(this, '')}>
-              </ProductComponent>
+              <AIProductComponent
+                type={this.state.products[3].type} price={this.state.products[3].price}
+                name={this.state.products[3].name} key={this.state.products[3].key}
+                onPress={this.navigateToDetail.bind(this, this.state.products[3])}>
+              </AIProductComponent>
 
             </View>
 
@@ -122,11 +131,11 @@ export default class AISpecPage extends Component {
                 </View>
               </View>
 
-              <ProductComponent
-                type={'Storage'} price={5000}
-                name={'Samsung SSD 128 GB'} key={4}
-                onPress={this.navigateToDetail.bind(this, '')}>
-              </ProductComponent>
+              <AIProductComponent
+                type={this.state.products[4].type} price={this.state.products[4].price}
+                name={this.state.products[4].name} key={this.state.products[4].key}
+                onPress={this.navigateToDetail.bind(this, this.state.products[4])}>
+              </AIProductComponent>
 
             </View>
 

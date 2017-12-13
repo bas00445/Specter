@@ -15,14 +15,11 @@ var Style = Theme.Style;
 var Color = Theme.Color;
 
 export default class DetailPage extends Component {
-  static navigationOptions = {
-    title: 'Product Detail',
-  };
 
   constructor(props) {
     super(props);
 
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     this.navigator = navigation;
   }
 
@@ -32,15 +29,15 @@ export default class DetailPage extends Component {
         newProduct: this.props.product
       },
       key: 'SelectType',
-    }); 
+    });
     this.navigator.dispatch(paramsAction);
   }
 
   render() {
     return (
-      <View style={{flex: 1}}>      
+      <View style={{ flex: 1 }}>
         <PageHeader headerText={"Product Detail"} navigation={this.navigator} type={"stack"}></PageHeader>
-        <View style={[Style.container, {paddingBottom: 0}]}>
+        <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
 
             <View style={Style.card}>
@@ -49,20 +46,20 @@ export default class DetailPage extends Component {
                   style={local.productImage}></Image>
               </View>
               <View style={local.title}>
-                <View style={{marginBottom: 5}}>
+                <View style={{ marginBottom: 5 }}>
                   <Text style={local.titleText}>{this.props.product.name}</Text>
                 </View>
-                
+
                 <View style={Style.colContent}>
-                  <View style={{flex: 1}}>
+                  <View style={{ flex: 1 }}>
                     <Text style={local.priceText}>
                       {this.props.product.price} Baht
                     </Text>
                   </View>
-                  <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
-                      <TouchableOpacity style={local.addButton} onPress={this.addToSpec.bind(this)}>
-                          <Text style={local.addButtonText}>Add to spec</Text>
-                      </TouchableOpacity>
+                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+                    <TouchableOpacity style={local.addButton} onPress={this.addToSpec.bind(this)}>
+                      <Text style={local.addButtonText}>Add to spec</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
 
@@ -77,7 +74,7 @@ export default class DetailPage extends Component {
                 </View>
               </View>
 
-              <View style={{padding: 5, height: 300}}>
+              <View style={{ padding: 5, height: 300 }}>
 
               </View>
             </View>
@@ -100,7 +97,7 @@ var local = StyleSheet.create({
     color: Color.primaryText,
   },
   productImageContainer: {
-    backgroundColor: '#ffffff', 
+    backgroundColor: '#ffffff',
     alignItems: 'center'
   },
   productImage: {

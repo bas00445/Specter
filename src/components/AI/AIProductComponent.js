@@ -12,7 +12,7 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class ProductComponent extends Component {
+export default class AIProductComponent extends Component {
 
   constructor(props) {
     super(props);
@@ -20,11 +20,17 @@ export default class ProductComponent extends Component {
       case 'CPU': {
         this.previewImg = require('../../assets/images/ryzen3.png');
       } break;
-      case 'RAM': {
+      case 'VGA card': {
+        this.previewImg = require('../../assets/images/1050.jpg');
+      } break;
+      case 'Memory': {
         this.previewImg = require('../../assets/images/corsair.jpg');
       } break;
-      case 'VGA': {
-        this.previewImg = require('../../assets/images/1050.jpg');
+      case 'Mainboard': {
+        this.previewImg = require('../../assets/images/mainboard.jpg');
+      } break;
+      case 'Storage': {
+        this.previewImg = require('../../assets/images/storage.png');
       } break;
     }
   }

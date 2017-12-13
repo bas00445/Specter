@@ -16,7 +16,23 @@ export default class ProductComponent extends Component {
 
   constructor(props) {
     super(props);
-    this.previewImg = require('../assets/images/ryzen3.png');
+    switch (this.props.type) {
+      case 'CPU': {
+        this.previewImg = require('../assets/images/ryzen3.png');
+      } break;
+      case 'VGA card': {
+        this.previewImg = require('../assets/images/1050.jpg');
+      } break;
+      case 'Memory': {
+        this.previewImg = require('../assets/images/corsair.jpg');
+      } break;
+      case 'Mainboard': {
+        this.previewImg = require('../assets/images/mainboard.jpg');
+      } break;
+      case 'Storage': {
+        this.previewImg = require('../assets/images/storage.png');
+      } break;
+    }
     // this.previewImg = 'https://www.jib.co.th/img_master/product/original/20170725134516_1.png';
     // source={{uri:this.previewImg}}
   }

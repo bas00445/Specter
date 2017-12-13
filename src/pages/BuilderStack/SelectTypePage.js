@@ -89,7 +89,7 @@ export default class SelectTypePage extends Component {
   }
 
   navigateToProduct(dataToPass) {
-    this.navigator.navigate("Product", {data: dataToPass});
+    this.navigator.navigate("Product", {productType: dataToPass});
   }
 
   renderBuildings() {

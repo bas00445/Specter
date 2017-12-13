@@ -65,7 +65,7 @@ export default class AISetupPage extends Component {
     alert('Request spec');
   }
 
-  navigateToDetail(dataToPass) {
+  navigateToSpec(dataToPass) {
     this.navigator.navigate('AISpec', {spec: dataToPass});
   }
 
@@ -78,7 +78,7 @@ export default class AISetupPage extends Component {
           priority={item.priority}
           price={item.price}
           point={item.point}
-          onPress={this.navigateToDetail.bind(this, item)}>
+          onPress={this.navigateToSpec.bind(this, item)}>
         </SpecComponent>}
     />);
   }

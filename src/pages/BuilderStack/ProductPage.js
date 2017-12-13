@@ -25,20 +25,19 @@ export default class ProductPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startRenderProducts: false,
       recommends: [
         { imgUrl: 'http://', type: "RAM", price: 1500, name: "Corsair" },
         { imgUrl: 'http://', type: "VGA", price: 5999, name: "Asus GTX 1050Ti" },
         { imgUrl: 'http://', type: "CPU", price: 6000, name: "Ryzen 3 1200" },
       ],
       products: [
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 1', price: 3000, key: '0' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 2', price: 2500, key: '1' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 3', price: 5555, key: '2' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4', price: 7777, key: '3' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 5', price: 4444, key: '4' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 6', price: 2255, key: '5' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 7', price: 2500, key: '6' },
+        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 1', price: 3000, key: '0' },
+        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 2', price: 2500, key: '1' },
+        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 3', price: 5555, key: '2' },
+        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 4', price: 7777, key: '3' },
+        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 5', price: 4444, key: '4' },
+        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 6', price: 2255, key: '5' },
+        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 7', price: 2500, key: '6' },
       ],
     }
 
@@ -65,6 +64,7 @@ export default class ProductPage extends Component {
             key={item.key}
             name={item.name}
             price={item.price}
+            type={item.type}
             onPress={this.navigateToDetail.bind(this, item)}
             onAddComponent={this.addToSpec.bind(this, item)}>
           </ProductComponent>}
@@ -110,7 +110,7 @@ export default class ProductPage extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PageHeader headerText={this.props.data} navigation={this.navigator} type={"stack"}></PageHeader>
+        <PageHeader headerText={this.props.productType} navigation={this.navigator} type={"stack"}></PageHeader>
         <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
             <View style={Style.card}>
