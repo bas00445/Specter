@@ -134,7 +134,7 @@ export default class AISetupPage extends Component {
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
                   <View style={{ paddingLeft: 5 }}>
-                    <Text style={local.titleText}>Setup</Text>
+                    <Text style={local.titleText}>Setting</Text>
                   </View>
                 </View>
               </View>

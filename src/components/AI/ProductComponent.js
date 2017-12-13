@@ -16,19 +16,17 @@ export default class ProductComponent extends Component {
 
   constructor(props) {
     super(props);
-    this.previewImg = require('../../assets/images/ryzen3.png');
-    // this.previewImg = 'https://www.jib.co.th/img_master/product/original/20170725134516_1.png';
-    // source={{uri:this.previewImg}}
-  }
-
-  addToSpec() {
-    const paramsAction = NavigationActions.setParams({
-      params: {
-        newProduct: this.props.product
-      },
-      key: 'SelectType',
-    });
-    this.stackNavigator.dispatch(paramsAction);
+    switch (this.props.type) {
+      case 'CPU': {
+        this.previewImg = require('../../assets/images/ryzen3.png');
+      } break;
+      case 'RAM': {
+        this.previewImg = require('../../assets/images/corsair.jpg');
+      } break;
+      case 'VGA': {
+        this.previewImg = require('../../assets/images/1050.jpg');
+      } break;
+    }
   }
 
   render() {
@@ -40,20 +38,14 @@ export default class ProductComponent extends Component {
           </Image>
         </View>
         <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            <Text style={local.detailText} numberOfLines={2}
-              ellipsizeMode='tail'>{this.props.name}</Text>
+          <View style={[Style.centerY, { flex: 1 }]}>
+            <Text numberOfLines={2} ellipsizeMode={"tail"}
+              style={[local.componentTitleText, { textAlign: 'center' }]}>{this.props.name}</Text>
           </View>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
-            <View style={[Style.centerVertical, { flex: 1 }]}>
-              <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
-            </View>
-            <View style={[Style.centerVertical]}>
-              <TouchableOpacity style={local.addButton} onPress={this.props.onAddComponent}>
-                <Text style={local.addButtonText}>Add</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={[Style.centerY, { flex: 1 }]}>
+            <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
           </View>
+
         </TouchableOpacity>
       </View>
     );
@@ -65,34 +57,29 @@ var local = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     margin: 5,
-    borderRadius: 2,
+    borderWidth: 2,
+    borderColor: Color.primary
   },
   imageContainer: {
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
     backgroundColor: '#ffffff',
   },
   image: {
     flex: 1,
     alignSelf: 'center',
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     resizeMode: 'contain'
   },
   detailContainer: {
-    flex: 2,
-    paddingTop: 2,
-    paddingHorizontal: 10,
-    backgroundColor: Color.grey,
+    flex: 3,
+    padding: 10,
+    backgroundColor: Color.primaryLight,
   },
   componentTitleText: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: Color.primaryText,
-  },
-  detailText: {
-    fontSize: 16,
     fontWeight: 'bold',
     color: Color.primaryText,
   },
@@ -101,20 +88,4 @@ var local = StyleSheet.create({
     fontWeight: 'bold',
     color: Color.secondary
   },
-  icon: {
-    width: 24,
-    height: 24,
-    tintColor: Color.primaryText
-  },
-  addButton: {
-    backgroundColor: Color.secondary,
-    borderRadius: 2,
-    paddingVertical: 2,
-    paddingHorizontal: 10,
-  },
-  addButtonText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: Color.primaryText
-  }
 });
