@@ -3,7 +3,7 @@ import { NavigationActions } from 'react-navigation'
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import Modal from 'react-native-modal'
-import ProductComponent from '../../components/ProductComponent';
+import SpecComponent from '../../components/AI/SpecComponent';
 import {
   StyleSheet,
   Text,
@@ -30,7 +30,13 @@ export default class AISetupPage extends Component {
         { imgUrl: 'http://', type: "RAM", price: 1500, name: "Corsair" },
         { imgUrl: 'http://', type: "VGA", price: 5999, name: "Asus GTX 1050Ti" },
         { imgUrl: 'http://', type: "CPU", price: 6000, name: "Ryzen 3 1200" },
-      ]
+      ],
+      specs: [
+        { imgUrl: 'http://', type: 'CPU', priority: '1', price: 3000, key: '0' },
+        { imgUrl: 'http://', type: 'CPU', priority: '2', price: 2500, key: '1' },
+        { imgUrl: 'http://', type: 'CPU', priority: '3', price: 5555, key: '2' },
+        { imgUrl: 'http://', type: 'CPU', priority: '4', price: 7777, key: '3' },
+      ],
     }
     const { navigation } = this.props; // pass down navigation to PageHeader
     this.navigator = navigation;
@@ -39,7 +45,7 @@ export default class AISetupPage extends Component {
 
   setTempBudget(value) {
     this.setState({
-      tempBudget: value
+      tempBudget: value,
     });
   }
 
@@ -56,23 +62,15 @@ export default class AISetupPage extends Component {
     alert('Request spec');
   }
 
-  renderProducts() {
+  renderSpecs() {
     return (<FlatList
-      data={[
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '1' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 3 5200', price: 5555, key: '2' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 9 x999', price: 7777, key: '3' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 10 3350', price: 4444, key: '4' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen X 1000', price: 2255, key: '5' },
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '6' },
-      ]}
+      data={this.state.specs}
       renderItem={({ item }) =>
-        <ProductComponent
+        <SpecComponent
           key={item.key}
-          name={item.name}
+          priority={item.priority}
           price={item.price}>
-        </ProductComponent>}
+        </SpecComponent>}
     />);
   }
 
@@ -133,12 +131,12 @@ export default class AISetupPage extends Component {
               </View>
 
               <View style={{ padding: 5 }}>
-                <View style={[Style.colContent, { paddingHorizontal: 10, paddingVertical: 5}]}>
+                <View style={[Style.colContent, { paddingHorizontal: 10, paddingVertical: 5 }]}>
                   <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center' }}>
-                    <Text style={[Style.whiteText, {fontSize: 16}]}>Budget (Baht)</Text>
+                    <Text style={[Style.whiteText, { fontSize: 16 }]}>Budget (Baht)</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                    <TouchableOpacity style={{marginBottom: 5}} onPress={() => { this.setState({ showBudgetModal: true }) }}>
+                    <TouchableOpacity style={{ marginBottom: 5 }} onPress={() => { this.setState({ showBudgetModal: true }) }}>
                       <View style={Style.colContent}>
                         <Text style={Style.whiteText}>{this.state.budget}</Text>
                         <Image style={local.editIcon}
@@ -166,14 +164,14 @@ export default class AISetupPage extends Component {
                       <Image style={local.starIcon} source={require('../../assets/icons/star.png')}></Image>
                     </View>
                     <View style={{ paddingLeft: 5 }}>
-                      <Text style={local.titleText}>Recommend</Text>
+                      <Text style={local.titleText}>Recommend Specs</Text>
                     </View>
                   </View>
                 </View>
               </View>
             </View>
 
-            {this.renderProducts()}
+            {this.renderSpecs()}
 
           </ScrollView>
         </View>

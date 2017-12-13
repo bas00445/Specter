@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Theme from '../styles/Global';
+import Theme from '../../styles/Global';
 import {
   StyleSheet,
   Text,
@@ -16,7 +16,7 @@ export default class ProductComponent extends Component {
 
   constructor(props) {
     super(props);
-    this.previewImg = require('../assets/images/ryzen3.png');
+    this.previewImg = require('../../assets/images/ryzen3.png');
     // this.previewImg = 'https://www.jib.co.th/img_master/product/original/20170725134516_1.png';
     // source={{uri:this.previewImg}}
   }

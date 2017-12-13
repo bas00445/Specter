@@ -26,6 +26,11 @@ export default class ProductFilter extends Component {
         };
     }
 
+    updateSortingType(type) {
+      this.setState({sortingType: type});
+      // this.props.onSort(type);
+    }
+
     render() {
         return (
             <View style={[Style.card]}>
@@ -47,7 +52,7 @@ export default class ProductFilter extends Component {
                         <View style={{flex: 1}}>
                             <Picker mode={"dropdown"} style={{color: Color.primaryText}}
                                 selectedValue={this.state.sortingType}
-                                onValueChange={(itemValue, itemIndex) => this.setState({sortingType: itemValue})}>
+                                onValueChange={(itemValue, itemIndex) => {this.updateSortingType(itemValue)}}>
                                 <Picker.Item label="Price" value="sortPrice" />
                                 <Picker.Item label="Name" value="sortName" />
                             </Picker>
