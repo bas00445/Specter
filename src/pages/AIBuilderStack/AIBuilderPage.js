@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Theme from '../styles/Global';
-import PageHeader from '../components/PageHeader';
+import { NavigationActions } from 'react-navigation'
+import Theme from '../../styles/Global';
+import PageHeader from '../../components/PageHeader';
 import Modal from 'react-native-modal'
-import ProductComponent from '../components/ProductComponent';
+import ProductComponent from '../../components/ProductComponent';
 import {
   StyleSheet,
   Text,
@@ -50,17 +51,6 @@ export default class AIBuilderPage extends Component {
     })
   }
 
-  addToSpec(product) {
-    const paramsAction = NavigationActions.setParams({
-      params: {
-        newProduct: product
-      },
-      key: 'SelectType',
-    }); 
-    this.navigator.dispatch(paramsAction);
-  }
-
-
   navigateToDetail(dataToPass) {
     this.navigator.navigate("Detail", { product: dataToPass });
   }
@@ -81,8 +71,7 @@ export default class AIBuilderPage extends Component {
           key={item.key} 
           name={item.name}
           price={item.price}
-          onPress={this.navigateToDetail.bind(this, item)}
-          onAddComponent={this.addToSpec.bind(this, item)}>
+          onPress={this.navigateToDetail.bind(this, item)}>
         </ProductComponent>}
     />);
   }
@@ -103,7 +92,7 @@ export default class AIBuilderPage extends Component {
             
             <View style={{flex:1, alignItems:'flex-end'}}>
               <TouchableOpacity onPress={() => {this.setState({showBudgetModal: false})}}>
-                  <Image style={local.icon} source={require("../assets/icons/close.png")}>
+                  <Image style={local.icon} source={require("../../assets/icons/close.png")}>
                   </Image>
               </TouchableOpacity>
             </View>
@@ -153,7 +142,7 @@ export default class AIBuilderPage extends Component {
                       <View style={Style.colContent}>
                         <Text style={Style.whiteText}>{this.state.budget}</Text>
                         <Image style={local.editIcon} 
-                          source={require('../assets/icons/edit.png')}></Image>
+                          source={require('../../assets/icons/edit.png')}></Image>
                       </View>
                     </TouchableOpacity>
                   </View>
@@ -167,7 +156,7 @@ export default class AIBuilderPage extends Component {
                 <View style={local.title}>
                   <View style={[Style.colContent]}>
                     <View style={Style.centerVertical}>
-                      <Image style={local.starIcon} source={require('../assets/icons/star.png')}></Image>
+                      <Image style={local.starIcon} source={require('../../assets/icons/star.png')}></Image>
                     </View>
                     <View style={{paddingLeft: 5}}>
                       <Text style={local.titleText}>Recommend</Text>
