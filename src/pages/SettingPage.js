@@ -20,7 +20,6 @@ export default class SettingPage extends Component {
   }
 
   render() {
-    
     return (
       <View style={{flex: 1}}>      
         <PageHeader headerText={"Setting"} navigation={this.navigator} type={"drawer"}></PageHeader>

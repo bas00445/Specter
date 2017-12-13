@@ -50,13 +50,13 @@ export default class ProductPage extends Component {
   renderProducts() {
     return (<FlatList
       data={[
-        {name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
-        {name: 'Ryzen 4 5900', price: 2500, key: '1'},
-        {name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
-        {name: 'Ryzen 9 x999', price: 7777, key: '3'},
-        {name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
-        {name: 'Ryzen X 1000', price: 2255, key: '5'},
-        {name: 'Ryzen 4 5900', price: 2500, key: '6'},
+        {type: 'CPU', name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
+        {type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '1'},
+        {type: 'CPU', name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
+        {type: 'CPU', name: 'Ryzen 9 x999', price: 7777, key: '3'},
+        {type: 'CPU', name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
+        {type: 'CPU', name: 'Ryzen X 1000', price: 2255, key: '5'},
+        {type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '6'},
         ]}
       renderItem={({item}) => 
         <ProductComponent 

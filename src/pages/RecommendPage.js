@@ -20,7 +20,6 @@ export default class RecommendPage extends Component {
   }
 
   render() {
-    
     return (
       <View style={{flex: 1}}>      
         <PageHeader headerText={"AI Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>

@@ -15,7 +15,8 @@ import {
   TouchableOpacity,
   FlatList,
   TextInput,
-  ToastAndroid
+  ToastAndroid,
+  AsyncStorage
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -32,22 +33,20 @@ export default class SelectTypePage extends Component {
       tempBudget: '',
       budget: 20000,
       showBudgetModal: false,
-      buildings: [
-        {type:"RAM", price:1500, name: "Corsair"},
-        {type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
-        {type:"CPU", price:6000, name: "Ryzen 3 1200"},
-      ]
+      buildings: []
     };
+
+    // buildings: [
+    //   {type:"RAM", price:1500, name: "Corsair"},
+    //   {type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
+    //   {type:"CPU", price:6000, name: "Ryzen 3 1200"},
+    // ]
     
     const {navigation} = this.props;
     this.navigator = navigation;
     this.navigator.state.key = 'SelectType'; // Set a key to this page to receive params
   }
   
-  componentWillReceiveProps(nextProps) {
-    ToastAndroid.show('Add ' + nextProps.newProduct.name, ToastAndroid.SHORT);
-  }
-
   setTempBudget(value) {
     this.setState({
       tempBudget: value
@@ -69,6 +68,18 @@ export default class SelectTypePage extends Component {
     this.setState({
       buildings: temp
     });
+  }
+
+  addNewProduct(product) {
+    ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
+    this.state.buildings.push({
+      type: product.type, price: product.price, name: product.name
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let product = nextProps.newProduct;
+    this.addNewProduct(product);
   }
 
   navigateToDetail(dataToPass) {
