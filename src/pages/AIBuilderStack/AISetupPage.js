@@ -36,6 +36,9 @@ export default class AISetupPage extends Component {
         { imgUrl: 'http://', type: 'CPU', priority: '2', price: 2500, key: '1' },
         { imgUrl: 'http://', type: 'CPU', priority: '3', price: 5555, key: '2' },
         { imgUrl: 'http://', type: 'CPU', priority: '4', price: 7777, key: '3' },
+        { imgUrl: 'http://', type: 'CPU', priority: '5', price: 9999, key: '4' },
+        { imgUrl: 'http://', type: 'CPU', priority: '6', price: 9999, key: '5' },
+        { imgUrl: 'http://', type: 'CPU', priority: '7', price: 9999, key: '6' },
       ],
     }
     const { navigation } = this.props; // pass down navigation to PageHeader
@@ -169,10 +172,10 @@ export default class AISetupPage extends Component {
                   </View>
                 </View>
               </View>
+
+              {this.renderSpecs()}
+
             </View>
-
-            {this.renderSpecs()}
-
           </ScrollView>
         </View>
       </View>

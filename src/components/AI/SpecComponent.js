@@ -21,7 +21,7 @@ export default class SpecComponent extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.props.onPress}>
-        <View style={local.container}>
+        <View style={[Style.card, local.container]}>
           <View style={Style.colContent}>
 
             <View style={local.priorityContainer}>
@@ -53,7 +53,8 @@ var local = StyleSheet.create({
   container: {
     flex: 1,
     margin: 5,
-    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: Color.primary
   },
   priorityContainer: {
     width: 120,
