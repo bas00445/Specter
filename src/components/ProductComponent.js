@@ -33,7 +33,7 @@ export default class ProductComponent extends Component {
 
   render() {
     return (
-      <View style={local.container}>
+      <View style={[Style.card, local.container]}>
         <View style={local.imageContainer}>
           <Image style={local.image}
             source={this.previewImg}>
@@ -66,6 +66,8 @@ var local = StyleSheet.create({
     flexDirection: 'row',
     margin: 5,
     borderRadius: 2,
+    borderWidth: 1,
+    borderColor: Color.primary,
   },
   imageContainer: {
     justifyContent: 'center',

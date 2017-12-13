@@ -137,7 +137,16 @@ export default class ProductPage extends Component {
 
             {/* <ProductFilter onSort={(type) => { this.sortProductBy(type) }}></ProductFilter> */}
 
-            {this.renderProducts()}
+            <View style={Style.card}>
+              <View style={Style.colContent}>
+                <View style={Style.indicator}></View>
+                <View style={local.title}>
+                  <Text style={[local.titleText, {paddingLeft: 6}]}>Products</Text>
+                </View>
+              </View>
+              {this.renderProducts()}
+            </View>
+
 
           </ScrollView>
         </View>
