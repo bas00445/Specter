@@ -4,7 +4,7 @@ import { DrawerNavigator, StackNavigator } from 'react-navigation';
 
 // Pages
 import FavoritePage from './src/pages/FavoritePage';
-import RecommendPage from './src/pages/RecommendPage';
+import AIBuilderPage from './src/pages/AIBuilderPage';
 import SettingPage from './src/pages/SettingPage';
 
 // BuilderStack Pages
@@ -46,7 +46,7 @@ const BuilderStack = StackNavigator({
 
 const App = DrawerNavigator({
   Builder: {screen: BuilderStack},
-  AIbuilder: {screen: paramsToProps(RecommendPage)},
+  AIbuilder: {screen: paramsToProps(AIBuilderPage)},
   Favorite: {screen: paramsToProps(FavoritePage)},
   Setting: {screen: paramsToProps(SettingPage)}
 },

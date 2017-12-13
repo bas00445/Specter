@@ -73,7 +73,10 @@ export default class SelectTypePage extends Component {
   addNewProduct(product) {
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
     this.state.buildings.push({
-      type: product.type, price: product.price, name: product.name
+      imgUrl: 'http://',
+      type: product.type, 
+      price: product.price, 
+      name: product.name
     });
   }
 

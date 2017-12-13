@@ -27,9 +27,9 @@ export default class ProductPage extends Component {
     this.state = {
       startRenderProducts: false,
       recommends: [
-        {type:"RAM", price:1500, name: "Corsair"},
-        {type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
-        {type:"CPU", price:6000, name: "Ryzen 3 1200"},
+        {imgUrl: 'http://', type:"RAM", price:1500, name: "Corsair"},
+        {imgUrl: 'http://', type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
+        {imgUrl: 'http://', type:"CPU", price:6000, name: "Ryzen 3 1200"},
       ]
     }
 
@@ -50,13 +50,13 @@ export default class ProductPage extends Component {
   renderProducts() {
     return (<FlatList
       data={[
-        {type: 'CPU', name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
-        {type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '1'},
-        {type: 'CPU', name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
-        {type: 'CPU', name: 'Ryzen 9 x999', price: 7777, key: '3'},
-        {type: 'CPU', name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
-        {type: 'CPU', name: 'Ryzen X 1000', price: 2255, key: '5'},
-        {type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '6'},
+        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
+        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '1'},
+        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
+        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 9 x999', price: 7777, key: '3'},
+        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
+        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen X 1000', price: 2255, key: '5'},
+        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '6'},
         ]}
       renderItem={({item}) => 
         <ProductComponent 
