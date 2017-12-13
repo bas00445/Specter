@@ -142,6 +142,15 @@ export default class SelectTypePage extends Component {
     }
   }
 
+  async saveToFavorite() {
+    // Save building spec
+    try {
+      await AsyncStorage.setItem('favoriteSpec', JSON.stringify(this.state.buildings));
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   componentDidMount() {
     this.loadBuildingSpec();
   }
@@ -210,7 +219,7 @@ export default class SelectTypePage extends Component {
             onChangeText={(value) => { this.setTempBudget(value) }}></TextInput>
 
           <View style={{ alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10 }}>
-            <TouchableOpacity style={local.okButton} onPress={this.setBudget.bind(this)}>
+            <TouchableOpacity style={local.primaryButton} onPress={this.setBudget.bind(this)}>
               <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>OK</Text>
             </TouchableOpacity>
           </View>
@@ -250,12 +259,22 @@ export default class SelectTypePage extends Component {
                     </TouchableOpacity>
                   </View>
                 </View>
-              </View>
 
-              <View style={{ padding: 5 }}>
-                <ScrollView horizontal={true}>
-                  {this.renderBuildings()}
-                </ScrollView>
+                <View style={{ padding: 5, borderBottomWidth: 1, borderBottomColor: Color.primaryLight }}>
+                  <ScrollView horizontal={true}>
+                    {this.renderBuildings()}
+                  </ScrollView>
+                </View>
+
+                {/* <View style={{ alignItems: 'flex-end', padding: 5 }}>
+                  <TouchableOpacity style={local.primaryButton} onPress={this.saveToFavorite.bind(this)}>
+                    <View style={[Style.colContent, Style.centerVertical]}>
+                      <Image style={local.smallIcon} source={require('../../assets/icons/save.png')}></Image>
+                      <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Save this spec</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View> */}
+
               </View>
             </View>
 
@@ -315,15 +334,21 @@ var local = StyleSheet.create({
     height: 24,
     tintColor: Color.primaryText
   },
+  smallIcon: {
+    width: 20,
+    height: 20,
+    tintColor: Color.primaryText,
+    marginRight: 2
+  },
   budgetTitle: {
     flex: 3,
     backgroundColor: Color.primary,
     borderRadius: 2,
     paddingHorizontal: 5
   },
-  okButton: {
+  primaryButton: {
     paddingVertical: 5,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     backgroundColor: Color.secondary,
     justifyContent: 'center',
     alignItems: 'center',

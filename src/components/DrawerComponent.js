@@ -80,8 +80,8 @@ export default class DrawerComponent extends Component {
               active={ this.state.currentScreen == 0 }></DrawerItem>
             <DrawerItem iconName={"AI Builder"} onPress={this.navigateTo.bind(this, "AIBuilder")}
               active={ this.state.currentScreen == 1 }></DrawerItem>
-            <DrawerItem iconName={"Favorite"} onPress={this.navigateTo.bind(this, "Favorite")}
-              active={ this.state.currentScreen == 2 }></DrawerItem>
+            {/* <DrawerItem iconName={"Favorite"} onPress={this.navigateTo.bind(this, "Favorite")}
+              active={ this.state.currentScreen == 2 }></DrawerItem> */}
             <DrawerItem iconName={"About"} onPress={this.navigateTo.bind(this, "About")}
               active={ this.state.currentScreen == 3 }></DrawerItem>
             
