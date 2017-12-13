@@ -52,6 +52,10 @@ export default class AboutPage extends Component {
               </Text>
             </View>
 
+            <View style={{ marginBottom: 10 }}>
+              <Text style={local.detailText}>Software Engineering KMITL</Text>
+            </View>
+
           </ScrollView>
         </View>
       </View>
