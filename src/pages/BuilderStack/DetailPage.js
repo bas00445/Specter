@@ -21,6 +21,9 @@ export default class DetailPage extends Component {
 
   constructor(props) {
     super(props);
+
+    const {navigation} = this.props;
+    this.navigator = navigation;
   }
 
   addToSpec() {
@@ -30,16 +33,13 @@ export default class DetailPage extends Component {
       },
       key: 'SelectType',
     }); 
-    this.stackNavigator.dispatch(paramsAction);
+    this.navigator.dispatch(paramsAction);
   }
 
   render() {
-    const {navigation} = this.props;
-    this.stackNavigator = navigation;
-
     return (
       <View style={{flex: 1}}>      
-        <PageHeader headerText={"Product Detail"} navigation={navigation} type={"stack"}></PageHeader>
+        <PageHeader headerText={"Product Detail"} navigation={this.navigator} type={"stack"}></PageHeader>
         <View style={[Style.container, {paddingBottom: 0}]}>
           <ScrollView>
 

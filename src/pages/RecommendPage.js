@@ -12,20 +12,18 @@ var Style = Theme.Style;
 var Color = Theme.Color;
 
 export default class RecommendPage extends Component {
-  static navigationOptions = {
-    title: 'Recommend',
-  };
 
   constructor(props) {
     super(props);
+    const {navigation} = this.props; // pass down navigation to PageHeader
+    this.navigator = navigation;    
   }
 
   render() {
-    const {navigation} = this.props; // pass down navigation to PageHeader
     
     return (
       <View style={{flex: 1}}>      
-        <PageHeader headerText={"AI Builder"} navigation={navigation} type={"drawer"}></PageHeader>
+        <PageHeader headerText={"AI Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
         <View style={Style.container}>
           
         </View>

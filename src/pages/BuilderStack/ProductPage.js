@@ -25,12 +25,16 @@ export default class ProductPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      startRenderProducts: false,
       recommends: [
         {type:"RAM", price:1500, name: "Corsair"},
         {type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
         {type:"CPU", price:6000, name: "Ryzen 3 1200"},
       ]
     }
+
+    const {navigation} = this.props; // pass down navigation to PageHeader
+    this.navigator = navigation;
   }
 
   addToSpec(product) {
@@ -40,11 +44,33 @@ export default class ProductPage extends Component {
       },
       key: 'SelectType',
     }); 
-    this.stackNavigator.dispatch(paramsAction);
+    this.navigator.dispatch(paramsAction);
   }
 
+  renderProducts() {
+    return (<FlatList
+      data={[
+        {name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
+        {name: 'Ryzen 4 5900', price: 2500, key: '1'},
+        {name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
+        {name: 'Ryzen 9 x999', price: 7777, key: '3'},
+        {name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
+        {name: 'Ryzen X 1000', price: 2255, key: '5'},
+        {name: 'Ryzen 4 5900', price: 2500, key: '6'},
+        ]}
+      renderItem={({item}) => 
+        <ProductComponent 
+          key={item.key} 
+          name={item.name}
+          price={item.price}
+          onPress={this.navigateToDetail.bind(this, item)}
+          onAddComponent={this.addToSpec.bind(this, item)}>
+        </ProductComponent>}
+      />);
+    }
+
   navigateToDetail(dataToPass) {
-    this.stackNavigator.navigate("Detail", { product: dataToPass });
+    this.navigator.navigate("Detail", { product: dataToPass });
   }
 
   renderRecommends() {
@@ -63,12 +89,9 @@ export default class ProductPage extends Component {
   }
 
   render() {
-    const {navigation} = this.props; // pass down navigation to PageHeader
-    this.stackNavigator = navigation;
-
     return (
       <View style={{flex: 1}}>      
-        <PageHeader headerText={this.props.data} navigation={navigation} type={"stack"}></PageHeader>
+        <PageHeader headerText={this.props.data} navigation={this.navigator} type={"stack"}></PageHeader>
         <View style={[Style.container, {paddingBottom: 0}]}>
           <ScrollView>
             <View style={Style.card}>
@@ -95,28 +118,8 @@ export default class ProductPage extends Component {
 
             <ProductFilter></ProductFilter>
 
-            <FlatList
-              data={[
-                {name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
-                {name: 'Ryzen 4 5900', price: 2500, key: '1'},
-                {name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
-                {name: 'Ryzen 9 x999', price: 7777, key: '3'},
-                {name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
-                {name: 'Ryzen X 1000', price: 2255, key: '5'},
-                {name: 'Ryzen 4 5900', price: 2500, key: '6'},
-                {name: 'Ryzen 3 5200', price: 5555, key: '7'}, 
-                {name: 'Ryzen 9 x999', price: 7777, key: '9'},
-                {name: 'Ryzen 10 3350', price: 4444, key: '9'}, 
-                {name: 'Ryzen X 1000', price: 2255, key: '10'}]}
-              renderItem={({item}) => 
-                <ProductComponent 
-                  key={item.key} 
-                  name={item.name}
-                  price={item.price}
-                  onPress={this.navigateToDetail.bind(this, item)}
-                  onAddComponent={this.addToSpec.bind(this, item)}>
-                </ProductComponent>}
-              />
+            {this.renderProducts()}
+            
             </ScrollView>
         </View>
       </View>

@@ -38,9 +38,10 @@ export default class SelectTypePage extends Component {
         {type:"CPU", price:6000, name: "Ryzen 3 1200"},
       ]
     };
-
+    
     const {navigation} = this.props;
-    navigation.state.key = 'SelectType'; // Set a key to this page to receive params
+    this.navigator = navigation;
+    this.navigator.state.key = 'SelectType'; // Set a key to this page to receive params
   }
   
   componentWillReceiveProps(nextProps) {
@@ -71,11 +72,11 @@ export default class SelectTypePage extends Component {
   }
 
   navigateToDetail(dataToPass) {
-    this.stackNavigator.navigate("Detail", {product: dataToPass});
+    this.navigator.navigate("Detail", {product: dataToPass});
   }
 
   navigateToProduct(dataToPass) {
-    this.stackNavigator.navigate("Product", {data: dataToPass});
+    this.navigator.navigate("Product", {data: dataToPass});
   }
 
   renderBuildings() {
@@ -102,50 +103,47 @@ export default class SelectTypePage extends Component {
   }
 
   renderBudgetModal() {
-  return (
-    <Modal 
-      animationIn="slideInUp"
-      isVisible={this.state.showBudgetModal}
-      onBackButtonPress={() => {this.setState({showBudgetModal: false})}}
-      onBackdropPress={() => {this.setState({showBudgetModal: false})}}>
+    return (
+      <Modal 
+        animationIn="slideInUp"
+        isVisible={this.state.showBudgetModal}
+        onBackButtonPress={() => {this.setState({showBudgetModal: false})}}
+        onBackdropPress={() => {this.setState({showBudgetModal: false})}}>
 
-      <View style={local.modalContainer}>
-        <View style={Style.colContent}>
-          <View style={local.budgetTitle}>
-            <Text style={local.titleText}>Set your budget</Text>
+        <View style={local.modalContainer}>
+          <View style={Style.colContent}>
+            <View style={local.budgetTitle}>
+              <Text style={local.titleText}>Set your budget</Text>
+            </View>
+            
+            <View style={{flex:1, alignItems:'flex-end'}}>
+              <TouchableOpacity onPress={() => {this.setState({showBudgetModal: false})}}>
+                  <Image style={local.icon} source={require("../../assets/icons/close.png")}>
+                  </Image>
+              </TouchableOpacity>
+            </View>
           </View>
           
-          <View style={{flex:1, alignItems:'flex-end'}}>
-            <TouchableOpacity onPress={() => {this.setState({showBudgetModal: false})}}>
-                <Image style={local.icon} source={require("../../assets/icons/close.png")}>
-                </Image>
+          <TextInput placeholder={"Input your budget"} 
+            underlineColorAndroid={Color.secondary} selectionColor={Color.secondaryLight}
+            placeholderTextColor={'#cccccc'} style={{color: Color.primaryText}}
+            onChangeText={(value) => {this.setTempBudget(value)}}></TextInput>
+
+          <View style={{alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
+            <TouchableOpacity style={local.okButton} onPress={this.setBudget.bind(this)}>
+                <Text style={{color: Color.primaryText, fontWeight: 'bold'}}>OK</Text>
             </TouchableOpacity>
           </View>
-        </View>
-        
-        <TextInput placeholder={"Input your budget"} 
-          underlineColorAndroid={Color.secondary} selectionColor={Color.secondaryLight}
-          placeholderTextColor={'#cccccc'} style={{color: Color.primaryText}}
-          onChangeText={(value) => {this.setTempBudget(value)}}></TextInput>
 
-        <View style={{alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
-          <TouchableOpacity style={local.okButton} onPress={this.setBudget.bind(this)}>
-              <Text style={{color: Color.primaryText, fontWeight: 'bold'}}>OK</Text>
-          </TouchableOpacity>
         </View>
-
-      </View>
-    </Modal>
+      </Modal>
     );
   }
 
   render() {
-    const { navigation } = this.props; // pass down navigation to PageHeader
-    this.stackNavigator = navigation;
-
     return (
       <View style={{flex: 1}}>      
-        <PageHeader headerText={"Builder"} navigation={navigation} type={"drawer"}></PageHeader>
+        <PageHeader headerText={"Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
         {this.renderBudgetModal()}
         <View style={[Style.container, {paddingBottom: 0}]}>
           <ScrollView>  
