@@ -11,7 +11,7 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class SettingPage extends Component {
+export default class AboutPage extends Component {
 
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ export default class SettingPage extends Component {
   render() {
     return (
       <View style={{flex: 1}}>      
-        <PageHeader headerText={"Setting"} navigation={this.navigator} type={"drawer"}></PageHeader>
+        <PageHeader headerText={"About"} navigation={this.navigator} type={"drawer"}></PageHeader>
         <View style={Style.container}>
         </View>
       </View>

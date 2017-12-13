@@ -36,7 +36,7 @@ export default class SpecComponent extends Component {
                   <Text style={{fontSize: 18, color: Color.primaryText}}>Score</Text>
                 </View>
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                  <Text style={{fontSize: 18, color: Color.primaryText, fontWeight: 'bold'}}>5000</Text>
+                  <Text style={{fontSize: 18, color: Color.primaryText, fontWeight: 'bold'}}>{this.props.point} Pts</Text>
                 </View>
               </View>
               <Text style={local.priceText}>{this.props.price + " Baht"}</Text>

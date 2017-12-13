@@ -31,7 +31,7 @@ export default class AIDetailPage extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PageHeader headerText={"Detail"} navigation={this.navigator} type={"stack"}></PageHeader>
+        <PageHeader headerText={"Product Detail"} navigation={this.navigator} type={"stack"}></PageHeader>
         <View style={Style.container}>
           <ScrollView>
 

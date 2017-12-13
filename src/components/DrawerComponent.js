@@ -46,7 +46,7 @@ export default class DrawerComponent extends Component {
           currentScreen: 2
         });
       }; break;
-      case 'Setting': {
+      case 'About': {
         this.setState({
           currentScreen: 3
         });
@@ -82,7 +82,7 @@ export default class DrawerComponent extends Component {
               active={ this.state.currentScreen == 1 }></DrawerItem>
             <DrawerItem iconName={"Favorite"} onPress={this.navigateTo.bind(this, "Favorite")}
               active={ this.state.currentScreen == 2 }></DrawerItem>
-            <DrawerItem iconName={"Setting"} onPress={this.navigateTo.bind(this, "Setting")}
+            <DrawerItem iconName={"About"} onPress={this.navigateTo.bind(this, "About")}
               active={ this.state.currentScreen == 3 }></DrawerItem>
             
           </ScrollView>

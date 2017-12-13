@@ -26,8 +26,8 @@ export default class DrawerItem extends Component {
       case 'Favorite': {
         this.icon = require('../assets/icons/heart.png');
       } break;
-      case 'Setting': {
-        this.icon = require('../assets/icons/setting.png');
+      case 'About': {
+        this.icon = require('../assets/icons/about.png');
       } break;
     }
   }

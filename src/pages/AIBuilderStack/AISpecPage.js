@@ -35,7 +35,7 @@ export default class AISpecPage extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PageHeader headerText={"Spec"} navigation={this.navigator} type={"stack"}></PageHeader>
+        <PageHeader headerText={"Spec Detail"} navigation={this.navigator} type={"stack"}></PageHeader>
         <View style={Style.container}>
           <ScrollView>
 

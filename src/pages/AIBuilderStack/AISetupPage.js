@@ -32,13 +32,13 @@ export default class AISetupPage extends Component {
         { imgUrl: 'http://', type: "CPU", price: 6000, name: "Ryzen 3 1200" },
       ],
       specs: [
-        { imgUrl: 'http://', type: 'CPU', priority: '1', price: 3000, key: '0' },
-        { imgUrl: 'http://', type: 'CPU', priority: '2', price: 2500, key: '1' },
-        { imgUrl: 'http://', type: 'CPU', priority: '3', price: 5555, key: '2' },
-        { imgUrl: 'http://', type: 'CPU', priority: '4', price: 7777, key: '3' },
-        { imgUrl: 'http://', type: 'CPU', priority: '5', price: 9999, key: '4' },
-        { imgUrl: 'http://', type: 'CPU', priority: '6', price: 9999, key: '5' },
-        { imgUrl: 'http://', type: 'CPU', priority: '7', price: 9999, key: '6' },
+        { imgUrl: 'http://', type: 'CPU', priority: '1', price: 3000, point: 900, key: '0' },
+        { imgUrl: 'http://', type: 'CPU', priority: '2', price: 2500, point: 600, key: '1' },
+        { imgUrl: 'http://', type: 'CPU', priority: '3', price: 5555, point: 500, key: '2' },
+        { imgUrl: 'http://', type: 'CPU', priority: '4', price: 7777, point: 400, key: '3' },
+        { imgUrl: 'http://', type: 'CPU', priority: '5', price: 9999, point: 300, key: '4' },
+        { imgUrl: 'http://', type: 'CPU', priority: '6', price: 9999, point: 200, key: '5' },
+        { imgUrl: 'http://', type: 'CPU', priority: '7', price: 9999, point: 155, key: '6' },
       ],
     }
     const { navigation } = this.props; // pass down navigation to PageHeader
@@ -65,6 +65,10 @@ export default class AISetupPage extends Component {
     alert('Request spec');
   }
 
+  navigateToDetail(dataToPass) {
+    this.navigator.navigate('AISpec', {spec: dataToPass});
+  }
+
   renderSpecs() {
     return (<FlatList
       data={this.state.specs}
@@ -72,7 +76,9 @@ export default class AISetupPage extends Component {
         <SpecComponent
           key={item.key}
           priority={item.priority}
-          price={item.price}>
+          price={item.price}
+          point={item.point}
+          onPress={this.navigateToDetail.bind(this, item)}>
         </SpecComponent>}
     />);
   }
