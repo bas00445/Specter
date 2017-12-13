@@ -52,6 +52,10 @@ export default class AISetupPage extends Component {
     })
   }
 
+  requestSpec() {
+    alert('Request spec');
+  }
+
   renderProducts() {
     return (<FlatList
       data={[
@@ -100,7 +104,7 @@ export default class AISetupPage extends Component {
             onChangeText={(value) => { this.setTempBudget(value) }}></TextInput>
 
           <View style={{ alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10 }}>
-            <TouchableOpacity style={local.okButton} onPress={this.setBudget.bind(this)}>
+            <TouchableOpacity style={local.primaryButton} onPress={this.setBudget.bind(this)}>
               <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>OK</Text>
             </TouchableOpacity>
           </View>
@@ -129,20 +133,27 @@ export default class AISetupPage extends Component {
               </View>
 
               <View style={{ padding: 5 }}>
-                <View style={[Style.colContent, { padding: 10 }]}>
-                  <View style={{ flex: 1, alignItems: 'flex-start' }}>
-                    <Text style={Style.whiteText}>Budget (Baht)</Text>
+                <View style={[Style.colContent, { paddingHorizontal: 10, paddingVertical: 5}]}>
+                  <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center' }}>
+                    <Text style={[Style.whiteText, {fontSize: 16}]}>Budget (Baht)</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                    <TouchableOpacity onPress={() => { this.setState({ showBudgetModal: true }) }}>
+                    <TouchableOpacity style={{marginBottom: 5}} onPress={() => { this.setState({ showBudgetModal: true }) }}>
                       <View style={Style.colContent}>
                         <Text style={Style.whiteText}>{this.state.budget}</Text>
                         <Image style={local.editIcon}
                           source={require('../../assets/icons/edit.png')}></Image>
                       </View>
                     </TouchableOpacity>
+
+                    <TouchableOpacity style={local.primaryButton} onPress={this.requestSpec.bind(this)}>
+                      <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Generate</Text>
+                    </TouchableOpacity>
+
                   </View>
                 </View>
+
+
               </View>
             </View>
 
@@ -206,7 +217,7 @@ var local = StyleSheet.create({
     borderRadius: 2,
     paddingHorizontal: 5
   },
-  okButton: {
+  primaryButton: {
     paddingVertical: 5,
     paddingHorizontal: 20,
     backgroundColor: Color.secondary,
