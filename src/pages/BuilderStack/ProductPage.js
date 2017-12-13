@@ -66,8 +66,8 @@ export default class ProductPage extends Component {
           onPress={this.navigateToDetail.bind(this, item)}
           onAddComponent={this.addToSpec.bind(this, item)}>
         </ProductComponent>}
-      />);
-    }
+    />);
+  }
 
   navigateToDetail(dataToPass) {
     this.navigator.navigate("Detail", { product: dataToPass });

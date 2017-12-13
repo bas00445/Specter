@@ -5,7 +5,6 @@ import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import BuildingComponent from '../../components/BuildingComponent';
 import CategoryComponent from '../../components/CategoryComponent';
-import CustomSlider from '../../components/CustomSlider';
 import {
   StyleSheet,
   Text,
