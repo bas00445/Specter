@@ -4,13 +4,17 @@ import { DrawerNavigator, StackNavigator } from 'react-navigation';
 
 // Pages
 import FavoritePage from './src/pages/FavoritePage';
-import AIBuilderPage from './src/pages/AIBuilderStack/AIBuilderPage';
 import SettingPage from './src/pages/SettingPage';
 
 // BuilderStack Pages
 import SelectTypePage from './src/pages/BuilderStack/SelectTypePage';
 import ProductPage from './src/pages/BuilderStack/ProductPage';
 import DetailPage from './src/pages/BuilderStack/DetailPage';
+
+// AIBuilderStack Pages
+import AISetupPage from './src/pages/AIBuilderStack/AISetupPage';
+import AISpecPage from './src/pages/AIBuilderStack/AISpecPage';
+import AIDetailPage from './src/pages/AIBuilderStack/AIDetailPage';
 
 // Components
 import DrawerComponent from './src/components/DrawerComponent';
@@ -23,7 +27,6 @@ import {
 
 
 // Wrapper function
-
 const paramsToProps = (SomeComponent) => { 
   // turns this.props.navigation.state.params into this.params.<x>
   return class extends Component {
@@ -45,7 +48,9 @@ const BuilderStack = StackNavigator({
 });
 
 const AIBuilderStack = StackNavigator({
-  AIbuilder: {screen: paramsToProps(AIBuilderPage)},
+  AISetup: {screen: paramsToProps(AISetupPage)},
+  AISpec: {screen: paramsToProps(AISpecPage)},
+  AIDetail: {screen: paramsToProps(AIDetailPage)},
 },
 {
   headerMode: 'none',

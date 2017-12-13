@@ -18,7 +18,7 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class AIBuilderPage extends Component {
+export default class AISetupPage extends Component {
 
   constructor(props) {
     super(props);
@@ -27,13 +27,14 @@ export default class AIBuilderPage extends Component {
       budget: 20000,
       showBudgetModal: false,
       recommends: [
-        {imgUrl: 'http://', type:"RAM", price:1500, name: "Corsair"},
-        {imgUrl: 'http://', type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
-        {imgUrl: 'http://', type:"CPU", price:6000, name: "Ryzen 3 1200"},
+        { imgUrl: 'http://', type: "RAM", price: 1500, name: "Corsair" },
+        { imgUrl: 'http://', type: "VGA", price: 5999, name: "Asus GTX 1050Ti" },
+        { imgUrl: 'http://', type: "CPU", price: 6000, name: "Ryzen 3 1200" },
       ]
     }
-    const {navigation} = this.props; // pass down navigation to PageHeader
-    this.navigator = navigation;    
+    const { navigation } = this.props; // pass down navigation to PageHeader
+    this.navigator = navigation;
+    this.navigator.state.key = 'AIBuilder'; // Set a key to this page to receive params
   }
 
   setTempBudget(value) {
@@ -51,61 +52,56 @@ export default class AIBuilderPage extends Component {
     })
   }
 
-  navigateToDetail(dataToPass) {
-    this.navigator.navigate("Detail", { product: dataToPass });
-  }
-
   renderProducts() {
     return (<FlatList
       data={[
-        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
-        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '1'},
-        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
-        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 9 x999', price: 7777, key: '3'},
-        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
-        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen X 1000', price: 2255, key: '5'},
-        {imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '6'},
-        ]}
-      renderItem={({item}) => 
-        <ProductComponent 
-          key={item.key} 
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '1' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 3 5200', price: 5555, key: '2' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 9 x999', price: 7777, key: '3' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 10 3350', price: 4444, key: '4' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen X 1000', price: 2255, key: '5' },
+        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 4 5900', price: 2500, key: '6' },
+      ]}
+      renderItem={({ item }) =>
+        <ProductComponent
+          key={item.key}
           name={item.name}
-          price={item.price}
-          onPress={this.navigateToDetail.bind(this, item)}>
+          price={item.price}>
         </ProductComponent>}
     />);
   }
 
   renderBudgetModal() {
     return (
-      <Modal 
+      <Modal
         animationIn="slideInUp"
         isVisible={this.state.showBudgetModal}
-        onBackButtonPress={() => {this.setState({showBudgetModal: false})}}
-        onBackdropPress={() => {this.setState({showBudgetModal: false})}}>
+        onBackButtonPress={() => { this.setState({ showBudgetModal: false }) }}
+        onBackdropPress={() => { this.setState({ showBudgetModal: false }) }}>
 
         <View style={local.modalContainer}>
           <View style={Style.colContent}>
             <View style={local.budgetTitle}>
               <Text style={local.titleText}>Set your budget</Text>
             </View>
-            
-            <View style={{flex:1, alignItems:'flex-end'}}>
-              <TouchableOpacity onPress={() => {this.setState({showBudgetModal: false})}}>
-                  <Image style={local.icon} source={require("../../assets/icons/close.png")}>
-                  </Image>
+
+            <View style={{ flex: 1, alignItems: 'flex-end' }}>
+              <TouchableOpacity onPress={() => { this.setState({ showBudgetModal: false }) }}>
+                <Image style={local.icon} source={require("../../assets/icons/close.png")}>
+                </Image>
               </TouchableOpacity>
             </View>
           </View>
-          
-          <TextInput placeholder={"Input here"} 
-            underlineColorAndroid={Color.secondary} selectionColor={Color.secondaryLight}
-            placeholderTextColor={'#cccccc'} style={{color: Color.primaryText}}
-            onChangeText={(value) => {this.setTempBudget(value)}}></TextInput>
 
-          <View style={{alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10}}>
+          <TextInput placeholder={"Input here"}
+            underlineColorAndroid={Color.secondary} selectionColor={Color.secondaryLight}
+            placeholderTextColor={'#cccccc'} style={{ color: Color.primaryText }}
+            onChangeText={(value) => { this.setTempBudget(value) }}></TextInput>
+
+          <View style={{ alignItems: 'flex-end', paddingHorizontal: 5, marginTop: 10 }}>
             <TouchableOpacity style={local.okButton} onPress={this.setBudget.bind(this)}>
-                <Text style={{color: Color.primaryText, fontWeight: 'bold'}}>OK</Text>
+              <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>OK</Text>
             </TouchableOpacity>
           </View>
 
@@ -116,7 +112,7 @@ export default class AIBuilderPage extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>      
+      <View style={{ flex: 1 }}>
         <PageHeader headerText={"AI Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
         {this.renderBudgetModal()}
         <View style={Style.container}>
@@ -126,22 +122,22 @@ export default class AIBuilderPage extends Component {
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
-                  <View style={{paddingLeft: 5}}>
+                  <View style={{ paddingLeft: 5 }}>
                     <Text style={local.titleText}>Setup</Text>
                   </View>
                 </View>
               </View>
-              
-              <View style={{padding: 5}}>
-                <View style={[Style.colContent, {padding: 10}]}>
-                  <View style={{flex: 1, alignItems: 'flex-start'}}>
+
+              <View style={{ padding: 5 }}>
+                <View style={[Style.colContent, { padding: 10 }]}>
+                  <View style={{ flex: 1, alignItems: 'flex-start' }}>
                     <Text style={Style.whiteText}>Budget (Baht)</Text>
                   </View>
-                  <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <TouchableOpacity onPress={() => {this.setState({showBudgetModal: true})}}>
+                  <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                    <TouchableOpacity onPress={() => { this.setState({ showBudgetModal: true }) }}>
                       <View style={Style.colContent}>
                         <Text style={Style.whiteText}>{this.state.budget}</Text>
-                        <Image style={local.editIcon} 
+                        <Image style={local.editIcon}
                           source={require('../../assets/icons/edit.png')}></Image>
                       </View>
                     </TouchableOpacity>
@@ -149,7 +145,7 @@ export default class AIBuilderPage extends Component {
                 </View>
               </View>
             </View>
-              
+
             <View style={Style.card}>
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
@@ -158,7 +154,7 @@ export default class AIBuilderPage extends Component {
                     <View style={Style.centerVertical}>
                       <Image style={local.starIcon} source={require('../../assets/icons/star.png')}></Image>
                     </View>
-                    <View style={{paddingLeft: 5}}>
+                    <View style={{ paddingLeft: 5 }}>
                       <Text style={local.titleText}>Recommend</Text>
                     </View>
                   </View>
@@ -194,8 +190,8 @@ var local = StyleSheet.create({
     tintColor: Color.secondary
   },
   editIcon: {
-    width: 20, 
-    height: 20, 
+    width: 20,
+    height: 20,
     tintColor: Color.primaryText,
     marginLeft: 10
   },
@@ -212,9 +208,9 @@ var local = StyleSheet.create({
   },
   okButton: {
     paddingVertical: 5,
-    paddingHorizontal: 20, 
-    backgroundColor: Color.secondary, 
-    justifyContent: 'center', 
+    paddingHorizontal: 20,
+    backgroundColor: Color.secondary,
+    justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 2,
   },

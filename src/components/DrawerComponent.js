@@ -36,7 +36,7 @@ export default class DrawerComponent extends Component {
           currentScreen: 0
         });
       }; break;
-      case 'AIbuilder': {
+      case 'AIBuilder': {
         this.setState({
           currentScreen: 1
         });
@@ -78,7 +78,7 @@ export default class DrawerComponent extends Component {
           <ScrollView>
             <DrawerItem iconName={"Builder"} onPress={this.navigateTo.bind(this, "Builder")}
               active={ this.state.currentScreen == 0 }></DrawerItem>
-            <DrawerItem iconName={"AI Builder"} onPress={this.navigateTo.bind(this, "AIbuilder")}
+            <DrawerItem iconName={"AI Builder"} onPress={this.navigateTo.bind(this, "AIBuilder")}
               active={ this.state.currentScreen == 1 }></DrawerItem>
             <DrawerItem iconName={"Favorite"} onPress={this.navigateTo.bind(this, "Favorite")}
               active={ this.state.currentScreen == 2 }></DrawerItem>
