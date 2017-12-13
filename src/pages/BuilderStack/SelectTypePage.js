@@ -138,7 +138,7 @@ export default class SelectTypePage extends Component {
             </View>
           </View>
           
-          <TextInput placeholder={"Input your budget"} 
+          <TextInput placeholder={"Input here"} 
             underlineColorAndroid={Color.secondary} selectionColor={Color.secondaryLight}
             placeholderTextColor={'#cccccc'} style={{color: Color.primaryText}}
             onChangeText={(value) => {this.setTempBudget(value)}}></TextInput>

@@ -66,9 +66,12 @@ export default class DrawerComponent extends Component {
         </StatusBar>
 
         <View style={local.drawerTitle}>
-          <Text style={local.drawerTitleText}>
-            Specter
-          </Text>
+          <Image style={local.drawerImg} 
+            source={require('../assets/images/drawerBackground.jpg')}>
+            <Text style={local.drawerTitleText}>
+              Specter
+            </Text>
+          </Image>
         </View>
 
         <View style={[local.drawerItemsContainer, {paddingTop: 10}]}>
@@ -91,16 +94,21 @@ export default class DrawerComponent extends Component {
 }
 
 var local = StyleSheet.create({
-  drawerTitle: {
-    height: 125,
-    backgroundColor: Color.primary,
-    padding: 15,
+  drawerImg: {
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    backgroundColor:'transparent',
     justifyContent: 'center',
     alignItems: 'center'
   },
+  drawerTitle: {
+    height: 125,
+    backgroundColor: Color.primary,
+  },
   drawerTitleText: {
     color: Color.primaryText,
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: 'bold',
     fontStyle: 'italic'
   },

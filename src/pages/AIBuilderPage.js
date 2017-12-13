@@ -6,6 +6,7 @@ import {
   Text,
   View,
   Image,
+  ScrollView
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -24,7 +25,25 @@ export default class AIBuilderPage extends Component {
       <View style={{flex: 1}}>      
         <PageHeader headerText={"AI Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
         <View style={Style.container}>
-          
+          <ScrollView>
+              
+            <View style={Style.card}>
+              <View style={Style.colContent}>
+                <View style={Style.indicator}></View>
+                <View style={local.title}>
+                  <View style={[Style.colContent]}>
+                    <View style={Style.centerVertical}>
+                      <Image style={local.starIcon} source={require('../assets/icons/star.png')}></Image>
+                    </View>
+                    <View style={{paddingLeft: 5}}>
+                      <Text style={local.titleText}>Recommend</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+          </ScrollView>
         </View>
       </View>
     );
@@ -32,6 +51,22 @@ export default class AIBuilderPage extends Component {
 }
 
 var local = StyleSheet.create({
-  
+  title: {
+    flex: 1,
+    paddingLeft: 5,
+    paddingVertical: 5,
+    backgroundColor: Color.primary,
+    borderTopRightRadius: 2,
+  },
+  titleText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: Color.primaryText,
+  },
+  starIcon: {
+    width: 20,
+    height: 20,
+    tintColor: Color.secondary
+  },
   
 });
