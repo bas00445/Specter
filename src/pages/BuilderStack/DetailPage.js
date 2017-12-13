@@ -21,6 +21,24 @@ export default class DetailPage extends Component {
 
     const { navigation } = this.props;
     this.navigator = navigation;
+
+    switch (this.props.product.type) {
+      case 'CPU': {
+        this.previewImg = require('../../assets/images/ryzen3.png');
+      } break;
+      case 'Memory': {
+        this.previewImg = require('../../assets/images/corsair.jpg');
+      } break;
+      case 'VGA card': {
+        this.previewImg = require('../../assets/images/1050.jpg');
+      } break;
+      case 'Mainboard': {
+        this.previewImg = require('../../assets/images/mainboard.jpg');
+      } break;
+      case 'Storage': {
+        this.previewImg = require('../../assets/images/storage.png');
+      } break;
+    }
   }
 
   addToSpec() {
@@ -42,7 +60,7 @@ export default class DetailPage extends Component {
 
             <View style={Style.card}>
               <View style={local.productImageContainer}>
-                <Image source={require('../../assets/images/ryzen3.png')}
+                <Image source={this.previewImg}
                   style={local.productImage}></Image>
               </View>
               <View style={local.title}>
@@ -101,7 +119,9 @@ var local = StyleSheet.create({
     alignItems: 'center'
   },
   productImage: {
-    height: 250
+    alignSelf: 'center',
+    height: 250,
+    resizeMode: 'contain'
   },
   priceText: {
     fontSize: 18,
