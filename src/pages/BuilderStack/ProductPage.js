@@ -69,49 +69,55 @@ export default class ProductPage extends Component {
     return (
       <View style={{flex: 1}}>      
         <PageHeader headerText={this.props.data} navigation={navigation} type={"stack"}></PageHeader>
-        <View style={Style.container}>
-          
-          <View style={Style.card}>
-            <View style={Style.colContent}>
-              <View style={Style.indicator}></View>
-              <View style={local.title}>
-                <View style={[Style.colContent]}>
-                  <View style={Style.centerVertical}>
-                    <Image style={local.starIcon} source={require('../../assets/icons/star.png')}></Image>
-                  </View>
-                  <View style={{paddingLeft: 5}}>
-                    <Text style={local.titleText}>Recommend</Text>
+        <View style={[Style.container, {paddingBottom: 0}]}>
+          <ScrollView>
+            <View style={Style.card}>
+              <View style={Style.colContent}>
+                <View style={Style.indicator}></View>
+                <View style={local.title}>
+                  <View style={[Style.colContent]}>
+                    <View style={Style.centerVertical}>
+                      <Image style={local.starIcon} source={require('../../assets/icons/star.png')}></Image>
+                    </View>
+                    <View style={{paddingLeft: 5}}>
+                      <Text style={local.titleText}>Recommend</Text>
+                    </View>
                   </View>
                 </View>
               </View>
+
+              <View style={{padding: 5, height: 150}}>
+                <ScrollView horizontal={true}>
+                  {this.renderRecommends()}
+                </ScrollView>
+              </View>
             </View>
 
-            <View style={{padding: 5, height: 150}}>
-              <ScrollView horizontal={true}>
-                {this.renderRecommends()}
-              </ScrollView>
-            </View>
-          </View>
+            <ProductFilter></ProductFilter>
 
-          <ProductFilter></ProductFilter>
-
-          <FlatList
-            data={[
-              {name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
-              {name: 'Ryzen 4 5900', price: 2500, key: '3'},
-              {name: 'Ryzen 3 5200', price: 5555, key: '4'}, 
-              {name: 'Ryzen 9 x999', price: 7777, key: '7'},
-              {name: 'Ryzen 10 3350', price: 4444, key: '8'}, 
-              {name: 'Ryzen X 1000', price: 2255, key: '11'},]}
-            renderItem={({item}) => 
-              <ProductComponent 
-                key={item.key} 
-                name={item.name}
-                price={item.price}
-                onPress={this.navigateToDetail.bind(this, item)}
-                onAddComponent={this.addToSpec.bind(this, item)}>
-              </ProductComponent>}
-            />
+            <FlatList
+              data={[
+                {name: 'Ryzen 5 1200 Premium Edition Extreme Ryzen 5 1200 Premium Edition Extreme', price: 3000, key: '0'}, 
+                {name: 'Ryzen 4 5900', price: 2500, key: '1'},
+                {name: 'Ryzen 3 5200', price: 5555, key: '2'}, 
+                {name: 'Ryzen 9 x999', price: 7777, key: '3'},
+                {name: 'Ryzen 10 3350', price: 4444, key: '4'}, 
+                {name: 'Ryzen X 1000', price: 2255, key: '5'},
+                {name: 'Ryzen 4 5900', price: 2500, key: '6'},
+                {name: 'Ryzen 3 5200', price: 5555, key: '7'}, 
+                {name: 'Ryzen 9 x999', price: 7777, key: '9'},
+                {name: 'Ryzen 10 3350', price: 4444, key: '9'}, 
+                {name: 'Ryzen X 1000', price: 2255, key: '10'}]}
+              renderItem={({item}) => 
+                <ProductComponent 
+                  key={item.key} 
+                  name={item.name}
+                  price={item.price}
+                  onPress={this.navigateToDetail.bind(this, item)}
+                  onAddComponent={this.addToSpec.bind(this, item)}>
+                </ProductComponent>}
+              />
+            </ScrollView>
         </View>
       </View>
     );

@@ -63,7 +63,6 @@ export default class ProductComponent extends Component {
 var local = StyleSheet.create({
     container: {
         flex: 1,
-        height: 100,
         flexDirection: 'row',
         margin: 5,
         borderRadius: 2,
@@ -84,7 +83,6 @@ var local = StyleSheet.create({
     detailContainer: {
         flex: 2,
         paddingTop: 2,
-        paddingBottom: 10,
         paddingHorizontal: 10,
         backgroundColor: Color.grey,
     },
