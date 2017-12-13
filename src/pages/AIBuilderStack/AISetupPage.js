@@ -12,7 +12,9 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  FlatList
+  FlatList,
+  AsyncStorage,
+  RefreshControl
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -53,6 +55,14 @@ export default class AISetupPage extends Component {
   }
 
   setBudget() {
+    if (isNaN(this.state.tempBudget)) {
+      alert('Input must be any number');
+      this.setState({
+        tempBudget: '',
+      });
+      return ;
+    }
+    
     this.setState({
       budget: this.state.tempBudget
     });

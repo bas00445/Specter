@@ -12,6 +12,7 @@ import {
   Image,
   ScrollView,
   FlatList,
+  RefreshControl
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -26,9 +27,9 @@ export default class ProductPage extends Component {
     super(props);
     this.state = {
       recommends: [
-        { imgUrl: 'http://', type: "RAM", price: 1500, name: "Corsair" },
-        { imgUrl: 'http://', type: "VGA", price: 5999, name: "Asus GTX 1050Ti" },
-        { imgUrl: 'http://', type: "CPU", price: 6000, name: "Ryzen 3 1200" },
+        { imgUrl: 'http://', type: this.props.productType, price: 1500, name: "Corsair" },
+        { imgUrl: 'http://', type: this.props.productType, price: 5999, name: "Asus GTX 1050Ti" },
+        { imgUrl: 'http://', type: this.props.productType, price: 6000, name: "Ryzen 3 1200" },
       ],
       products: [
         { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 1', price: 3000, key: '0' },

@@ -15,7 +15,7 @@ import {
   FlatList,
   TextInput,
   ToastAndroid,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -53,6 +53,14 @@ export default class SelectTypePage extends Component {
   }
 
   setBudget() {
+    if (isNaN(this.state.tempBudget)) {
+      alert('Input must be any number');
+      this.setState({
+        tempBudget: '',
+      });
+      return ;
+    }
+
     this.setState({
       budget: this.state.tempBudget
     });
