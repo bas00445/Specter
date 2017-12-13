@@ -69,6 +69,29 @@ export default class SelectTypePage extends Component {
     })
   }
 
+  async submitSpecToServer() {
+    let data = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        buget: this.state.buildings
+      })
+    }
+
+    try {
+      var response = await fetch('http://specter.com/api/submitSpec', data);
+      var responseJson = await response.json();
+      if (responseJson == 'OK') {
+        ToastAndroid.show('Success', ToastAndroid.SHORT);
+      }
+    } catch (error) {
+      ToastAndroid.show('Fail', ToastAndroid.SHORT);
+    }
+  }
+
   async removeBuildingComponent(indx) {
     let temp = this.state.buildings;
     temp.splice(indx, 1);
@@ -92,6 +115,7 @@ export default class SelectTypePage extends Component {
       price: product.price,
       name: product.name
     });
+    
 
     // Save building spec
     try {
@@ -99,6 +123,10 @@ export default class SelectTypePage extends Component {
     } catch (error) {
       alert(error);
     }
+
+    // Submit building spec to the server
+    // this.submitSpecToServer();
+
   }
 
   loadBuildingSpec() {

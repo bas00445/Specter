@@ -14,7 +14,8 @@ import {
   TextInput,
   FlatList,
   AsyncStorage,
-  RefreshControl
+  RefreshControl,
+  ToastAndroid
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -60,9 +61,9 @@ export default class AISetupPage extends Component {
       this.setState({
         tempBudget: '',
       });
-      return ;
+      return;
     }
-    
+
     this.setState({
       budget: this.state.tempBudget
     });
@@ -71,12 +72,34 @@ export default class AISetupPage extends Component {
     })
   }
 
-  requestSpec() {
-    alert('Request spec');
+  async requestSpec() {
+    ToastAndroid.show('Request spec', ToastAndroid.SHORT);
+
+    let data = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        buget: this.state.budget
+      })
+    }
+
+    try {
+      var response = await fetch('http://specter.com/api/getRecommendedSpec', data);
+      var responseJson = await response.json();
+      if (responseJson == 'OK') {
+        ToastAndroid.show('Success', ToastAndroid.SHORT);
+      }
+    } catch (error) {
+      ToastAndroid.show('Fail', ToastAndroid.SHORT);
+    }
+    
   }
 
   navigateToSpec(dataToPass) {
-    this.navigator.navigate('AISpec', {spec: dataToPass});
+    this.navigator.navigate('AISpec', { spec: dataToPass });
   }
 
   renderSpecs() {
