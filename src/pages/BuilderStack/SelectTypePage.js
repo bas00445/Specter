@@ -115,7 +115,7 @@ export default class SelectTypePage extends Component {
       price: product.price,
       name: product.name
     });
-    
+
 
     // Save building spec
     try {
@@ -129,16 +129,14 @@ export default class SelectTypePage extends Component {
 
   }
 
-  loadBuildingSpec() {
+  async loadBuildingSpec() {
     try {
-      AsyncStorage.getItem('buildingSpec').then(
-        (value) => {
-          var obj = JSON.parse(value);
-          this.setState({
-            buildings: obj
-          });
-        }
-      );
+      let response = await AsyncStorage.getItem('buildingSpec')
+      let obj = await JSON.parse(response) || [];
+      this.setState({
+        buildings: obj
+      });
+
     } catch (error) {
       alert(error);
     }
