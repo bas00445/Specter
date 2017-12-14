@@ -87,6 +87,19 @@ export default class SelectTypePage extends Component {
     }
   }
 
+  updateCost() {
+    let cost = this.state.cost;
+    cost = 0;
+
+    for (let build of this.state.buildings) {
+      cost += build.price;
+    }
+
+    this.setState({
+      cost: cost
+    });
+  }
+
   async removeBuildingComponent(indx) {
     let buildings = this.state.buildings;
     let cost = this.state.cost;
@@ -100,6 +113,8 @@ export default class SelectTypePage extends Component {
     this.setState({
       buildings: buildings
     });
+
+    this.updateCost();
 
     // Save building spec
     try {
@@ -124,12 +139,6 @@ export default class SelectTypePage extends Component {
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
 
     let buildings = this.state.buildings;
-    let cost = this.state.cost;
-
-    cost += product.price;
-    this.setState({
-      cost: cost
-    });
 
     if (this.isNewProduct(product)) {
       this.state.buildings.push(
@@ -145,6 +154,8 @@ export default class SelectTypePage extends Component {
       }
     }
 
+    this.updateCost();
+
     // Save building spec
     try {
       await AsyncStorage.setItem('buildingSpec', JSON.stringify(this.state.buildings));
@@ -153,6 +164,8 @@ export default class SelectTypePage extends Component {
       alert(error);
     }
 
+
+
     // Submit building spec to the server
     // this.submitSpecToServer();
   }
@@ -160,7 +173,7 @@ export default class SelectTypePage extends Component {
   async loadBuildingSpec() {
     try {
       let responseBuildings = await AsyncStorage.getItem('buildingSpec');
-      let responseCost= await AsyncStorage.getItem('cost');
+      let responseCost = await AsyncStorage.getItem('cost');
       let buildings = await JSON.parse(responseBuildings) || [];
       let cost = await JSON.parse(responseCost) || 0;
       this.setState({
