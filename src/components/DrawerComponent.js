@@ -108,7 +108,7 @@ var local = StyleSheet.create({
   },
   drawerTitleText: {
     color: Color.primaryText,
-    fontSize: 26,
+    fontSize: 30,
     fontWeight: 'bold',
     fontStyle: 'italic'
   },
