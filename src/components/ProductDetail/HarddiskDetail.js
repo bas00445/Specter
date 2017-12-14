@@ -32,7 +32,7 @@ export default class SsdDetail extends Component {
       </View>
       <View style={local.rowContent}>
         <Text style={local.primaryText}>Speed:</Text>
-        <Text style={local.detailText}>{this.props.product.generation} RPM</Text>
+        <Text style={local.detailText}>{this.props.product.spin_speed} RPM</Text>
       </View>
     </View>);
   }

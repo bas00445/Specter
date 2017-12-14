@@ -59,7 +59,6 @@ export default class ProductPage extends Component {
 
       let response = await fetch('http://52.221.73.154:1521/' + this.props.productType.toLowerCase());
       let responseJson = await response.json();
-      console.log(response);
 
       this.setState({
         products: responseJson
@@ -71,6 +70,10 @@ export default class ProductPage extends Component {
 
     } catch (error) {
       alert(error);
+
+      this.setState({
+        isLoading: false
+      });
     }
 
     // this.setState({

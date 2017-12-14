@@ -72,7 +72,7 @@ export default class AISetupPage extends Component {
     })
   }
 
-  async requestSpec() {
+  async requestSpecs() {
     ToastAndroid.show('Request spec', ToastAndroid.SHORT);
 
     let data = {
@@ -186,7 +186,7 @@ export default class AISetupPage extends Component {
                       </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={local.primaryButton} onPress={this.requestSpec.bind(this)}>
+                    <TouchableOpacity style={local.primaryButton} onPress={this.requestSpecs.bind(this)}>
                       <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Generate</Text>
                     </TouchableOpacity>
 

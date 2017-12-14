@@ -22,15 +22,6 @@ export default class AISpecPage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      products: [
-        { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 1', price: 3000, key: '0' },
-        { imgUrl: 'http://', type: 'VGA', name: 'Ryzen 2', price: 2500, key: '1' },
-        { imgUrl: 'http://', type: 'RAM', name: 'Ryzen 3', price: 5555, key: '2' },
-        { imgUrl: 'http://', type: 'Mainboard', name: 'Ryzen 4', price: 7777, key: '3' },
-        { imgUrl: 'http://', type: 'Storage', name: 'Ryzen 5', price: 4444, key: '4' },
-      ],
-    }
     const { navigation } = this.props; // pass down navigation to PageHeader
     this.navigator = navigation;
   }
@@ -57,9 +48,9 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                type={this.state.products[0].type} price={this.state.products[0].price}
-                name={this.state.products[0].name} key={this.state.products[0].key}
-                onPress={this.navigateToDetail.bind(this, this.state.products[0])}>
+                type={this.props.spec[0].type} price={this.props.spec[0].price}
+                name={this.props.spec[0].name}
+                onPress={this.navigateToDetail.bind(this, this.props.spec[0])}>
               </AIProductComponent>
 
             </View>
@@ -75,9 +66,9 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                type={this.state.products[1].type} price={this.state.products[1].price}
-                name={this.state.products[1].name} key={this.state.products[1].key}
-                onPress={this.navigateToDetail.bind(this, this.state.products[1])}>
+                type={this.props.spec[1].type} price={this.props.spec[1].price}
+                name={this.props.spec[1].name} 
+                onPress={this.navigateToDetail.bind(this, this.props.spec[1])}>
               </AIProductComponent>
 
 
@@ -94,9 +85,9 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                type={this.state.products[2].type} price={this.state.products[2].price}
-                name={this.state.products[2].name} key={this.state.products[2].key}
-                onPress={this.navigateToDetail.bind(this, this.state.products[2])}>
+                type={this.props.spec[2].type} price={this.props.spec[2].price}
+                name={this.props.spec[2].name} 
+                onPress={this.navigateToDetail.bind(this, this.props.spec[2])}>
               </AIProductComponent>
 
             </View>
@@ -112,9 +103,9 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                type={this.state.products[3].type} price={this.state.products[3].price}
-                name={this.state.products[3].name} key={this.state.products[3].key}
-                onPress={this.navigateToDetail.bind(this, this.state.products[3])}>
+                type={this.props.spec[3].type} price={this.props.spec[3].price}
+                name={this.props.spec[3].name} 
+                onPress={this.navigateToDetail.bind(this, this.props.spec[3])}>
               </AIProductComponent>
 
             </View>
@@ -130,9 +121,9 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                type={this.state.products[4].type} price={this.state.products[4].price}
-                name={this.state.products[4].name} key={this.state.products[4].key}
-                onPress={this.navigateToDetail.bind(this, this.state.products[4])}>
+                type={this.props.spec[4].type} price={this.props.spec[4].price}
+                name={this.props.spec[4].name} 
+                onPress={this.navigateToDetail.bind(this, this.props.spec[4])}>
               </AIProductComponent>
 
             </View>

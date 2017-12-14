@@ -6,6 +6,7 @@ import CpuDetail from '../../components/ProductDetail/CpuDetail';
 import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
 import RamDetail from '../../components/ProductDetail/RamDetail';
 import SsdDetail from '../../components/ProductDetail/SsdDetail';
+import HarddiskDetail from '../../components/ProductDetail/HarddiskDetail';
 import VgaDetail from '../../components/ProductDetail/VgaDetail';
 import {
   StyleSheet,
@@ -66,6 +67,11 @@ export default class DetailPage extends Component {
           <SsdDetail productType={this.props.productType} product={this.props.product}></SsdDetail>
         );
       } break;
+      case 'Harddisk': {
+        return (
+          <HarddiskDetail productType={this.props.productType} product={this.props.product}></HarddiskDetail>
+        );
+      } break;
     }
   }
 
@@ -102,7 +108,7 @@ export default class DetailPage extends Component {
               </View>
             </View>
 
-            <View style={[Style.card, {marginBottom: 10}]}>
+            <View style={[Style.card, { marginBottom: 10 }]}>
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.normalTitle}>

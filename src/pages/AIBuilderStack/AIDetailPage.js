@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import { NavigationActions } from 'react-navigation'
 import Theme from '../../styles/Global';
+import { NavigationActions } from 'react-navigation'
 import PageHeader from '../../components/PageHeader';
-import Modal from 'react-native-modal'
-import ProductComponent from '../../components/ProductComponent';
+import CpuDetail from '../../components/ProductDetail/CpuDetail';
+import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
+import RamDetail from '../../components/ProductDetail/RamDetail';
+import SsdDetail from '../../components/ProductDetail/SsdDetail';
+import VgaDetail from '../../components/ProductDetail/VgaDetail';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   ScrollView,
-  TouchableOpacity,
-  TextInput,
-  FlatList
+  TouchableOpacity
 } from 'react-native';
+
 
 var Style = Theme.Style;
 var Color = Theme.Color;
@@ -25,22 +27,34 @@ export default class AIDetailPage extends Component {
 
     const { navigation } = this.props;
     this.navigator = navigation;
+  }
 
-    switch (this.props.product.type) {
+  renderProductDetail() {
+    switch (this.props.productType) {
       case 'CPU': {
-        this.previewImg = require('../../assets/images/ryzen3.png');
-      } break;
-      case 'RAM': {
-        this.previewImg = require('../../assets/images/corsair.jpg');
+        return (
+          <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
+        );
       } break;
       case 'VGA': {
-        this.previewImg = require('../../assets/images/1050.jpg');
+        return (
+          <VgaDetail productType={this.props.productType} product={this.props.product}></VgaDetail>
+        );
       } break;
       case 'Mainboard': {
-        this.previewImg = require('../../assets/images/mainboard.jpg');
+        return (
+          <MainboardDetail productType={this.props.productType} product={this.props.product}></MainboardDetail>
+        );
       } break;
-      case 'Storage': {
-        this.previewImg = require('../../assets/images/storage.png');
+      case 'RAM': {
+        return (
+          <RamDetail productType={this.props.productType} product={this.props.product}></RamDetail>
+        );
+      } break;
+      case 'SSD': {
+        return (
+          <SsdDetail productType={this.props.productType} product={this.props.product}></SsdDetail>
+        );
       } break;
     }
   }
@@ -48,29 +62,32 @@ export default class AIDetailPage extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PageHeader headerText={"Product Detail"} navigation={this.navigator} type={"stack"}></PageHeader>
+        <PageHeader headerText={"Product"} navigation={this.navigator} type={"stack"}></PageHeader>
         <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
 
             <View style={Style.card}>
               <View style={local.productImageContainer}>
-                <Image source={this.previewImg}
-                  style={local.productImage}></Image>
+                <Image style={local.productImage}
+                  source={{ uri: this.props.product.image }}></Image>
               </View>
               <View style={local.title}>
                 <View style={{ marginBottom: 5 }}>
                   <Text style={local.titleText}>{this.props.product.name}</Text>
                 </View>
 
-                <View style={{ flex: 1 }}>
-                  <Text style={local.priceText}>
-                    {this.props.product.price} Baht
-                  </Text>
+                <View style={Style.colContent}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={local.priceText}>
+                      {this.props.product.price} Baht
+                    </Text>
+                  </View>
                 </View>
+
               </View>
             </View>
 
-            <View style={Style.card}>
+            <View style={[Style.card, {marginBottom: 10}]}>
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.normalTitle}>
@@ -78,8 +95,8 @@ export default class AIDetailPage extends Component {
                 </View>
               </View>
 
-              <View style={{ padding: 5, height: 300 }}>
-
+              <View style={local.detailContainer}>
+                {this.renderProductDetail()}
               </View>
             </View>
 
@@ -101,13 +118,15 @@ var local = StyleSheet.create({
     color: Color.primaryText,
   },
   productImageContainer: {
+    flex: 1,
+    height: 250,
     backgroundColor: '#ffffff',
     alignItems: 'center'
   },
   productImage: {
     alignSelf: 'center',
     height: 250,
-    resizeMode: 'contain'
+    width: 250,
   },
   priceText: {
     fontSize: 18,
@@ -138,5 +157,9 @@ var local = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: Color.primaryText
+  },
+  detailContainer: {
+    paddingHorizontal: 15,
+    paddingVertical: 10
   }
 });
