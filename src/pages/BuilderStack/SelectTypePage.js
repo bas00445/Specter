@@ -375,7 +375,7 @@ export default class SelectTypePage extends Component {
                       <Image style={local.titleIcon} source={require('../../assets/icons/star.png')}></Image>
                     </View>
                     <View style={{ paddingLeft: 5 }}>
-                      <Text style={local.titleText}>Recommend</Text>
+                      <Text style={local.titleText}>Recommend specs</Text>
                     </View>
                   </View>
                 </View>

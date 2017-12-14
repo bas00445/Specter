@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation'
+import Spinner from 'react-native-loading-spinner-overlay';
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import Modal from 'react-native-modal'
@@ -30,10 +31,31 @@ export default class AISetupPage extends Component {
       budget: 20000,
       showBudgetModal: false,
       specs: [],
+      specViews: null,
+      isLoading: false,
     }
+
     const { navigation } = this.props; // pass down navigation to PageHeader
     this.navigator = navigation;
-    this.navigator.state.key = 'AIBuilder'; // Set a key to this page to receive params
+  }
+
+  componentDidMount() {
+    this.initSpecViews();
+    this.requestSpecs();
+  }
+
+  initSpecViews() {
+    let view = (
+      <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
+        <Text style={{ fontSize: 16, color: Color.primaryText }}>
+          Empty
+          </Text>
+      </View>
+    );
+
+    this.setState({
+      specViews: view
+    });
   }
 
   setTempBudget(value) {
@@ -60,15 +82,15 @@ export default class AISetupPage extends Component {
   }
 
   async requestSpecs() {
-    ToastAndroid.show('Request spec', ToastAndroid.SHORT);
-
     try {
+      this.setState({
+        isLoading: true,
+      });
+
       var response = await fetch('http://52.221.73.154:1521/price/' + this.state.budget);
       var responseJson = await response.json();
 
       let specs = responseJson;
-      console.log(specs);
-
 
       let views = [];
       for (let indx = 0; indx < specs.length; indx++) {
@@ -89,8 +111,15 @@ export default class AISetupPage extends Component {
         specViews: views
       });
 
-    } catch (error) {
+      this.setState({
+        isLoading: false,
+      });
 
+    } catch (error) {
+      alert(error);
+      this.setState({
+        isLoading: false,
+      });
     }
 
   }
@@ -141,6 +170,8 @@ export default class AISetupPage extends Component {
     return (
       <View style={{ flex: 1 }}>
         <PageHeader headerText={"AI Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
+        <Spinner visible={this.state.isLoading} textContent={""} color={Color.secondary}>
+        </Spinner>
         {this.renderBudgetModal()}
         <View style={Style.container}>
           <ScrollView>
@@ -150,30 +181,35 @@ export default class AISetupPage extends Component {
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
                   <View style={{ paddingLeft: 5 }}>
-                    <Text style={local.titleText}>Setting</Text>
+                    <Text style={local.titleText}>Preference</Text>
                   </View>
                 </View>
               </View>
 
               <View style={{ padding: 5 }}>
-                <View style={[Style.colContent, { paddingHorizontal: 10, paddingVertical: 5 }]}>
+                <View style={[Style.colContent, {
+                  paddingHorizontal: 10, paddingVertical: 5,
+                  borderBottomWidth: 1,
+                  borderBottomColor: Color.primaryLight
+                }]}>
                   <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center' }}>
                     <Text style={[Style.whiteText, { fontSize: 16 }]}>Budget (Baht)</Text>
                   </View>
                   <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                    <TouchableOpacity style={{ marginBottom: 5 }} onPress={() => { this.setState({ showBudgetModal: true }) }}>
+                    <TouchableOpacity onPress={() => { this.setState({ showBudgetModal: true }) }}>
                       <View style={Style.colContent}>
                         <Text style={Style.whiteText}>{this.state.budget}</Text>
                         <Image style={local.editIcon}
                           source={require('../../assets/icons/edit.png')}></Image>
                       </View>
                     </TouchableOpacity>
-
-                    <TouchableOpacity style={local.primaryButton} onPress={this.requestSpecs.bind(this)}>
-                      <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Generate</Text>
-                    </TouchableOpacity>
-
                   </View>
+                </View>
+
+                <View style={{ alignItems: 'flex-end', padding: 5, paddingTop: 10 }}>
+                  <TouchableOpacity style={local.primaryButton} onPress={this.requestSpecs.bind(this)}>
+                    <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Generate</Text>
+                  </TouchableOpacity>
                 </View>
 
 
@@ -195,7 +231,9 @@ export default class AISetupPage extends Component {
                 </View>
               </View>
 
-              {this.state.specViews}
+              <View style={{ padding: 5 }}>
+                {this.state.specViews}
+              </View>
 
             </View>
           </ScrollView>
