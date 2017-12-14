@@ -164,8 +164,6 @@ export default class SelectTypePage extends Component {
       alert(error);
     }
 
-
-
     // Submit building spec to the server
     // this.submitSpecToServer();
   }
@@ -228,6 +226,32 @@ export default class SelectTypePage extends Component {
         </View>
       )
     }
+  }
+
+  renderRecommend() {
+    return (
+      <View style={Style.card}>
+        <View style={Style.colContent}>
+          <View style={Style.indicator}></View>
+          <View style={local.title}>
+            <View style={[Style.colContent]}>
+              <View style={Style.centerVertical}>
+                <Image style={local.titleIcon} source={require('../../assets/icons/star.png')}></Image>
+              </View>
+              <View style={{ paddingLeft: 5 }}>
+                <Text style={local.titleText}>Recommend</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View style={{ padding: 5, height: 150 }}>
+          <ScrollView horizontal={true}>
+            {this.renderRecommends()}
+          </ScrollView>
+        </View>
+      </View>
+    );
   }
 
   renderBudgetModal() {

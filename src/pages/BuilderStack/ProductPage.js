@@ -5,7 +5,6 @@ import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import ProductFilter from '../../components/ProductFilter';
 import ProductComponent from '../../components/ProductComponent';
-import RecommendComponent from '../../components/RecommendComponent';
 import {
   StyleSheet,
   Text,
@@ -25,11 +24,6 @@ export default class ProductPage extends Component {
     super(props);
     this.state = {
       isLoading: false,
-      recommends: [
-        { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 1500, name: "Corsair" },
-        { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 5999, name: "Asus GTX 1050Ti" },
-        { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 6000, name: "Ryzen 3 1200" },
-      ],
       products: [],
     }
 
@@ -80,10 +74,6 @@ export default class ProductPage extends Component {
         isLoading: false
       });
     }
-
-    // this.setState({
-    //   products: responseProducts
-    // })
   }
 
   componentDidMount() {
@@ -93,21 +83,6 @@ export default class ProductPage extends Component {
 
   navigateToDetail(dataToPass) {
     this.navigator.navigate("Detail", { product: dataToPass });
-  }
-
-  renderRecommends() {
-    let recommends = this.state.recommends;
-    const views = [];
-    for (let indx in recommends) {
-      let obj = recommends[indx];
-      views.push(
-        <RecommendComponent type={obj.type} price={obj.price} product={obj} image={obj.image}
-          name={obj.name} key={indx} onPress={this.navigateToDetail.bind(this, obj)}
-          onAddComponent={this.addToSpec.bind(this, obj)}>
-        </RecommendComponent>
-      );
-    }
-    return views;
   }
 
   renderProducts() {
@@ -136,28 +111,7 @@ export default class ProductPage extends Component {
         </Spinner>
         <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
-            <View style={Style.card}>
-              <View style={Style.colContent}>
-                <View style={Style.indicator}></View>
-                <View style={local.title}>
-                  <View style={[Style.colContent]}>
-                    <View style={Style.centerVertical}>
-                      <Image style={local.titleIcon} source={require('../../assets/icons/star.png')}></Image>
-                    </View>
-                    <View style={{ paddingLeft: 5 }}>
-                      <Text style={local.titleText}>Recommend</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-
-              <View style={{ padding: 5, height: 150 }}>
-                <ScrollView horizontal={true}>
-                  {this.renderRecommends()}
-                </ScrollView>
-              </View>
-            </View>
-
+            
             {/* <ProductFilter onSort={(type) => { this.sortProductBy(type) }}></ProductFilter> */}
 
             <View style={[Style.card, { marginBottom: 10 }]}>
