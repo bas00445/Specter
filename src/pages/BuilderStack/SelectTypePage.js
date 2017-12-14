@@ -107,33 +107,31 @@ export default class SelectTypePage extends Component {
     }
   }
 
-  isNewProduct(product) {
+  isNewProduct(productType) {
     let buildings = this.state.buildings;
     for (let i in buildings) {
-      if (buildings[i].type == product.type) {
+      if (buildings[i].productType == productType) {
         return false;
       }
     }
     return true;
   }
 
-  async addNewProduct(product) {
+  async addNewProduct(product, productType) {
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
 
     let buildings = this.state.buildings;
 
-    if (this.isNewProduct(product)) {
-      this.state.buildings.push({
-        imgUrl: 'http://',
-        type: product.type,
-        price: product.price,
-        name: product.name
-      });
+    if (this.isNewProduct(productType)) {
+      product['productType'] = productType;
+      this.state.buildings.push(
+        product
+      );
     }
 
     else {
       for (let i in buildings) {
-        if (buildings[i].type == product.type) {
+        if (buildings[i].productType == productType) {
           buildings[i] = product;
         }
       }
@@ -169,11 +167,12 @@ export default class SelectTypePage extends Component {
 
   componentWillReceiveProps(nextProps) {
     let product = nextProps.newProduct;
-    this.addNewProduct(product);
+    let productType = nextProps.productType;
+    this.addNewProduct(product, productType);
   }
 
   navigateToDetail(dataToPass) {
-    this.navigator.navigate("Detail", { product: dataToPass });
+    this.navigator.navigate("Detail", { product: dataToPass, productType: dataToPass.productType });
   }
 
   navigateToProduct(dataToPass) {
@@ -191,8 +190,8 @@ export default class SelectTypePage extends Component {
       for (let indx in buildings) {
         let obj = buildings[indx];
         views.push(
-          <BuildingComponent type={obj.type} price={obj.price} name={obj.name} key={indx}
-            onDelete={this.removeBuildingComponent.bind(this, indx)} onPress={this.navigateToDetail.bind(this, obj)}>
+          <BuildingComponent product={obj} onPress={this.navigateToDetail.bind(this, obj)}
+            onDelete={this.removeBuildingComponent.bind(this, indx)}>
           </BuildingComponent>
         );
       }

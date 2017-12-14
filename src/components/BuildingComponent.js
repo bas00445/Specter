@@ -23,7 +23,7 @@ export default class BuildingComponent extends Component {
       <View style={local.container}>
         <View style={local.imageContainer}>
           <Image style={local.image}
-            source={this.previewImg}>
+            source={{uri: this.props.product.image}}>
           </Image>
         </View>
         <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
@@ -34,14 +34,14 @@ export default class BuildingComponent extends Component {
             </TouchableOpacity>
           </View>
           <View style={[Style.centerY, { flex: 2 }]}>
-            <Text style={local.componentTitleText}>{this.props.type}</Text>
+            <Text style={local.componentTitleText}>{this.props.product.type}</Text>
           </View>
           <View style={[Style.centerY, { flex: 1 }]}>
             <Text numberOfLines={2} ellipsizeMode={"tail"}
-              style={[local.detailText, { textAlign: 'center' }]}>{this.props.name}</Text>
+              style={[local.detailText, { textAlign: 'center' }]}>{this.props.product.name}</Text>
           </View>
           <View style={[Style.centerY, { flex: 1 }]}>
-            <Text style={local.priceText}>{this.props.price + " Baht"}</Text>
+            <Text style={local.priceText}>{this.props.product.price + " Baht"}</Text>
           </View>
         </TouchableOpacity>
       </View>

@@ -40,7 +40,8 @@ export default class ProductPage extends Component {
   addToSpec(product) {
     const paramsAction = NavigationActions.setParams({
       params: {
-        newProduct: product
+        newProduct: product,
+        productType: this.props.productType
       },
       key: 'SelectType',
     });
