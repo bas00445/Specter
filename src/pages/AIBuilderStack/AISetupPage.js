@@ -99,6 +99,7 @@ export default class AISetupPage extends Component {
         // console.log(obj[length - 2].total_score);
         views.push(
           <SpecComponent
+            key={indx}
             priority={order}
             point={obj[obj.length - 2].total_score}
             price={obj[obj.length - 1].total_price}

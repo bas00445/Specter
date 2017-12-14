@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation'
+import Spinner from 'react-native-loading-spinner-overlay';
 import Modal from 'react-native-modal'
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
@@ -37,6 +38,7 @@ export default class SelectTypePage extends Component {
       buildings: [],
       recommends: [],
       buildingIDs: [],
+      isLoading: false,
     };
 
     const { navigation } = this.props;
@@ -67,26 +69,30 @@ export default class SelectTypePage extends Component {
     })
   }
 
-  async submitSpecToServer() {
-    let data = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        buget: this.state.buildings
-      })
-    }
-
+  async requestRecommends() {
     try {
-      var response = await fetch('http://specter.com/api/submitSpec', data);
+
+      this.setState({
+        isLoading: true
+      });
+
+      var url = 'http://52.221.73.154:1521/price/' + this.state.budget + '/[' + this.state.buildingIDs.toString() + ']';
+
+      console.log(url);
+      var response = await fetch(url);
       var responseJson = await response.json();
-      if (responseJson == 'OK') {
-        ToastAndroid.show('Success', ToastAndroid.SHORT);
-      }
+
+      console.log(responseJson);
+
+      this.setState({
+        isLoading: false
+      });
+
     } catch (error) {
-      ToastAndroid.show('Fail', ToastAndroid.SHORT);
+      alert(error);
+      this.setState({
+        isLoading: false
+      });
     }
   }
 
@@ -170,6 +176,14 @@ export default class SelectTypePage extends Component {
           buildings[i] = product;
         }
       }
+
+      for (let i in buildingIDs) {
+        if (buildingIDs[i] == product.productType.toLowerCase() + '_' + product.id) {
+          buildingIDs[i] = product.productType.toLowerCase() + '_' + product.id;
+
+          console.log(buildingIDs);
+        }
+      }
     }
 
     this.updateCost();
@@ -181,9 +195,6 @@ export default class SelectTypePage extends Component {
     } catch (error) {
       alert(error);
     }
-
-    // Submit building spec to the server
-    // this.submitSpecToServer();
   }
 
   async loadBuildingSpec() {
@@ -246,33 +257,6 @@ export default class SelectTypePage extends Component {
     }
   }
 
-  async generateRecommends() {
-
-    try {
-      let recommends = this.state.recommends;
-
-      let response = await fetch('http://52.221.73.154:1521/');
-      let responseJson = await response.json();
-
-      const views = [];
-      for (let indx in recommends) {
-        let obj = recommends[indx];
-        views.push(
-          <SpecComponent
-            priority={indx}
-            price={item.total_price}
-            point={item.total_score}
-            onPress={this.navigateToSpec.bind(this, obj)}>
-          </SpecComponent>
-        );
-      }
-    } catch (error) {
-
-    }
-
-
-  }
-
   renderRecommendSpecs() {
 
     if (this.state.recommends.length > 0) {
@@ -331,6 +315,8 @@ export default class SelectTypePage extends Component {
     return (
       <View style={{ flex: 1 }}>
         <PageHeader headerText={"Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
+        <Spinner visible={this.state.isLoading} textContent={""} color={Color.secondary}>
+        </Spinner>
         {this.renderBudgetModal()}
         <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
@@ -374,7 +360,7 @@ export default class SelectTypePage extends Component {
                 </View>
 
                 <View style={{ alignItems: 'flex-end', padding: 5 }}>
-                  <TouchableOpacity style={local.primaryButton} onPress={this.submitSpecToServer.bind(this)}>
+                  <TouchableOpacity style={local.primaryButton} onPress={this.requestRecommends.bind(this)}>
                     <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Generate</Text>
                   </TouchableOpacity>
                 </View>
