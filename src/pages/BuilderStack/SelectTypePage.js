@@ -31,15 +31,10 @@ export default class SelectTypePage extends Component {
     this.state = {
       tempBudget: '',
       budget: 20000,
+      cost: 0, // Current cost of the building spec
       showBudgetModal: false,
       buildings: []
     };
-
-    // buildings: [
-    //   {type:"RAM", price:1500, name: "Corsair"},
-    //   {type:"VGA", price:5999, name: "Asus GTX 1050Ti"},
-    //   {type:"CPU", price:6000, name: "Ryzen 3 1200"},
-    // ]
 
     const { navigation } = this.props;
     this.navigator = navigation;
@@ -93,10 +88,17 @@ export default class SelectTypePage extends Component {
   }
 
   async removeBuildingComponent(indx) {
-    let temp = this.state.buildings;
-    temp.splice(indx, 1);
+    let buildings = this.state.buildings;
+    let cost = this.state.cost;
+
+    cost -= buildings[indx].price;
     this.setState({
-      buildings: temp
+      cost: cost
+    });
+
+    buildings.splice(indx, 1);
+    this.setState({
+      buildings: buildings
     });
 
     // Save building spec
@@ -121,6 +123,12 @@ export default class SelectTypePage extends Component {
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
 
     let buildings = this.state.buildings;
+    let cost = this.state.cost;
+
+    cost += product.price;
+    this.setState({
+      cost: cost
+    });
 
     if (this.isNewProduct(product)) {
       this.state.buildings.push(
@@ -258,7 +266,7 @@ export default class SelectTypePage extends Component {
               </View>
 
               <View style={{ padding: 5 }}>
-                <View style={[Style.colContent, { padding: 10, borderBottomWidth: 1, borderBottomColor: Color.primaryLight }]}>
+                <View style={[Style.colContent, { paddingHorizontal: 10, paddingVertical: 5 }]}>
                   <View style={{ flex: 1, alignItems: 'flex-start' }}>
                     <Text style={Style.whiteText}>Budget (Baht)</Text>
                   </View>
@@ -273,7 +281,16 @@ export default class SelectTypePage extends Component {
                   </View>
                 </View>
 
-                <View style={{ padding: 5, borderBottomWidth: 1, borderBottomColor: Color.primaryLight }}>
+                <View style={[Style.colContent, { paddingHorizontal: 10, paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: Color.primaryLight }]}>
+                  <View style={{ flex: 1, alignItems: 'flex-start' }}>
+                    <Text style={Style.whiteText}>Cost (Baht)</Text>
+                  </View>
+                  <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                    <Text style={Style.whiteText}>{this.state.cost}</Text>
+                  </View>
+                </View>
+
+                <View style={{ padding: 5, paddingTop: 10 }}>
                   <ScrollView horizontal={true}>
                     {this.renderBuildings()}
                   </ScrollView>
