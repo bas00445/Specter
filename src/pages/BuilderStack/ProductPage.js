@@ -49,20 +49,8 @@ export default class ProductPage extends Component {
     this.navigator.dispatch(paramsAction);
   }
 
-  // sortProductBy(type) {
-  //   if (type == 'sortName') {
-  //     this.state.products.sort(function (a, b) {
-  //       return (a.name - b.name);
-  //     });
-  //   } else if (type == 'sortPrice') {
-  //     this.state.products.sort(function (a, b) {
-  //       return (a.price - b.price);
-  //     });
-  //   }
-  // }
-
   navigateToDetail(dataToPass) {
-    this.navigator.navigate("Detail", { product: dataToPass });
+    this.navigator.navigate("Detail", { product: dataToPass, productType: this.props.productType });
   }
 
   requestProducts() {
@@ -93,7 +81,7 @@ export default class ProductPage extends Component {
             key={item.key}
             name={item.name}
             price={item.price}
-            type={item.type}
+            type={this.props.productType}
             image={item.image}
             onPress={this.navigateToDetail.bind(this, item)}
             onAddComponent={this.addToSpec.bind(this, item)}>

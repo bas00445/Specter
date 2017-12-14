@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Theme from '../../styles/Global';
 import { NavigationActions } from 'react-navigation'
 import PageHeader from '../../components/PageHeader';
+import CpuDetail from '../../components/ProductDetail/CpuDetail'; 
 import {
   StyleSheet,
   Text,
@@ -35,40 +36,10 @@ export default class DetailPage extends Component {
   }
 
   renderProductDetail() {
-    switch (this.props.product.type) {
+    switch (this.props.productType) {
       case 'CPU': {
         return (
-          <View>
-            <Text></Text>
-          </View>
-        );
-      } break;
-      case 'Memory': {
-        return (
-          <View>
-
-          </View>
-        );
-      } break;
-      case 'VGA card': {
-        return (
-          <View>
-
-          </View>
-        );
-      } break;
-      case 'Mainboard': {
-        return (
-          <View>
-
-          </View>
-        );
-      } break;
-      case 'Storage': {
-        return (
-          <View>
-
-          </View>
+          <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>   
         );
       } break;
     }
@@ -84,7 +55,7 @@ export default class DetailPage extends Component {
             <View style={Style.card}>
               <View style={local.productImageContainer}>
                 <Image style={local.productImage}
-                  source={{uri: this.props.product.image}}></Image>
+                  source={{ uri: this.props.product.image }}></Image>
               </View>
               <View style={local.title}>
                 <View style={{ marginBottom: 5 }}>
@@ -115,7 +86,7 @@ export default class DetailPage extends Component {
                 </View>
               </View>
 
-              <View style={{ padding: 10, height: 300 }}>
+              <View style={local.detailContainer}>
                 {this.renderProductDetail()}
               </View>
             </View>
@@ -177,5 +148,9 @@ var local = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: Color.primaryText
+  },
+  detailContainer: { 
+    paddingHorizontal: 15,
+    paddingVertical: 10 
   }
 });
