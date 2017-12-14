@@ -107,14 +107,38 @@ export default class SelectTypePage extends Component {
     }
   }
 
+  isNewProduct(product) {
+    let buildings = this.state.buildings;
+    for (let i in buildings) {
+      if (buildings[i].type == product.type) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   async addNewProduct(product) {
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
-    this.state.buildings.push({
-      imgUrl: 'http://',
-      type: product.type,
-      price: product.price,
-      name: product.name
-    });
+
+    let buildings = this.state.buildings;
+
+    if (this.isNewProduct(product)) {
+      this.state.buildings.push({
+        imgUrl: 'http://',
+        type: product.type,
+        price: product.price,
+        name: product.name
+      });
+    }
+
+    else {
+      for (let i in buildings) {
+        if (buildings[i].type == product.type) {
+          buildings[i] = product;
+        }
+      }
+    }
+
 
 
     // Save building spec
@@ -126,7 +150,6 @@ export default class SelectTypePage extends Component {
 
     // Submit building spec to the server
     // this.submitSpecToServer();
-
   }
 
   async loadBuildingSpec() {
