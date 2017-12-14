@@ -104,6 +104,7 @@ export default class SelectTypePage extends Component {
     // Save building spec
     try {
       await AsyncStorage.setItem('buildingSpec', JSON.stringify(this.state.buildings));
+      await AsyncStorage.setItem('cost', JSON.stringify(this.state.cost));
     } catch (error) {
       alert(error);
     }
@@ -147,6 +148,7 @@ export default class SelectTypePage extends Component {
     // Save building spec
     try {
       await AsyncStorage.setItem('buildingSpec', JSON.stringify(this.state.buildings));
+      await AsyncStorage.setItem('cost', JSON.stringify(this.state.cost));
     } catch (error) {
       alert(error);
     }
@@ -157,10 +159,13 @@ export default class SelectTypePage extends Component {
 
   async loadBuildingSpec() {
     try {
-      let response = await AsyncStorage.getItem('buildingSpec')
-      let obj = await JSON.parse(response) || [];
+      let responseBuildings = await AsyncStorage.getItem('buildingSpec');
+      let responseCost= await AsyncStorage.getItem('cost');
+      let buildings = await JSON.parse(responseBuildings) || [];
+      let cost = await JSON.parse(responseCost) || 0;
       this.setState({
-        buildings: obj
+        buildings: buildings,
+        cost: cost
       });
 
     } catch (error) {
@@ -223,7 +228,7 @@ export default class SelectTypePage extends Component {
         <View style={local.modalContainer}>
           <View style={Style.colContent}>
             <View style={local.budgetTitle}>
-              <Text style={local.titleText}>Set your budget</Text>
+              <Text style={local.titleText}>Set your budget (Baht)</Text>
             </View>
 
             <View style={{ flex: 1, alignItems: 'flex-end' }}>
@@ -281,7 +286,7 @@ export default class SelectTypePage extends Component {
                   </View>
                 </View>
 
-                <View style={[Style.colContent, { paddingHorizontal: 10, paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: Color.primaryLight }]}>
+                <View style={[Style.colContent, { paddingHorizontal: 10, paddingBottom: 10, borderBottomWidth: 1, borderBottomColor: Color.primaryLight }]}>
                   <View style={{ flex: 1, alignItems: 'flex-start' }}>
                     <Text style={Style.whiteText}>Cost (Baht)</Text>
                   </View>
