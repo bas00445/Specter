@@ -29,20 +29,7 @@ export default class AISetupPage extends Component {
       tempBudget: '',
       budget: 20000,
       showBudgetModal: false,
-      recommends: [
-        { imgUrl: 'http://', type: "RAM", price: 1500, name: "Corsair" },
-        { imgUrl: 'http://', type: "VGA", price: 5999, name: "Asus GTX 1050Ti" },
-        { imgUrl: 'http://', type: "CPU", price: 6000, name: "Ryzen 3 1200" },
-      ],
-      specs: [
-        { imgUrl: 'http://', type: 'CPU', priority: '1', price: 3000, point: 900, key: '0' },
-        { imgUrl: 'http://', type: 'CPU', priority: '2', price: 2500, point: 600, key: '1' },
-        { imgUrl: 'http://', type: 'CPU', priority: '3', price: 5555, point: 500, key: '2' },
-        { imgUrl: 'http://', type: 'CPU', priority: '4', price: 7777, point: 400, key: '3' },
-        { imgUrl: 'http://', type: 'CPU', priority: '5', price: 9999, point: 300, key: '4' },
-        { imgUrl: 'http://', type: 'CPU', priority: '6', price: 9999, point: 200, key: '5' },
-        { imgUrl: 'http://', type: 'CPU', priority: '7', price: 9999, point: 155, key: '6' },
-      ],
+      specs: [],
     }
     const { navigation } = this.props; // pass down navigation to PageHeader
     this.navigator = navigation;
@@ -75,45 +62,41 @@ export default class AISetupPage extends Component {
   async requestSpecs() {
     ToastAndroid.show('Request spec', ToastAndroid.SHORT);
 
-    let data = {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        buget: this.state.budget
-      })
+    try {
+      var response = await fetch('http://52.221.73.154:1521/price/' + this.state.budget);
+      var responseJson = await response.json();
+
+      let specs = responseJson;
+      console.log(specs);
+
+
+      let views = [];
+      for (let indx = 0; indx < specs.length; indx++) {
+        let obj = specs[indx];
+        let order = indx + 1;
+        // console.log(obj[length - 2].total_score);
+        views.push(
+          <SpecComponent
+            priority={order}
+            point={obj[obj.length - 2].total_score}
+            price={obj[obj.length - 1].total_price}
+            onPress={this.navigateToSpec.bind(this, obj)}>
+          </SpecComponent>
+        );
+      }
+
+      this.setState({
+        specViews: views
+      });
+
+    } catch (error) {
+
     }
 
-    try {
-      var response = await fetch('http://specter.com/api/getRecommendedSpec', data);
-      var responseJson = await response.json();
-      if (responseJson == 'OK') {
-        ToastAndroid.show('Success', ToastAndroid.SHORT);
-      }
-    } catch (error) {
-      ToastAndroid.show('Fail', ToastAndroid.SHORT);
-    }
-    
   }
 
   navigateToSpec(dataToPass) {
     this.navigator.navigate('AISpec', { spec: dataToPass });
-  }
-
-  renderSpecs() {
-    return (<FlatList
-      data={this.state.specs}
-      renderItem={({ item }) =>
-        <SpecComponent
-          key={item.key}
-          priority={item.priority}
-          price={item.price}
-          point={item.point}
-          onPress={this.navigateToSpec.bind(this, item)}>
-        </SpecComponent>}
-    />);
   }
 
   renderBudgetModal() {
@@ -212,7 +195,7 @@ export default class AISetupPage extends Component {
                 </View>
               </View>
 
-              {this.renderSpecs()}
+              {this.state.specViews}
 
             </View>
           </ScrollView>

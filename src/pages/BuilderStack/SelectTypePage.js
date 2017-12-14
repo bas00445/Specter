@@ -5,6 +5,7 @@ import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import BuildingComponent from '../../components/BuildingComponent';
 import CategoryComponent from '../../components/CategoryComponent';
+import SpecComponent from '../../components/AI/SpecComponent';
 import {
   StyleSheet,
   Text,
@@ -33,7 +34,8 @@ export default class SelectTypePage extends Component {
       budget: 20000,
       cost: 0, // Current cost of the building spec
       showBudgetModal: false,
-      buildings: []
+      buildings: [],
+      recommends: [],
     };
 
     const { navigation } = this.props;
@@ -228,30 +230,47 @@ export default class SelectTypePage extends Component {
     }
   }
 
-  renderRecommend() {
-    return (
-      <View style={Style.card}>
-        <View style={Style.colContent}>
-          <View style={Style.indicator}></View>
-          <View style={local.title}>
-            <View style={[Style.colContent]}>
-              <View style={Style.centerVertical}>
-                <Image style={local.titleIcon} source={require('../../assets/icons/star.png')}></Image>
-              </View>
-              <View style={{ paddingLeft: 5 }}>
-                <Text style={local.titleText}>Recommend</Text>
-              </View>
-            </View>
-          </View>
-        </View>
+  async generateRecommends() {
 
-        <View style={{ padding: 5, height: 150 }}>
-          <ScrollView horizontal={true}>
-            {this.renderRecommends()}
-          </ScrollView>
+    try {
+      let recommends = this.state.recommends;
+
+      let response = await fetch('http://52.221.73.154:1521/');
+      let responseJson = await response.json();
+        
+      const views = [];
+      for (let indx in recommends) {
+        let obj = recommends[indx];
+        views.push(
+          <SpecComponent
+            priority={indx}
+            price={item.total_price}
+            point={item.total_score}
+            onPress={this.navigateToSpec.bind(this, obj)}>
+          </SpecComponent>
+        );
+      }
+    } catch (error) {
+
+    }
+
+
+  }
+
+  renderRecommendSpecs() {
+
+    if (this.state.recommends.length > 0) {
+      return this.recommendViews;
+    } else {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
+          <Text style={{ fontSize: 16, color: Color.primaryText }}>
+            Empty
+          </Text>
         </View>
-      </View>
-    );
+      );
+    }
+
   }
 
   renderBudgetModal() {
@@ -303,7 +322,7 @@ export default class SelectTypePage extends Component {
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
-                  <Text style={local.titleText}>Building</Text>
+                  <Text style={local.titleText}>Preference</Text>
                 </View>
               </View>
 
@@ -332,13 +351,40 @@ export default class SelectTypePage extends Component {
                   </View>
                 </View>
 
-                <View style={{ padding: 5, paddingTop: 10 }}>
+                <View style={{ paddingHorizontal: 5, paddingTop: 10 }}>
                   <ScrollView horizontal={true}>
                     {this.renderBuildings()}
                   </ScrollView>
                 </View>
 
+                <View style={{ alignItems: 'flex-end', padding: 5 }}>
+                  <TouchableOpacity style={local.primaryButton} onPress={this.submitSpecToServer.bind(this)}>
+                    <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Generate</Text>
+                  </TouchableOpacity>
+                </View>
+
               </View>
+            </View>
+
+            <View style={[Style.card, { marginBottom: 10 }]}>
+              <View style={Style.colContent}>
+                <View style={Style.indicator}></View>
+                <View style={local.title}>
+                  <View style={[Style.colContent]}>
+                    <View style={Style.centerVertical}>
+                      <Image style={local.titleIcon} source={require('../../assets/icons/star.png')}></Image>
+                    </View>
+                    <View style={{ paddingLeft: 5 }}>
+                      <Text style={local.titleText}>Recommend</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+
+              <View style={{ padding: 5 }}>
+                {this.renderRecommendSpecs()}
+              </View>
+
             </View>
 
             <View style={[Style.card, { marginBottom: 10 }]}>
@@ -423,5 +469,10 @@ var local = StyleSheet.create({
     backgroundColor: Color.primary,
     padding: 15,
     borderRadius: 2
-  }
+  },
+  titleIcon: {
+    width: 20,
+    height: 20,
+    tintColor: Color.secondary
+  },
 });

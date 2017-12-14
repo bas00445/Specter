@@ -3,10 +3,11 @@ import Theme from '../../styles/Global';
 import { NavigationActions } from 'react-navigation'
 import PageHeader from '../../components/PageHeader';
 import CpuDetail from '../../components/ProductDetail/CpuDetail';
+import VgaDetail from '../../components/ProductDetail/VgaDetail';
 import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
 import RamDetail from '../../components/ProductDetail/RamDetail';
 import SsdDetail from '../../components/ProductDetail/SsdDetail';
-import VgaDetail from '../../components/ProductDetail/VgaDetail';
+import HarddiskDetail from '../../components/ProductDetail/HarddiskDetail';
 import {
   StyleSheet,
   Text,
@@ -54,6 +55,11 @@ export default class AIDetailPage extends Component {
       case 'SSD': {
         return (
           <SsdDetail productType={this.props.productType} product={this.props.product}></SsdDetail>
+        );
+      } break;
+      case 'Harddisk': {
+        return (
+          <HarddiskDetail productType={this.props.productType} product={this.props.product}></HarddiskDetail>
         );
       } break;
     }

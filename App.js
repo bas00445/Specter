@@ -8,6 +8,7 @@ import AboutPage from './src/pages/AboutPage';
 
 // BuilderStack Pages
 import SelectTypePage from './src/pages/BuilderStack/SelectTypePage';
+import SpecPage from './src/pages/BuilderStack/SpecPage';
 import ProductPage from './src/pages/BuilderStack/ProductPage';
 import DetailPage from './src/pages/BuilderStack/DetailPage';
 
@@ -27,46 +28,47 @@ import {
 
 
 // Wrapper function
-const paramsToProps = (SomeComponent) => { 
+const paramsToProps = (SomeComponent) => {
   // turns this.props.navigation.state.params into this.params.<x>
   return class extends Component {
-      render() {
-          const {navigation, ...otherProps} = this.props
-          const {state: {params}} = navigation
-          return <SomeComponent {...this.props} {...params} />
-      }
+    render() {
+      const { navigation, ...otherProps } = this.props
+      const { state: { params } } = navigation
+      return <SomeComponent {...this.props} {...params} />
+    }
   }
 }
 
 const BuilderStack = StackNavigator({
-  SelectType: {screen: paramsToProps(SelectTypePage)},
-  Product: {screen: paramsToProps(ProductPage)},
-  Detail: {screen: paramsToProps(DetailPage)},
+  SelectType: { screen: paramsToProps(SelectTypePage) },
+  Spec: { screen: paramsToProps(SpecPage) },
+  Product: { screen: paramsToProps(ProductPage) },
+  Detail: { screen: paramsToProps(DetailPage) },
 },
-{
-  headerMode: 'none',
-});
+  {
+    headerMode: 'none',
+  });
 
 const AIBuilderStack = StackNavigator({
-  AISetup: {screen: paramsToProps(AISetupPage)},
-  AISpec: {screen: paramsToProps(AISpecPage)},
-  AIDetail: {screen: paramsToProps(AIDetailPage)},
+  AISetup: { screen: paramsToProps(AISetupPage) },
+  AISpec: { screen: paramsToProps(AISpecPage) },
+  AIDetail: { screen: paramsToProps(AIDetailPage) },
 },
-{
-  headerMode: 'none',
-})
+  {
+    headerMode: 'none',
+  })
 
 const App = DrawerNavigator({
-  Builder: {screen: BuilderStack},
-  AIBuilder: {screen: AIBuilderStack},
-  Favorite: {screen: paramsToProps(FavoritePage)},
-  About: {screen: paramsToProps(AboutPage)}
+  Builder: { screen: BuilderStack },
+  AIBuilder: { screen: AIBuilderStack },
+  Favorite: { screen: paramsToProps(FavoritePage) },
+  About: { screen: paramsToProps(AboutPage) }
 },
-{
-  drawerWidth: 250,
-  drawerPosition: 'left',
-  initialRouteName: 'Builder',
-  contentComponent: props => <DrawerComponent {...props}></DrawerComponent> 
-});
+  {
+    drawerWidth: 250,
+    drawerPosition: 'left',
+    initialRouteName: 'Builder',
+    contentComponent: props => <DrawerComponent {...props}></DrawerComponent>
+  });
 
 export default App;

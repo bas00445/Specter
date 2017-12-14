@@ -4,7 +4,6 @@ import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import Modal from 'react-native-modal'
 import ProductComponent from '../../components/ProductComponent';
-import AIProductComponent from '../../components/AI/AIProductComponent';
 import {
   StyleSheet,
   Text,
@@ -19,16 +18,17 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class AISpecPage extends Component {
+export default class SpecPage extends Component {
 
   constructor(props) {
     super(props);
     const { navigation } = this.props; // pass down navigation to PageHeader
     this.navigator = navigation;
+
   }
 
-  navigateToDetail(dataToPass, productType) {
-    this.navigator.navigate("AIDetail", { product: dataToPass, productType: productType });
+  navigateToDetail(dataToPass) {
+    this.navigator.navigate("Detail", { product: dataToPass });
   }
 
   render() {
@@ -49,10 +49,11 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                price={this.props.spec[0].price}
+                type={this.props.spec[0].type} price={this.props.spec[0].price}
                 name={this.props.spec[0].name} image={this.props.spec[0].image}
-                onPress={this.navigateToDetail.bind(this, this.props.spec[0], 'CPU')}>
+                onPress={this.navigateToDetail.bind(this, this.props.spec[0])}>
               </AIProductComponent>
+
             </View>
 
             <View style={Style.card}>
@@ -66,27 +67,12 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                price={this.props.spec[1].price}
+                type={this.props.spec[1].type} price={this.props.spec[1].price}
                 name={this.props.spec[1].name} image={this.props.spec[1].image}
-                onPress={this.navigateToDetail.bind(this, this.props.spec[1], 'VGA')}>
+                onPress={this.navigateToDetail.bind(this, this.props.spec[1])}>
               </AIProductComponent>
-            </View>
 
-            <View style={Style.card}>
-              <View style={Style.colContent}>
-                <View style={Style.indicator}></View>
-                <View style={local.title}>
-                  <View style={{ paddingLeft: 5 }}>
-                    <Text style={local.titleText}>Mainboard</Text>
-                  </View>
-                </View>
-              </View>
 
-              <AIProductComponent
-                price={this.props.spec[2].price}
-                name={this.props.spec[2].name} image={this.props.spec[2].image}
-                onPress={this.navigateToDetail.bind(this, this.props.spec[2], 'Mainboard')}>
-              </AIProductComponent>
             </View>
 
             <View style={Style.card}>
@@ -100,13 +86,30 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                price={this.props.spec[3].price}
-                name={this.props.spec[3].name} image={this.props.spec[3].image}
-                onPress={this.navigateToDetail.bind(this, this.props.spec[3], 'RAM')}>
+                type={this.props.spec[2].type} price={this.props.spec[2].price}
+                name={this.props.spec[2].name} image={this.props.spec[2].image}
+                onPress={this.navigateToDetail.bind(this, this.props.spec[2])}>
               </AIProductComponent>
+
             </View>
 
+            <View style={Style.card}>
+              <View style={Style.colContent}>
+                <View style={Style.indicator}></View>
+                <View style={local.title}>
+                  <View style={{ paddingLeft: 5 }}>
+                    <Text style={local.titleText}>Mainboard</Text>
+                  </View>
+                </View>
+              </View>
 
+              <AIProductComponent
+                type={this.props.spec[3].type} price={this.props.spec[3].price}
+                name={this.props.spec[3].name} image={this.props.spec[3].image}
+                onPress={this.navigateToDetail.bind(this, this.props.spec[3])}>
+              </AIProductComponent>
+
+            </View>
 
             <View style={Style.card}>
               <View style={Style.colContent}>
@@ -119,10 +122,11 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                price={this.props.spec[4].price}
+                type={this.props.spec[4].type} price={this.props.spec[4].price}
                 name={this.props.spec[4].name} image={this.props.spec[4].image}
-                onPress={this.navigateToDetail.bind(this, this.props.spec[4], 'SSD')}>
+                onPress={this.navigateToDetail.bind(this, this.props.spec[4])}>
               </AIProductComponent>
+
             </View>
 
             <View style={Style.card}>
@@ -136,10 +140,11 @@ export default class AISpecPage extends Component {
               </View>
 
               <AIProductComponent
-                price={this.props.spec[5][0].price}
+                type={this.props.spec[5][0].type} price={this.props.spec[5][0].price}
                 name={this.props.spec[5][0].name} image={this.props.spec[5][0].image}
-                onPress={this.navigateToDetail.bind(this, this.props.spec[5][0], 'Harddisk')}>
+                onPress={this.navigateToDetail.bind(this, this.props.spec[5][0])}>
               </AIProductComponent>
+
             </View>
 
           </ScrollView>
