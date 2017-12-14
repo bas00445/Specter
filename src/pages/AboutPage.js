@@ -66,12 +66,12 @@ export default class AboutPage extends Component {
 var local = StyleSheet.create({
   titleText: {
     color: Color.primaryText,
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5
   },
   detailText: {
     color: Color.primaryText,
-    fontSize: 18,
+    fontSize: 16,
   }
 });

@@ -16,35 +16,6 @@ export default class ProductComponent extends Component {
 
   constructor(props) {
     super(props);
-    switch (this.props.type) {
-      case 'CPU': {
-        this.previewImg = require('../assets/images/ryzen3.png');
-      } break;
-      case 'VGA card': {
-        this.previewImg = require('../assets/images/1050.jpg');
-      } break;
-      case 'Memory': {
-        this.previewImg = require('../assets/images/corsair.jpg');
-      } break;
-      case 'Mainboard': {
-        this.previewImg = require('../assets/images/mainboard.jpg');
-      } break;
-      case 'Storage': {
-        this.previewImg = require('../assets/images/storage.png');
-      } break;
-    }
-    // this.previewImg = 'https://www.jib.co.th/img_master/product/original/20170725134516_1.png';
-    // source={{uri:this.previewImg}}
-  }
-
-  addToSpec() {
-    const paramsAction = NavigationActions.setParams({
-      params: {
-        newProduct: this.props.product
-      },
-      key: 'SelectType',
-    });
-    this.stackNavigator.dispatch(paramsAction);
   }
 
   render() {
@@ -52,7 +23,7 @@ export default class ProductComponent extends Component {
       <View style={[Style.card, local.container]}>
         <View style={local.imageContainer}>
           <Image style={local.image}
-            source={this.previewImg}>
+            source={{uri: this.props.image}}>
           </Image>
         </View>
         <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
@@ -79,6 +50,7 @@ export default class ProductComponent extends Component {
 var local = StyleSheet.create({
   container: {
     flex: 1,
+    height: 100,
     flexDirection: 'row',
     margin: 5,
     borderRadius: 2,

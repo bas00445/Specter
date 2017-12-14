@@ -11,6 +11,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+
 var Style = Theme.Style;
 var Color = Theme.Color;
 
@@ -21,24 +22,6 @@ export default class DetailPage extends Component {
 
     const { navigation } = this.props;
     this.navigator = navigation;
-
-    switch (this.props.product.type) {
-      case 'CPU': {
-        this.previewImg = require('../../assets/images/ryzen3.png');
-      } break;
-      case 'Memory': {
-        this.previewImg = require('../../assets/images/corsair.jpg');
-      } break;
-      case 'VGA card': {
-        this.previewImg = require('../../assets/images/1050.jpg');
-      } break;
-      case 'Mainboard': {
-        this.previewImg = require('../../assets/images/mainboard.jpg');
-      } break;
-      case 'Storage': {
-        this.previewImg = require('../../assets/images/storage.png');
-      } break;
-    }
   }
 
   addToSpec() {
@@ -51,6 +34,46 @@ export default class DetailPage extends Component {
     this.navigator.dispatch(paramsAction);
   }
 
+  renderProductDetail() {
+    switch (this.props.product.type) {
+      case 'CPU': {
+        return (
+          <View>
+            <Text></Text>
+          </View>
+        );
+      } break;
+      case 'Memory': {
+        return (
+          <View>
+
+          </View>
+        );
+      } break;
+      case 'VGA card': {
+        return (
+          <View>
+
+          </View>
+        );
+      } break;
+      case 'Mainboard': {
+        return (
+          <View>
+
+          </View>
+        );
+      } break;
+      case 'Storage': {
+        return (
+          <View>
+
+          </View>
+        );
+      } break;
+    }
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -60,8 +83,8 @@ export default class DetailPage extends Component {
 
             <View style={Style.card}>
               <View style={local.productImageContainer}>
-                <Image source={this.previewImg}
-                  style={local.productImage}></Image>
+                <Image style={local.productImage}
+                  source={{uri: this.props.product.image}}></Image>
               </View>
               <View style={local.title}>
                 <View style={{ marginBottom: 5 }}>
@@ -92,8 +115,8 @@ export default class DetailPage extends Component {
                 </View>
               </View>
 
-              <View style={{ padding: 5, height: 300 }}>
-
+              <View style={{ padding: 10, height: 300 }}>
+                {this.renderProductDetail()}
               </View>
             </View>
 
@@ -115,13 +138,15 @@ var local = StyleSheet.create({
     color: Color.primaryText,
   },
   productImageContainer: {
+    flex: 1,
+    height: 250,
     backgroundColor: '#ffffff',
     alignItems: 'center'
   },
   productImage: {
     alignSelf: 'center',
     height: 250,
-    resizeMode: 'contain'
+    width: 250,
   },
   priceText: {
     fontSize: 18,

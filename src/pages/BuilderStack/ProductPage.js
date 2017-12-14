@@ -5,6 +5,7 @@ import PageHeader from '../../components/PageHeader';
 import ProductFilter from '../../components/ProductFilter';
 import ProductComponent from '../../components/ProductComponent';
 import RecommendComponent from '../../components/RecommendComponent';
+import { cpus } from '../../mockupData/cpus';
 import {
   StyleSheet,
   Text,
@@ -31,15 +32,7 @@ export default class ProductPage extends Component {
         { imgUrl: 'http://', type: this.props.productType, price: 5999, name: "Asus GTX 1050Ti" },
         { imgUrl: 'http://', type: this.props.productType, price: 6000, name: "Ryzen 3 1200" },
       ],
-      products: [
-        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 1', price: 3000, key: '0' },
-        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 2', price: 2500, key: '1' },
-        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 3', price: 5555, key: '2' },
-        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 4', price: 7777, key: '3' },
-        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 5', price: 4444, key: '4' },
-        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 6', price: 2255, key: '5' },
-        { imgUrl: 'http://', type: this.props.productType, name: 'Ryzen 7', price: 2500, key: '6' },
-      ],
+      products: cpus,
     }
 
     const { navigation } = this.props; // pass down navigation to PageHeader
@@ -54,23 +47,6 @@ export default class ProductPage extends Component {
       key: 'SelectType',
     });
     this.navigator.dispatch(paramsAction);
-  }
-
-  renderProducts() {
-    return (
-      <FlatList
-        data={this.state.products}
-        renderItem={({ item }) =>
-          <ProductComponent
-            key={item.key}
-            name={item.name}
-            price={item.price}
-            type={item.type}
-            onPress={this.navigateToDetail.bind(this, item)}
-            onAddComponent={this.addToSpec.bind(this, item)}>
-          </ProductComponent>}
-      />
-    );
   }
 
   // sortProductBy(type) {
@@ -108,6 +84,24 @@ export default class ProductPage extends Component {
     return views;
   }
 
+  renderProducts() {
+    return (
+      <FlatList
+        data={this.state.products}
+        renderItem={({ item }) =>
+          <ProductComponent
+            key={item.key}
+            name={item.name}
+            price={item.price}
+            type={item.type}
+            image={item.image}
+            onPress={this.navigateToDetail.bind(this, item)}
+            onAddComponent={this.addToSpec.bind(this, item)}>
+          </ProductComponent>}
+      />
+    );
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -142,7 +136,7 @@ export default class ProductPage extends Component {
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
-                  <Text style={[local.titleText, {paddingLeft: 6}]}>Products</Text>
+                  <Text style={[local.titleText, { paddingLeft: 6 }]}>Products</Text>
                 </View>
               </View>
               {this.renderProducts()}
