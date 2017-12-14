@@ -96,7 +96,6 @@ export default class AISetupPage extends Component {
       for (let indx = 0; indx < specs.length; indx++) {
         let obj = specs[indx];
         let order = indx + 1;
-        // console.log(obj[length - 2].total_score);
         views.push(
           <SpecComponent
             key={indx}
@@ -109,11 +108,8 @@ export default class AISetupPage extends Component {
       }
 
       this.setState({
-        specViews: views
-      });
-
-      this.setState({
         isLoading: false,
+        specViews: views
       });
 
     } catch (error) {

@@ -39,6 +39,7 @@ export default class SelectTypePage extends Component {
       recommends: [],
       buildingIDs: [],
       isLoading: false,
+      recommendViews: null
     };
 
     const { navigation } = this.props;
@@ -78,18 +79,33 @@ export default class SelectTypePage extends Component {
 
       var url = 'http://52.221.73.154:1521/price/' + this.state.budget + '/[' + this.state.buildingIDs.toString() + ']';
 
-      console.log(url);
       var response = await fetch(url);
       var responseJson = await response.json();
 
-      console.log(responseJson);
+      let specs = responseJson;
+
+      let views = [];
+      for (let indx = 0; indx < specs.length; indx++) {
+        let obj = specs[indx];
+        let order = indx + 1;
+        views.push(
+          <SpecComponent
+            key={indx}
+            priority={order}
+            point={obj[obj.length - 2].total_score}
+            price={obj[obj.length - 1].total_price}
+            onPress={this.navigateToSpec.bind(this, obj)}>
+          </SpecComponent>
+        );
+      }
 
       this.setState({
-        isLoading: false
+        isLoading: false,
+        recommendViews: views
       });
 
     } catch (error) {
-      alert(error);
+      console.log(error);
       this.setState({
         isLoading: false
       });
@@ -167,21 +183,27 @@ export default class SelectTypePage extends Component {
         buildingID
       );
 
-      console.log(buildingIDs);
+      this.setState({
+        buildingIDs: buildingIDs
+      });
     }
 
     else {
       for (let i in buildings) {
         if (buildings[i].productType == product.productType) {
           buildings[i] = product;
+          this.setState({
+            buildings: buildings
+          });
         }
       }
 
       for (let i in buildingIDs) {
         if (buildingIDs[i] == product.productType.toLowerCase() + '_' + product.id) {
           buildingIDs[i] = product.productType.toLowerCase() + '_' + product.id;
-
-          console.log(buildingIDs);
+          this.setState({
+            buildingIDs: buildingIDs
+          });
         }
       }
     }
@@ -214,12 +236,17 @@ export default class SelectTypePage extends Component {
   }
 
   componentDidMount() {
+    this.initSpecViews();
     this.loadBuildingSpec();
   }
 
   componentWillReceiveProps(nextProps) {
     let product = nextProps.newProduct;
     this.addNewProduct(product);
+  }
+
+  navigateToSpec(dataToPass) {
+    this.navigator.navigate('Spec', { spec: dataToPass });
   }
 
   navigateToDetail(dataToPass) {
@@ -257,20 +284,18 @@ export default class SelectTypePage extends Component {
     }
   }
 
-  renderRecommendSpecs() {
-
-    if (this.state.recommends.length > 0) {
-      return this.recommendViews;
-    } else {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
-          <Text style={{ fontSize: 16, color: Color.primaryText }}>
-            Click the 'Generate' button to show recommended specs
+  initSpecViews() {
+    let view = (
+      <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
+        <Text style={{ fontSize: 16, color: Color.primaryText }}>
+          Click the 'Generate' button to show recommended specs
           </Text>
-        </View>
-      );
-    }
+      </View>
+    );
 
+    this.setState({
+      recommendViews: view
+    });
   }
 
   renderBudgetModal() {
@@ -384,7 +409,7 @@ export default class SelectTypePage extends Component {
               </View>
 
               <View style={{ padding: 5 }}>
-                {this.renderRecommendSpecs()}
+                {this.state.recommendViews}
               </View>
 
             </View>
