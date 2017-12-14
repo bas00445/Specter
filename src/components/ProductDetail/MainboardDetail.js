@@ -31,36 +31,32 @@ export default class MainboardDetail extends Component {
         <Text style={local.detailText}>{this.props.product.model}</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Generation:</Text>
-        <Text style={local.detailText}>{this.props.product.generation}</Text>
-      </View>
-      <View style={local.rowContent}>
-        <Text style={local.primaryText}>Core:</Text>
-        <Text style={local.detailText}>{this.props.product.core}</Text>
-      </View>
-      <View style={local.rowContent}>
-        <Text style={local.primaryText}>Thread:</Text>
-        <Text style={local.detailText}>{this.props.product.thread}</Text>
-      </View>
-      <View style={local.rowContent}>
-        <Text style={local.primaryText}>Turbo:</Text>
-        <Text style={local.detailText}>{this.props.product.turbo} Ghz</Text>
-      </View>
-      <View style={local.rowContent}>
-        <Text style={local.primaryText}>Frequency:</Text>
-        <Text style={local.detailText}>{this.props.product.frequency} Ghz</Text>
-      </View>
-      <View style={local.rowContent}>
-        <Text style={local.primaryText}>Cache L3:</Text>
-        <Text style={local.detailText}>{this.props.product.cache_l3}</Text>
-      </View>
-      <View style={local.rowContent}>
         <Text style={local.primaryText}>Socket:</Text>
         <Text style={local.detailText}>{this.props.product.socket}</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Power Peak:</Text>
-        <Text style={local.detailText}>{this.props.product.powerpeak} Watt</Text>
+        <Text style={local.primaryText}>Chipset:</Text>
+        <Text style={local.detailText}>{this.props.product.chipset}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>CPU generation:</Text>
+        <Text style={local.detailText}>{this.props.product.cpu_generation}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>CPU model:</Text>
+        <Text style={local.detailText}>{this.props.product.cpu_model}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>RAM slot:</Text>
+        <Text style={local.detailText}>{this.props.product.ram_slot}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>RAM type:</Text>
+        <Text style={local.detailText}>{this.props.product.ram_type}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>RAM capacity:</Text>
+        <Text style={local.detailText}>{this.props.product.ram_capacity}</Text>
       </View>
     </View>);
   }

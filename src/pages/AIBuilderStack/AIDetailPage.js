@@ -30,10 +30,10 @@ export default class AIDetailPage extends Component {
       case 'CPU': {
         this.previewImg = require('../../assets/images/ryzen3.png');
       } break;
-      case 'Memory': {
+      case 'RAM': {
         this.previewImg = require('../../assets/images/corsair.jpg');
       } break;
-      case 'VGA card': {
+      case 'VGA': {
         this.previewImg = require('../../assets/images/1050.jpg');
       } break;
       case 'Mainboard': {

@@ -6,7 +6,6 @@ import PageHeader from '../../components/PageHeader';
 import ProductFilter from '../../components/ProductFilter';
 import ProductComponent from '../../components/ProductComponent';
 import RecommendComponent from '../../components/RecommendComponent';
-import { cpus } from '../../mockupData/cpus';
 import {
   StyleSheet,
   Text,
@@ -21,9 +20,6 @@ var Style = Theme.Style;
 var Color = Theme.Color;
 
 export default class ProductPage extends Component {
-  static navigationOptions = {
-    title: 'Product',
-  };
 
   constructor(props) {
     super(props);
@@ -34,7 +30,7 @@ export default class ProductPage extends Component {
         { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 5999, name: "Asus GTX 1050Ti" },
         { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 6000, name: "Ryzen 3 1200" },
       ],
-      products: cpus,
+      products: [],
     }
 
     const { navigation } = this.props;
@@ -51,17 +47,32 @@ export default class ProductPage extends Component {
     this.navigator.dispatch(paramsAction);
   }
 
-  requestProducts() {
-    this.setState({
-      isLoading: true
-    });
+  requestRecommends() {
 
-    setTimeout(() => {
+  }
+
+  async requestProducts() {
+    try {
+      this.setState({
+        isLoading: true
+      });
+
+      let response = await fetch('http://52.221.73.154:1521/' + this.props.productType.toLowerCase());
+      let responseJson = await response.json();
+      console.log(response);
+
+      this.setState({
+        products: responseJson
+      });
+
       this.setState({
         isLoading: false
-      })
-    }, 2000);
-    
+      });
+
+    } catch (error) {
+      alert(error);
+    }
+
     // this.setState({
     //   products: responseProducts
     // })
@@ -69,6 +80,7 @@ export default class ProductPage extends Component {
 
   componentDidMount() {
     this.requestProducts();
+    this.requestRecommends();
   }
 
   navigateToDetail(dataToPass) {
@@ -93,12 +105,6 @@ export default class ProductPage extends Component {
   renderProducts() {
     return (
       <FlatList
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.isLoading}
-            tintColor={Color.secondary}
-            colors={[Color.secondary]} />
-        }
         data={this.state.products}
         renderItem={({ item }) =>
           <ProductComponent
@@ -118,6 +124,8 @@ export default class ProductPage extends Component {
     return (
       <View style={{ flex: 1 }}>
         <PageHeader headerText={this.props.productType} navigation={this.navigator} type={"stack"}></PageHeader>
+        <Spinner visible={this.state.isLoading} textContent={""} color={Color.secondary}>
+        </Spinner>
         <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
             <View style={Style.card}>
@@ -144,7 +152,7 @@ export default class ProductPage extends Component {
 
             {/* <ProductFilter onSort={(type) => { this.sortProductBy(type) }}></ProductFilter> */}
 
-            <View style={[Style.card, {marginBottom: 10}]}>
+            <View style={[Style.card, { marginBottom: 10 }]}>
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.title}>

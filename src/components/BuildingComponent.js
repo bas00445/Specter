@@ -18,28 +18,7 @@ export default class BuildingComponent extends Component {
     super(props);
   }
 
-  updatePreviewImage() {
-    switch (this.props.type) {
-      case 'CPU': {
-        this.previewImg = require('../assets/images/ryzen3.png');
-      } break;
-      case 'Memory': {
-        this.previewImg = require('../assets/images/corsair.jpg');
-      } break;
-      case 'VGA card': {
-        this.previewImg = require('../assets/images/1050.jpg');
-      } break;
-      case 'Mainboard': {
-        this.previewImg = require('../assets/images/mainboard.jpg');
-      } break;
-      case 'Storage': {
-        this.previewImg = require('../assets/images/storage.png');
-      } break;
-    }
-  }
-
   render() {
-    this.updatePreviewImage();
     return (
       <View style={local.container}>
         <View style={local.imageContainer}>

@@ -139,8 +139,6 @@ export default class SelectTypePage extends Component {
       }
     }
 
-
-
     // Save building spec
     try {
       await AsyncStorage.setItem('buildingSpec', JSON.stringify(this.state.buildings));
@@ -298,16 +296,16 @@ export default class SelectTypePage extends Component {
               <View>
                 <CategoryComponent text={"CPU"}
                   onPress={this.navigateToProduct.bind(this, "CPU")}></CategoryComponent>
-                <CategoryComponent text={"VGA card"}
-                  onPress={this.navigateToProduct.bind(this, "VGA card")}></CategoryComponent>
-                <CategoryComponent text={"Memory"}
-                  onPress={this.navigateToProduct.bind(this, "Memory")}></CategoryComponent>
+                <CategoryComponent text={"VGA"}
+                  onPress={this.navigateToProduct.bind(this, "VGA")}></CategoryComponent>
+                <CategoryComponent text={"RAM"}
+                  onPress={this.navigateToProduct.bind(this, "RAM")}></CategoryComponent>
                 <CategoryComponent text={"Mainboard"}
                   onPress={this.navigateToProduct.bind(this, "Mainboard")}></CategoryComponent>
                 <CategoryComponent text={"SSD"}
                   onPress={this.navigateToProduct.bind(this, "SSD")}></CategoryComponent>
                 <CategoryComponent text={"Harddisk"}
-                  onPress={this.navigateToProduct.bind(this, "SSD")}></CategoryComponent>
+                  onPress={this.navigateToProduct.bind(this, "Harddisk")}></CategoryComponent>
               </View>
 
             </View>

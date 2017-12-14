@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation'
 import PageHeader from '../../components/PageHeader';
 import CpuDetail from '../../components/ProductDetail/CpuDetail';
 import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
-import MemoryDetail from '../../components/ProductDetail/MemoryDetail';
+import RamDetail from '../../components/ProductDetail/RamDetail';
 import SsdDetail from '../../components/ProductDetail/SsdDetail';
 import VgaDetail from '../../components/ProductDetail/VgaDetail';
 import {
@@ -46,7 +46,7 @@ export default class DetailPage extends Component {
           <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
         );
       } break;
-      case 'VGA card': {
+      case 'VGA': {
         return (
           <VgaDetail productType={this.props.productType} product={this.props.product}></VgaDetail>
         );
@@ -56,9 +56,9 @@ export default class DetailPage extends Component {
           <MainboardDetail productType={this.props.productType} product={this.props.product}></MainboardDetail>
         );
       } break;
-      case 'Memory': {
+      case 'RAM': {
         return (
-          <MemoryDetail productType={this.props.productType} product={this.props.product}></MemoryDetail>
+          <RamDetail productType={this.props.productType} product={this.props.product}></RamDetail>
         );
       } break;
       case 'SSD': {

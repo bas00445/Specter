@@ -25,8 +25,8 @@ export default class AISpecPage extends Component {
     this.state = {
       products: [
         { imgUrl: 'http://', type: 'CPU', name: 'Ryzen 1', price: 3000, key: '0' },
-        { imgUrl: 'http://', type: 'VGA card', name: 'Ryzen 2', price: 2500, key: '1' },
-        { imgUrl: 'http://', type: 'Memory', name: 'Ryzen 3', price: 5555, key: '2' },
+        { imgUrl: 'http://', type: 'VGA', name: 'Ryzen 2', price: 2500, key: '1' },
+        { imgUrl: 'http://', type: 'RAM', name: 'Ryzen 3', price: 5555, key: '2' },
         { imgUrl: 'http://', type: 'Mainboard', name: 'Ryzen 4', price: 7777, key: '3' },
         { imgUrl: 'http://', type: 'Storage', name: 'Ryzen 5', price: 4444, key: '4' },
       ],
@@ -69,7 +69,7 @@ export default class AISpecPage extends Component {
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
                   <View style={{ paddingLeft: 5 }}>
-                    <Text style={local.titleText}>VGA card</Text>
+                    <Text style={local.titleText}>VGA</Text>
                   </View>
                 </View>
               </View>
@@ -88,7 +88,7 @@ export default class AISpecPage extends Component {
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
                   <View style={{ paddingLeft: 5 }}>
-                    <Text style={local.titleText}>Memory</Text>
+                    <Text style={local.titleText}>RAM</Text>
                   </View>
                 </View>
               </View>

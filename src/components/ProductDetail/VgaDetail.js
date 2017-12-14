@@ -44,11 +44,11 @@ export default class VgaDetail extends Component {
       </View>
       <View style={local.rowContent}>
         <Text style={local.primaryText}>GPU Speed:</Text>
-        <Text style={local.detailText}>{this.props.product.gpu_speed} Ghz</Text>
+        <Text style={local.detailText}>{this.props.product.gpu_speed} Mhz</Text>
       </View>
       <View style={local.rowContent}>
         <Text style={local.primaryText}>VRAM Speed:</Text>
-        <Text style={local.detailText}>{this.props.product.ram_speed} Ghz</Text>
+        <Text style={local.detailText}>{this.props.product.ram_speed} Mhz</Text>
       </View>
       <View style={local.rowContent}>
         <Text style={local.primaryText}>VRAM Capacity</Text>

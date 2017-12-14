@@ -28,15 +28,11 @@ export default class SsdDetail extends Component {
       </View>
       <View style={local.rowContent}>
         <Text style={local.primaryText}>Capacity:</Text>
-        <Text style={local.detailText}>{this.props.product.capacity}</Text>
+        <Text style={local.detailText}>{this.props.product.capacity} GB</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Read speed:</Text>
-        <Text style={local.detailText}>{this.props.product.read_speed}</Text>
-      </View>
-      <View style={local.rowContent}>
-        <Text style={local.primaryText}>Write speed:</Text>
-        <Text style={local.detailText}>{this.props.product.write_speed}</Text>
+        <Text style={local.primaryText}>Speed:</Text>
+        <Text style={local.detailText}>{this.props.product.generation} RPM</Text>
       </View>
     </View>);
   }

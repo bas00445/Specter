@@ -20,10 +20,10 @@ export default class AIProductComponent extends Component {
       case 'CPU': {
         this.previewImg = require('../../assets/images/ryzen3.png');
       } break;
-      case 'VGA card': {
+      case 'VGA': {
         this.previewImg = require('../../assets/images/1050.jpg');
       } break;
-      case 'Memory': {
+      case 'RAM': {
         this.previewImg = require('../../assets/images/corsair.jpg');
       } break;
       case 'Mainboard': {
