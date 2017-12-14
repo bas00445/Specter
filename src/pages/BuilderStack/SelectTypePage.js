@@ -107,23 +107,22 @@ export default class SelectTypePage extends Component {
     }
   }
 
-  isNewProduct(productType) {
+  isNewProduct(product) {
     let buildings = this.state.buildings;
     for (let i in buildings) {
-      if (buildings[i].productType == productType) {
+      if (buildings[i].productType == product.productType) {
         return false;
       }
     }
     return true;
   }
 
-  async addNewProduct(product, productType) {
+  async addNewProduct(product) {
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
 
     let buildings = this.state.buildings;
 
-    if (this.isNewProduct(productType)) {
-      product['productType'] = productType;
+    if (this.isNewProduct(product)) {
       this.state.buildings.push(
         product
       );
@@ -131,7 +130,7 @@ export default class SelectTypePage extends Component {
 
     else {
       for (let i in buildings) {
-        if (buildings[i].productType == productType) {
+        if (buildings[i].productType == product.productType) {
           buildings[i] = product;
         }
       }
@@ -167,12 +166,11 @@ export default class SelectTypePage extends Component {
 
   componentWillReceiveProps(nextProps) {
     let product = nextProps.newProduct;
-    let productType = nextProps.productType;
-    this.addNewProduct(product, productType);
+    this.addNewProduct(product);
   }
 
   navigateToDetail(dataToPass) {
-    this.navigator.navigate("Detail", { product: dataToPass, productType: dataToPass.productType });
+    this.navigator.navigate("Detail", { product: dataToPass });
   }
 
   navigateToProduct(dataToPass) {

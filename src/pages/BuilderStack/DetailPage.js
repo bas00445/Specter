@@ -17,7 +17,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-
 var Style = Theme.Style;
 var Color = Theme.Color;
 
@@ -41,35 +40,35 @@ export default class DetailPage extends Component {
   }
 
   renderProductDetail() {
-    switch (this.props.productType) {
+    switch (this.props.product.productType) {
       case 'CPU': {
         return (
-          <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
+          <CpuDetail product={this.props.product}></CpuDetail>
         );
       } break;
       case 'VGA': {
         return (
-          <VgaDetail productType={this.props.productType} product={this.props.product}></VgaDetail>
+          <VgaDetail product={this.props.product}></VgaDetail>
         );
       } break;
       case 'Mainboard': {
         return (
-          <MainboardDetail productType={this.props.productType} product={this.props.product}></MainboardDetail>
+          <MainboardDetail product={this.props.product}></MainboardDetail>
         );
       } break;
       case 'RAM': {
         return (
-          <RamDetail productType={this.props.productType} product={this.props.product}></RamDetail>
+          <RamDetail product={this.props.product}></RamDetail>
         );
       } break;
       case 'SSD': {
         return (
-          <SsdDetail productType={this.props.productType} product={this.props.product}></SsdDetail>
+          <SsdDetail product={this.props.product}></SsdDetail>
         );
       } break;
       case 'Harddisk': {
         return (
-          <HarddiskDetail productType={this.props.productType} product={this.props.product}></HarddiskDetail>
+          <HarddiskDetail product={this.props.product}></HarddiskDetail>
         );
       } break;
     }

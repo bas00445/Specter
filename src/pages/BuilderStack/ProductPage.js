@@ -61,6 +61,10 @@ export default class ProductPage extends Component {
       let response = await fetch('http://52.221.73.154:1521/' + this.props.productType.toLowerCase());
       let responseJson = await response.json();
 
+      for (let obj of responseJson) {
+        obj['productType'] = this.props.productType;
+      }
+
       this.setState({
         products: responseJson
       });
@@ -88,7 +92,7 @@ export default class ProductPage extends Component {
   }
 
   navigateToDetail(dataToPass) {
-    this.navigator.navigate("Detail", { product: dataToPass, productType: this.props.productType });
+    this.navigator.navigate("Detail", { product: dataToPass });
   }
 
   renderRecommends() {
@@ -115,7 +119,7 @@ export default class ProductPage extends Component {
             key={item.key}
             name={item.name}
             price={item.price}
-            type={this.props.productType}
+            type={item.productType}
             image={item.image}
             onPress={this.navigateToDetail.bind(this, item)}
             onAddComponent={this.addToSpec.bind(this, item)}>
