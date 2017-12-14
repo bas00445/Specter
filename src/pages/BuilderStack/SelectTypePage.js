@@ -165,15 +165,6 @@ export default class SelectTypePage extends Component {
     }
   }
 
-  async saveToFavorite() {
-    // Save building spec
-    try {
-      await AsyncStorage.setItem('favoriteSpec', JSON.stringify(this.state.buildings));
-    } catch (error) {
-      alert(error);
-    }
-  }
-
   componentDidMount() {
     this.loadBuildingSpec();
   }
@@ -188,7 +179,11 @@ export default class SelectTypePage extends Component {
   }
 
   navigateToProduct(dataToPass) {
-    this.navigator.navigate("Product", { productType: dataToPass });
+    this.navigator.navigate("Product", {
+      productType: dataToPass,
+      buildings: this.state.buildings,
+      budget: this.state.budget
+    });
   }
 
   renderBuildings() {
@@ -292,7 +287,7 @@ export default class SelectTypePage extends Component {
               </View>
             </View>
 
-            <View style={[Style.card]}>
+            <View style={[Style.card, { marginBottom: 10 }]}>
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.title}>

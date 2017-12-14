@@ -30,9 +30,9 @@ export default class ProductPage extends Component {
     this.state = {
       isLoading: false,
       recommends: [
-        { imgUrl: 'http://', type: this.props.productType, price: 1500, name: "Corsair" },
-        { imgUrl: 'http://', type: this.props.productType, price: 5999, name: "Asus GTX 1050Ti" },
-        { imgUrl: 'http://', type: this.props.productType, price: 6000, name: "Ryzen 3 1200" },
+        { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 1500, name: "Corsair" },
+        { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 5999, name: "Asus GTX 1050Ti" },
+        { image: 'https://www.jib.co.th/img_master/product/original/20170904085957_2.png', type: this.props.productType, price: 6000, name: "Ryzen 3 1200" },
       ],
       products: cpus,
     }
@@ -81,7 +81,7 @@ export default class ProductPage extends Component {
     for (let indx in recommends) {
       let obj = recommends[indx];
       views.push(
-        <RecommendComponent type={obj.type} price={obj.price}
+        <RecommendComponent type={obj.type} price={obj.price} product={obj} image={obj.image}
           name={obj.name} key={indx} onPress={this.navigateToDetail.bind(this, obj)}
           onAddComponent={this.addToSpec.bind(this, obj)}>
         </RecommendComponent>
@@ -144,7 +144,7 @@ export default class ProductPage extends Component {
 
             {/* <ProductFilter onSort={(type) => { this.sortProductBy(type) }}></ProductFilter> */}
 
-            <View style={Style.card}>
+            <View style={[Style.card, {marginBottom: 10}]}>
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.title}>

@@ -102,7 +102,7 @@ export default class DetailPage extends Component {
               </View>
             </View>
 
-            <View style={Style.card}>
+            <View style={[Style.card, {marginBottom: 10}]}>
               <View style={Style.colContent}>
                 <View style={Style.indicator}></View>
                 <View style={local.normalTitle}>

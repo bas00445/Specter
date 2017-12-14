@@ -16,23 +16,6 @@ export default class RecommendComponent extends Component {
 
   constructor(props) {
     super(props);
-    switch (this.props.type) {
-      case 'CPU': {
-        this.previewImg = require('../assets/images/ryzen3.png');
-      } break;
-      case 'Memory': {
-        this.previewImg = require('../assets/images/corsair.jpg');
-      } break;
-      case 'VGA card': {
-        this.previewImg = require('../assets/images/1050.jpg');
-      } break;
-      case 'Mainboard': {
-        this.previewImg = require('../assets/images/mainboard.jpg');
-      } break;
-      case 'Storage': {
-        this.previewImg = require('../assets/images/storage.png');
-      } break;
-    }
   }
 
   render() {
@@ -40,7 +23,7 @@ export default class RecommendComponent extends Component {
       <View style={local.container}>
         <View style={local.imageContainer}>
           <Image style={local.image}
-            source={this.previewImg}>
+            source={{ uri: this.props.image }}>
           </Image>
         </View>
         <TouchableOpacity onPress={this.props.onPress} style={local.detailContainer}>
