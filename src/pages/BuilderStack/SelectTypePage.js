@@ -139,6 +139,12 @@ export default class SelectTypePage extends Component {
   }
 
   async addNewProduct(product) {
+
+    if (this.state.cost + product.price > this.state.budget) {
+      alert('Your budget is not enough !');
+      return;
+    }
+
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
 
     let buildings = this.state.buildings;
