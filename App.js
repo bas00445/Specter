@@ -59,15 +59,14 @@ const AIBuilderStack = StackNavigator({
   })
 
 const App = DrawerNavigator({
-  Builder: { screen: BuilderStack },
   AIBuilder: { screen: AIBuilderStack },
-  Favorite: { screen: paramsToProps(FavoritePage) },
+  Builder: { screen: BuilderStack },
   About: { screen: paramsToProps(AboutPage) }
 },
   {
     drawerWidth: 250,
     drawerPosition: 'left',
-    initialRouteName: 'Builder',
+    initialRouteName: 'AIBuilder',
     contentComponent: props => <DrawerComponent {...props}></DrawerComponent>
   });
 

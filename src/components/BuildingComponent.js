@@ -34,7 +34,7 @@ export default class BuildingComponent extends Component {
             </TouchableOpacity>
           </View>
           <View style={[Style.centerY, { flex: 2 }]}>
-            <Text style={local.componentTitleText}>{this.props.product.type}</Text>
+            <Text style={local.componentTitleText}>{this.props.product.productType}</Text>
           </View>
           <View style={[Style.centerY, { flex: 1 }]}>
             <Text numberOfLines={2} ellipsizeMode={"tail"}

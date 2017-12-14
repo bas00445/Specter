@@ -36,6 +36,7 @@ export default class SelectTypePage extends Component {
       showBudgetModal: false,
       buildings: [],
       recommends: [],
+      buildingIDs: [],
     };
 
     const { navigation } = this.props;
@@ -141,11 +142,20 @@ export default class SelectTypePage extends Component {
     ToastAndroid.show('Add ' + product.name, ToastAndroid.SHORT);
 
     let buildings = this.state.buildings;
+    let buildingIDs = this.state.buildingIDs;
 
     if (this.isNewProduct(product)) {
       this.state.buildings.push(
         product
       );
+
+      let buildingID = product.productType.toLowerCase() + '_' + product.id;
+
+      buildingIDs.push(
+        buildingID
+      );
+
+      console.log(buildingIDs);
     }
 
     else {
@@ -237,7 +247,7 @@ export default class SelectTypePage extends Component {
 
       let response = await fetch('http://52.221.73.154:1521/');
       let responseJson = await response.json();
-        
+
       const views = [];
       for (let indx in recommends) {
         let obj = recommends[indx];
@@ -265,7 +275,7 @@ export default class SelectTypePage extends Component {
       return (
         <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
           <Text style={{ fontSize: 16, color: Color.primaryText }}>
-            Empty
+            Click the 'Generate' button to show recommended specs
           </Text>
         </View>
       );

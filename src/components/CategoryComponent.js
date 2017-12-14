@@ -47,7 +47,7 @@ export default class CategoryComponent extends Component {
   render() {
     return (
       <TouchableOpacity onPress={this.props.onPress}>
-        <View style={[Style.colContent, {justifyContent: 'center', paddingVertical: 5, paddingHorizontal: 10}]}>
+        <View style={[Style.colContent, {justifyContent: 'center', paddingVertical: 10, paddingHorizontal: 10}]}>
           <View style={{flex: 1, alignItems: 'flex-start'}}>
             <View style={[Style.colContent, {justifyContent: 'center', alignItems: 'center'}]}>
                 <View >
