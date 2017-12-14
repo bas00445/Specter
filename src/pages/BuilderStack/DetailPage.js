@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Theme from '../../styles/Global';
 import { NavigationActions } from 'react-navigation'
 import PageHeader from '../../components/PageHeader';
-import CpuDetail from '../../components/ProductDetail/CpuDetail'; 
+import CpuDetail from '../../components/ProductDetail/CpuDetail';
+import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
+import MemoryDetail from '../../components/ProductDetail/MemoryDetail';
+import StorageDetail from '../../components/ProductDetail/StorageDetail';
+import VgaDetail from '../../components/ProductDetail/VgaDetail';
 import {
   StyleSheet,
   Text,
@@ -39,7 +43,27 @@ export default class DetailPage extends Component {
     switch (this.props.productType) {
       case 'CPU': {
         return (
-          <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>   
+          <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
+        );
+      } break;
+      case 'Vga card': {
+        return (
+          <VgaDetail productType={this.props.productType} product={this.props.product}></VgaDetail>
+        );
+      } break;
+      case 'Mainboard': {
+        return (
+          <MainboardDetail productType={this.props.productType} product={this.props.product}></MainboardDetail>
+        );
+      } break;
+      case 'Memory': {
+        return (
+          <MemoryDetail productType={this.props.productType} product={this.props.product}></MemoryDetail>
+        );
+      } break;
+      case 'Storage': {
+        return (
+          <StorageDetail productType={this.props.productType} product={this.props.product}></StorageDetail>
         );
       } break;
     }
@@ -48,7 +72,7 @@ export default class DetailPage extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PageHeader headerText={"Product Detail"} navigation={this.navigator} type={"stack"}></PageHeader>
+        <PageHeader headerText={"Product"} navigation={this.navigator} type={"stack"}></PageHeader>
         <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
 
@@ -149,8 +173,8 @@ var local = StyleSheet.create({
     fontWeight: 'bold',
     color: Color.primaryText
   },
-  detailContainer: { 
+  detailContainer: {
     paddingHorizontal: 15,
-    paddingVertical: 10 
+    paddingVertical: 10
   }
 });

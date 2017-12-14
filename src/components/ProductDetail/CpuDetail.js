@@ -17,53 +17,52 @@ export default class CpuDetail extends Component {
   constructor(props) {
     super(props);
 
-    switch (this.props.productType) {
-      case 'CPU': {
-        this.productDetail = (<View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Brand:</Text>
-            <Text style={local.detailText}>{this.props.product.brand}</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Model:</Text>
-            <Text style={local.detailText}>{this.props.product.model}</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Generation:</Text>
-            <Text style={local.detailText}>{this.props.product.generation}</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Core:</Text>
-            <Text style={local.detailText}>{this.props.product.core}</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Thread:</Text>
-            <Text style={local.detailText}>{this.props.product.thread}</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Turbo:</Text>
-            <Text style={local.detailText}>{this.props.product.turbo} Ghz</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Frequency:</Text>
-            <Text style={local.detailText}>{this.props.product.frequency} Ghz</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Cache L3:</Text>
-            <Text style={local.detailText}>{this.props.product.cache_l3}</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Socket:</Text>
-            <Text style={local.detailText}>{this.props.product.socket}</Text>
-          </View>
-          <View style={local.rowContent}>
-            <Text style={local.primaryText}>Power Peak:</Text>
-            <Text style={local.detailText}>{this.props.product.powerpeak}</Text>
-          </View>
-        </View>);
-      } break;
-    }
+    this.initView();
+  }
 
+  initView() {
+    this.productDetail = (<View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Brand:</Text>
+        <Text style={local.detailText}>{this.props.product.brand}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Model:</Text>
+        <Text style={local.detailText}>{this.props.product.model}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Generation:</Text>
+        <Text style={local.detailText}>{this.props.product.generation}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Core:</Text>
+        <Text style={local.detailText}>{this.props.product.core}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Thread:</Text>
+        <Text style={local.detailText}>{this.props.product.thread}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Turbo:</Text>
+        <Text style={local.detailText}>{this.props.product.turbo} Ghz</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Frequency:</Text>
+        <Text style={local.detailText}>{this.props.product.frequency} Ghz</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Cache L3:</Text>
+        <Text style={local.detailText}>{this.props.product.cache_l3}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Socket:</Text>
+        <Text style={local.detailText}>{this.props.product.socket}</Text>
+      </View>
+      <View style={local.rowContent}>
+        <Text style={local.primaryText}>Power Peak:</Text>
+        <Text style={local.detailText}>{this.props.product.powerpeak} Watt</Text>
+      </View>
+    </View>);
   }
 
   render() {
