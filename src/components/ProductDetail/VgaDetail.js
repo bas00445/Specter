@@ -27,40 +27,40 @@ export default class VgaDetail extends Component {
         <Text style={local.detailText}>{this.props.product.brand}</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Model:</Text>
-        <Text style={local.detailText}>{this.props.product.model}</Text>
+        <Text style={local.primaryText}>Engine:</Text>
+        <Text style={local.detailText}>{this.props.product.engine}</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Generation:</Text>
-        <Text style={local.detailText}>{this.props.product.generation}</Text>
+        <Text style={local.primaryText}>Chipset:</Text>
+        <Text style={local.detailText}>{this.props.product.chipset}</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Core:</Text>
-        <Text style={local.detailText}>{this.props.product.core}</Text>
+        <Text style={local.primaryText}>Series:</Text>
+        <Text style={local.detailText}>{this.props.product.series}</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Thread:</Text>
-        <Text style={local.detailText}>{this.props.product.thread}</Text>
+        <Text style={local.primaryText}>Technology:</Text>
+        <Text style={local.detailText}>{this.props.product.technology} nm</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Turbo:</Text>
-        <Text style={local.detailText}>{this.props.product.turbo} Ghz</Text>
+        <Text style={local.primaryText}>GPU Speed:</Text>
+        <Text style={local.detailText}>{this.props.product.gpu_speed} Ghz</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Frequency:</Text>
-        <Text style={local.detailText}>{this.props.product.frequency} Ghz</Text>
+        <Text style={local.primaryText}>VRAM Speed:</Text>
+        <Text style={local.detailText}>{this.props.product.ram_speed} Ghz</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Cache L3:</Text>
-        <Text style={local.detailText}>{this.props.product.cache_l3}</Text>
+        <Text style={local.primaryText}>VRAM Capacity</Text>
+        <Text style={local.detailText}>{this.props.product.ram_capacity} GB</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Socket:</Text>
-        <Text style={local.detailText}>{this.props.product.socket}</Text>
+        <Text style={local.primaryText}>VRAM Type:</Text>
+        <Text style={local.detailText}>{this.props.product.ram_type}</Text>
       </View>
       <View style={local.rowContent}>
-        <Text style={local.primaryText}>Power Peak:</Text>
-        <Text style={local.detailText}>{this.props.product.powerpeak} Watt</Text>
+        <Text style={local.primaryText}>Bandwidth:</Text>
+        <Text style={local.detailText}>{this.props.product.bus_width} GB/s</Text>
       </View>
     </View>);
   }

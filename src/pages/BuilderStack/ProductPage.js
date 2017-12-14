@@ -37,7 +37,7 @@ export default class ProductPage extends Component {
       products: cpus,
     }
 
-    const { navigation } = this.props; // pass down navigation to PageHeader
+    const { navigation } = this.props;
     this.navigator = navigation;
   }
 
@@ -51,22 +51,28 @@ export default class ProductPage extends Component {
     this.navigator.dispatch(paramsAction);
   }
 
+  requestProducts() {
+    this.setState({
+      isLoading: true
+    });
+
+    setTimeout(() => {
+      this.setState({
+        isLoading: false
+      })
+    }, 2000);
+    
+    // this.setState({
+    //   products: responseProducts
+    // })
+  }
+
   componentDidMount() {
     this.requestProducts();
   }
 
   navigateToDetail(dataToPass) {
     this.navigator.navigate("Detail", { product: dataToPass, productType: this.props.productType });
-  }
-
-  requestProducts() {
-    this.setState({
-      isLoading: true
-    });
-
-    setTimeout(() => {this.setState({
-      isLoading: false
-    })}, 2000);
   }
 
   renderRecommends() {
@@ -90,8 +96,8 @@ export default class ProductPage extends Component {
         refreshControl={
           <RefreshControl
             refreshing={this.state.isLoading}
-            tintColor={Color.secondary} 
-            colors={[Color.secondary]}/>
+            tintColor={Color.secondary}
+            colors={[Color.secondary]} />
         }
         data={this.state.products}
         renderItem={({ item }) =>

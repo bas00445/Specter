@@ -12,7 +12,7 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class StorageDetail extends Component {
+export default class SsdDetail extends Component {
 
   constructor(props) {
     super(props);

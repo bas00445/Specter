@@ -289,15 +289,6 @@ export default class SelectTypePage extends Component {
                   </ScrollView>
                 </View>
 
-                {/* <View style={{ alignItems: 'flex-end', padding: 5 }}>
-                  <TouchableOpacity style={local.primaryButton} onPress={this.saveToFavorite.bind(this)}>
-                    <View style={[Style.colContent, Style.centerVertical]}>
-                      <Image style={local.smallIcon} source={require('../../assets/icons/save.png')}></Image>
-                      <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Save this spec</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View> */}
-
               </View>
             </View>
 
@@ -318,8 +309,10 @@ export default class SelectTypePage extends Component {
                   onPress={this.navigateToProduct.bind(this, "Memory")}></CategoryComponent>
                 <CategoryComponent text={"Mainboard"}
                   onPress={this.navigateToProduct.bind(this, "Mainboard")}></CategoryComponent>
-                <CategoryComponent text={"Storage"}
-                  onPress={this.navigateToProduct.bind(this, "Storage")}></CategoryComponent>
+                <CategoryComponent text={"SSD"}
+                  onPress={this.navigateToProduct.bind(this, "SSD")}></CategoryComponent>
+                <CategoryComponent text={"Harddisk"}
+                  onPress={this.navigateToProduct.bind(this, "SSD")}></CategoryComponent>
               </View>
 
             </View>

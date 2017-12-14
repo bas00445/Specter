@@ -5,7 +5,7 @@ import PageHeader from '../../components/PageHeader';
 import CpuDetail from '../../components/ProductDetail/CpuDetail';
 import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
 import MemoryDetail from '../../components/ProductDetail/MemoryDetail';
-import StorageDetail from '../../components/ProductDetail/StorageDetail';
+import SsdDetail from '../../components/ProductDetail/SsdDetail';
 import VgaDetail from '../../components/ProductDetail/VgaDetail';
 import {
   StyleSheet,
@@ -46,7 +46,7 @@ export default class DetailPage extends Component {
           <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
         );
       } break;
-      case 'Vga card': {
+      case 'VGA card': {
         return (
           <VgaDetail productType={this.props.productType} product={this.props.product}></VgaDetail>
         );
@@ -61,9 +61,9 @@ export default class DetailPage extends Component {
           <MemoryDetail productType={this.props.productType} product={this.props.product}></MemoryDetail>
         );
       } break;
-      case 'Storage': {
+      case 'SSD': {
         return (
-          <StorageDetail productType={this.props.productType} product={this.props.product}></StorageDetail>
+          <SsdDetail productType={this.props.productType} product={this.props.product}></SsdDetail>
         );
       } break;
     }

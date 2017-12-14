@@ -29,7 +29,10 @@ export default class CategoryComponent extends Component {
             case 'Mainboard': {
                 this.compType = require("../assets/icons/components/mainboard.png");
             } break;
-            case 'Storage': {
+            case 'SSD': {
+                this.compType = require("../assets/icons/components/harddisk.png");
+            } break;
+            case 'Harddisk': {
                 this.compType = require("../assets/icons/components/harddisk.png");
             } break;
             case 'Power supply': {
