@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation'
+import Spinner from 'react-native-loading-spinner-overlay';
 import Theme from '../../styles/Global';
 import PageHeader from '../../components/PageHeader';
 import ProductFilter from '../../components/ProductFilter';
@@ -27,6 +28,7 @@ export default class ProductPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
       recommends: [
         { imgUrl: 'http://', type: this.props.productType, price: 1500, name: "Corsair" },
         { imgUrl: 'http://', type: this.props.productType, price: 5999, name: "Asus GTX 1050Ti" },
@@ -49,12 +51,22 @@ export default class ProductPage extends Component {
     this.navigator.dispatch(paramsAction);
   }
 
+  componentDidMount() {
+    this.requestProducts();
+  }
+
   navigateToDetail(dataToPass) {
     this.navigator.navigate("Detail", { product: dataToPass, productType: this.props.productType });
   }
 
   requestProducts() {
-    alert('Request products');
+    this.setState({
+      isLoading: true
+    });
+
+    setTimeout(() => {this.setState({
+      isLoading: false
+    })}, 2000);
   }
 
   renderRecommends() {
@@ -75,6 +87,12 @@ export default class ProductPage extends Component {
   renderProducts() {
     return (
       <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.isLoading}
+            tintColor={Color.secondary} 
+            colors={[Color.secondary]}/>
+        }
         data={this.state.products}
         renderItem={({ item }) =>
           <ProductComponent
