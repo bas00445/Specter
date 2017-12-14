@@ -103,7 +103,7 @@ var local = StyleSheet.create({
     alignItems: 'center'
   },
   drawerTitle: {
-    height: 125,
+    height: 150,
     backgroundColor: Color.primary,
   },
   drawerTitleText: {
