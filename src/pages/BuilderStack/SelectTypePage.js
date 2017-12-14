@@ -223,7 +223,7 @@ export default class SelectTypePage extends Component {
   }
 
   navigateToDetail(dataToPass) {
-    this.navigator.navigate("Detail", { product: dataToPass });
+    this.navigator.navigate("Detail", { product: dataToPass, showAddButton: false });
   }
 
   navigateToProduct(dataToPass) {

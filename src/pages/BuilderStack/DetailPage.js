@@ -74,6 +74,20 @@ export default class DetailPage extends Component {
     }
   }
 
+  renderAddButton() {
+    if (this.props.showAddButton == false) {
+      return;
+    } else {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+          <TouchableOpacity style={local.addButton} onPress={this.addToSpec.bind(this)}>
+            <Text style={local.addButtonText}>Add to spec</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -97,11 +111,9 @@ export default class DetailPage extends Component {
                       {this.props.product.price} Baht
                     </Text>
                   </View>
-                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <TouchableOpacity style={local.addButton} onPress={this.addToSpec.bind(this)}>
-                      <Text style={local.addButtonText}>Add to spec</Text>
-                    </TouchableOpacity>
-                  </View>
+
+                  {this.renderAddButton()}
+
                 </View>
 
               </View>
