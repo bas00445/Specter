@@ -25,7 +25,10 @@ export default class DrawerComponent extends Component {
   }
 
   navigateTo(pageName) {
-    this.drawerNavigation.navigate(pageName, {incomeData: 'Hello'});
+    if (pageName == 'Quick Builder') {
+      pageName = 'AIBuilder';
+    }
+    this.drawerNavigation.navigate(pageName);
     this.activeDrawerItem(pageName);
   } 
   
@@ -76,7 +79,7 @@ export default class DrawerComponent extends Component {
 
         <View style={[local.drawerItemsContainer, {paddingTop: 10}]}>
           <ScrollView>
-            <DrawerItem iconName={"AI Builder"} onPress={this.navigateTo.bind(this, "AIBuilder")}
+            <DrawerItem iconName={"Quick Builder"} onPress={this.navigateTo.bind(this, "Quick Builder")}
               active={ this.state.currentScreen == 0 }></DrawerItem>
             <DrawerItem iconName={"Builder"} onPress={this.navigateTo.bind(this, "Builder")}
               active={ this.state.currentScreen == 1 }></DrawerItem>

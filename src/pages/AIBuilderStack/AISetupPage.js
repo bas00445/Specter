@@ -74,7 +74,7 @@ export default class AISetupPage extends Component {
     }
 
     this.setState({
-      budget: this.state.tempBudget
+      budget: parseInt(this.state.tempBudget)
     });
     this.setState({
       showBudgetModal: false,
@@ -111,6 +111,8 @@ export default class AISetupPage extends Component {
         isLoading: false,
         specViews: views
       });
+
+      ToastAndroid.show('Updated specs', ToastAndroid.SHORT);
 
     } catch (error) {
       alert('Network error. Please try again');
@@ -166,7 +168,7 @@ export default class AISetupPage extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <PageHeader headerText={"AI Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
+        <PageHeader headerText={"Quick Builder"} navigation={this.navigator} type={"drawer"}></PageHeader>
         <Spinner visible={this.state.isLoading} textContent={""} color={Color.secondary}>
         </Spinner>
         {this.renderBudgetModal()}

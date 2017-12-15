@@ -63,7 +63,7 @@ export default class SelectTypePage extends Component {
     }
 
     this.setState({
-      budget: this.state.tempBudget
+      budget: parseInt(this.state.tempBudget)
     });
     this.setState({
       showBudgetModal: false,
@@ -112,6 +112,9 @@ export default class SelectTypePage extends Component {
         recommendViews: views,
         buildingIDs: ids
       });
+
+      ToastAndroid.show('Updated specs', ToastAndroid.SHORT);
+      
 
     } catch (error) {
       alert('Network error. Please try again');

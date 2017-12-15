@@ -20,7 +20,7 @@ export default class DrawerItem extends Component {
       case 'Builder': {
         this.icon = require('../assets/icons/build.png');
       } break;
-      case 'AI Builder': {
+      case 'Quick Builder': {
         this.icon = require('../assets/icons/ai.png');
       } break;
       case 'Favorite': {
