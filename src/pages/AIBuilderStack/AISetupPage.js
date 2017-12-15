@@ -113,7 +113,7 @@ export default class AISetupPage extends Component {
       });
 
     } catch (error) {
-      alert(error);
+      alert('Network error. Please try again');
       this.setState({
         isLoading: false,
       });

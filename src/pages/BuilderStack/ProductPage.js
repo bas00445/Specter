@@ -12,7 +12,8 @@ import {
   Image,
   ScrollView,
   FlatList,
-  RefreshControl
+  RefreshControl,
+  TouchableOpacity
 } from 'react-native';
 
 var Style = Theme.Style;
@@ -42,10 +43,6 @@ export default class ProductPage extends Component {
     this.navigator.dispatch(paramsAction);
   }
 
-  requestRecommends() {
-
-  }
-
   async requestProducts() {
     try {
       this.setState({
@@ -68,7 +65,7 @@ export default class ProductPage extends Component {
       });
 
     } catch (error) {
-      alert(error);
+      alert('Network error. Please try again');
 
       this.setState({
         isLoading: false
@@ -78,7 +75,6 @@ export default class ProductPage extends Component {
 
   componentDidMount() {
     this.requestProducts();
-    this.requestRecommends();
   }
 
   navigateToDetail(dataToPass) {
@@ -86,21 +82,38 @@ export default class ProductPage extends Component {
   }
 
   renderProducts() {
-    return (
-      <FlatList
-        data={this.state.products}
-        renderItem={({ item }) =>
-          <ProductComponent
-            key={item.key}
-            name={item.name}
-            price={item.price}
-            type={item.productType}
-            image={item.image}
-            onPress={this.navigateToDetail.bind(this, item)}
-            onAddComponent={this.addToSpec.bind(this, item)}>
-          </ProductComponent>}
-      />
-    );
+
+    if (this.state.products.length > 0) {
+      return (
+        <FlatList
+          data={this.state.products}
+          renderItem={({ item }) =>
+            <ProductComponent
+              key={item.key}
+              name={item.name}
+              price={item.price}
+              type={item.productType}
+              image={item.image}
+              onPress={this.navigateToDetail.bind(this, item)}
+              onAddComponent={this.addToSpec.bind(this, item)}>
+            </ProductComponent>}
+        />
+      );
+    } else if (this.state.products.length == 0 && this.state.isLoading == false) {
+      return (
+        <View style={{
+          flex: 1, justifyContent: 'center', alignItems: 'center',
+          paddingVertical: 10, paddingHorizontal: 20
+        }}>
+          <View style={{ marginBottom: 5 }}>
+            <Text style={local.detailText}>Network error. Please try again</Text>
+          </View>
+          <TouchableOpacity style={local.primaryButton} onPress={this.requestProducts.bind(this)}>
+            <Text style={{ color: Color.primaryText, fontWeight: 'bold' }}>Try again</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
   }
 
   render() {
@@ -111,7 +124,7 @@ export default class ProductPage extends Component {
         </Spinner>
         <View style={[Style.container, { paddingBottom: 0 }]}>
           <ScrollView>
-            
+
             {/* <ProductFilter onSort={(type) => { this.sortProductBy(type) }}></ProductFilter> */}
 
             <View style={[Style.card, { marginBottom: 10 }]}>
@@ -158,18 +171,16 @@ var local = StyleSheet.create({
     height: 20,
     tintColor: Color.secondary
   },
-  addButton: {
+  primaryButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 15,
     backgroundColor: Color.secondary,
-    borderRadius: 2,
-    paddingVertical: 2,
-    paddingHorizontal: 10,
-    width: 60,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 2,
   },
-  addButtonText: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: Color.primaryText
+  detailText: {
+    color: Color.primaryText,
+    fontSize: 16,
   }
 });

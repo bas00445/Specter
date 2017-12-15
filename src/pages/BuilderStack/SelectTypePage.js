@@ -126,7 +126,8 @@ export default class SelectTypePage extends Component {
       });
 
     } catch (error) {
-      console.log(error);
+      alert('Network error. Please try again');
+      
       this.setState({
         isLoading: false
       });
