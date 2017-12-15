@@ -93,30 +93,18 @@ export default class SelectTypePage extends Component {
 
       let views = [];
 
-      if (responseJson.length == 0) {
+      for (let indx = 0; indx < specs.length; indx++) {
+        let obj = specs[indx];
+        let order = indx + 1;
         views.push(
-          <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
-            <Text style={{ fontSize: 16, color: Color.primaryText }}>
-              Your preference is not possible. Please try again.
-          </Text>
-          </View>
+          <SpecComponent
+            key={indx}
+            priority={order}
+            point={obj[obj.length - 2].total_score}
+            price={obj[obj.length - 1].total_price}
+            onPress={this.navigateToSpec.bind(this, obj)}>
+          </SpecComponent>
         );
-      }
-
-      else {
-        for (let indx = 0; indx < specs.length; indx++) {
-          let obj = specs[indx];
-          let order = indx + 1;
-          views.push(
-            <SpecComponent
-              key={indx}
-              priority={order}
-              point={obj[obj.length - 2].total_score}
-              price={obj[obj.length - 1].total_price}
-              onPress={this.navigateToSpec.bind(this, obj)}>
-            </SpecComponent>
-          );
-        }
       }
 
       this.setState({
@@ -127,7 +115,6 @@ export default class SelectTypePage extends Component {
 
     } catch (error) {
       alert('Network error. Please try again');
-      
       this.setState({
         isLoading: false
       });

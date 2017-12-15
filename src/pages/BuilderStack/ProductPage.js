@@ -65,8 +65,6 @@ export default class ProductPage extends Component {
       });
 
     } catch (error) {
-      alert('Network error. Please try again');
-
       this.setState({
         isLoading: false
       });
