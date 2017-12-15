@@ -43,7 +43,7 @@ export default class DetailPage extends Component {
     switch (this.props.product.productType) {
       case 'CPU': {
         return (
-          <CpuDetail product={this.props.product}></CpuDetail>
+          <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
         );
       } break;
       case 'VGA': {

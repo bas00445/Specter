@@ -28,7 +28,8 @@ export default class SpecPage extends Component {
   }
 
   navigateToDetail(dataToPass, productType) {
-    this.navigator.navigate("Detail", { product: dataToPass, productType: productType });
+    dataToPass['productType'] = productType;
+    this.navigator.navigate("Detail", { product: dataToPass });
   }
 
   render() {
