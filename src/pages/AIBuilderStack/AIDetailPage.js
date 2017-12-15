@@ -3,7 +3,7 @@ import Theme from '../../styles/Global';
 import { NavigationActions } from 'react-navigation'
 import PageHeader from '../../components/PageHeader';
 import CpuDetail from '../../components/ProductDetail/CpuDetail';
-import VgaDetail from '../../components/ProductDetail/VgaDetail';
+import GPUDetail from '../../components/ProductDetail/GPUDetail';
 import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
 import RamDetail from '../../components/ProductDetail/RamDetail';
 import SsdDetail from '../../components/ProductDetail/SsdDetail';
@@ -37,9 +37,9 @@ export default class AIDetailPage extends Component {
           <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
         );
       } break;
-      case 'VGA': {
+      case 'GPU': {
         return (
-          <VgaDetail productType={this.props.productType} product={this.props.product}></VgaDetail>
+          <GPUDetail productType={this.props.productType} product={this.props.product}></GPUDetail>
         );
       } break;
       case 'Mainboard': {

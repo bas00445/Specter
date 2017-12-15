@@ -60,7 +60,7 @@ export default class AISpecPage extends Component {
                 <View style={Style.indicator}></View>
                 <View style={local.title}>
                   <View style={{ paddingLeft: 5 }}>
-                    <Text style={local.titleText}>VGA</Text>
+                    <Text style={local.titleText}>GPU</Text>
                   </View>
                 </View>
               </View>
@@ -68,7 +68,7 @@ export default class AISpecPage extends Component {
               <AIProductComponent
                 price={this.props.spec[1].price}
                 name={this.props.spec[1].name} image={this.props.spec[1].image}
-                onPress={this.navigateToDetail.bind(this, this.props.spec[1], 'VGA')}>
+                onPress={this.navigateToDetail.bind(this, this.props.spec[1], 'GPU')}>
               </AIProductComponent>
             </View>
 

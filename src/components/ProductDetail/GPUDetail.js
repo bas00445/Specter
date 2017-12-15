@@ -12,7 +12,7 @@ import {
 var Style = Theme.Style;
 var Color = Theme.Color;
 
-export default class VgaDetail extends Component {
+export default class GPUDetail extends Component {
 
   constructor(props) {
     super(props);

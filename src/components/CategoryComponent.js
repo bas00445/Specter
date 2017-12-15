@@ -20,8 +20,8 @@ export default class CategoryComponent extends Component {
             case 'CPU': {
                 this.compType = require("../assets/icons/components/cpu.png");
             } break;
-            case 'VGA': {
-                this.compType = require("../assets/icons/components/vga.png");
+            case 'GPU': {
+                this.compType = require("../assets/icons/components/gpu.png");
             } break;
             case 'RAM': {
                 this.compType = require("../assets/icons/components/memory.png");

@@ -434,8 +434,8 @@ export default class SelectTypePage extends Component {
               <View>
                 <CategoryComponent text={"CPU"}
                   onPress={this.navigateToProduct.bind(this, "CPU")}></CategoryComponent>
-                <CategoryComponent text={"VGA"}
-                  onPress={this.navigateToProduct.bind(this, "VGA")}></CategoryComponent>
+                <CategoryComponent text={"GPU"}
+                  onPress={this.navigateToProduct.bind(this, "GPU")}></CategoryComponent>
                 <CategoryComponent text={"RAM"}
                   onPress={this.navigateToProduct.bind(this, "RAM")}></CategoryComponent>
                 <CategoryComponent text={"Mainboard"}

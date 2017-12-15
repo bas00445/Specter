@@ -7,7 +7,7 @@ import MainboardDetail from '../../components/ProductDetail/MainboardDetail';
 import RamDetail from '../../components/ProductDetail/RamDetail';
 import SsdDetail from '../../components/ProductDetail/SsdDetail';
 import HarddiskDetail from '../../components/ProductDetail/HarddiskDetail';
-import VgaDetail from '../../components/ProductDetail/VgaDetail';
+import GPUDetail from '../../components/ProductDetail/GPUDetail';
 import {
   StyleSheet,
   Text,
@@ -46,9 +46,9 @@ export default class DetailPage extends Component {
           <CpuDetail productType={this.props.productType} product={this.props.product}></CpuDetail>
         );
       } break;
-      case 'VGA': {
+      case 'GPU': {
         return (
-          <VgaDetail product={this.props.product}></VgaDetail>
+          <GPUDetail product={this.props.product}></GPUDetail>
         );
       } break;
       case 'Mainboard': {
