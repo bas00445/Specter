@@ -74,10 +74,17 @@ export default class SelectTypePage extends Component {
     try {
 
       this.setState({
-        isLoading: true
+        isLoading: true,
+        buildingID: []
       });
 
-      var url = 'http://52.221.73.154:1521/price/' + this.state.budget + '/[' + this.state.buildingIDs.toString() + ']';
+      let ids = [];
+
+      for (let product of this.state.buildings) {
+        ids.push(product.productType.toLowerCase() + '_' + product.id);
+      }
+
+      var url = 'http://52.221.73.154:1521/price/' + this.state.budget + '/[' + ids.toString() + ']';
 
       var response = await fetch(url);
       var responseJson = await response.json();
@@ -85,23 +92,37 @@ export default class SelectTypePage extends Component {
       let specs = responseJson;
 
       let views = [];
-      for (let indx = 0; indx < specs.length; indx++) {
-        let obj = specs[indx];
-        let order = indx + 1;
+
+      if (responseJson.length == 0) {
         views.push(
-          <SpecComponent
-            key={indx}
-            priority={order}
-            point={obj[obj.length - 2].total_score}
-            price={obj[obj.length - 1].total_price}
-            onPress={this.navigateToSpec.bind(this, obj)}>
-          </SpecComponent>
+          <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
+            <Text style={{ fontSize: 16, color: Color.primaryText }}>
+              Your preference is not possible. Please try again.
+          </Text>
+          </View>
         );
+      }
+
+      else {
+        for (let indx = 0; indx < specs.length; indx++) {
+          let obj = specs[indx];
+          let order = indx + 1;
+          views.push(
+            <SpecComponent
+              key={indx}
+              priority={order}
+              point={obj[obj.length - 2].total_score}
+              price={obj[obj.length - 1].total_price}
+              onPress={this.navigateToSpec.bind(this, obj)}>
+            </SpecComponent>
+          );
+        }
       }
 
       this.setState({
         isLoading: false,
-        recommendViews: views
+        recommendViews: views,
+        buildingIDs: ids
       });
 
     } catch (error) {
